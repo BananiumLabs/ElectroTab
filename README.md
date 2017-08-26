@@ -53,10 +53,15 @@ Each of these subfolders contains its own module and the components that module 
 
 From within the `<modulename>.module.ts` file, you may assign components to their corresponding links. By default these components do not lazy load; however, you can always nest lazy modules within other lazy modules.
 
+**Assets Folder:**
+All items in this folder will be compiled. Simply link to them by using the folder that the component is in as the root. (Example: app/home/home-page.component.ts would link to the assets/images folder using '../../assets/images/.) Unnecessary assets in this folder may lead to longer load times.
+
 ### Resources
 
 Need help?
 
 [Materialize Documentation](http://materializecss.com/)
+
 [Angular2-Materialize](https://github.com/InfomediaLtd/angular2-materialize)
+
 [Angular2 Documentation](https://angular.io/docs)
