@@ -1,0 +1,22 @@
+<!-- Top Navbar -->
+<div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper red">
+        
+        <!-- Title -->
+        <a class="brand-logo flow-text" [routerLink]="['']">Angular2 Starter Template</a>
+        
+        <!-- Navbar Content -->
+        <ul class="right">
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text">Home</a></li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['module1']" class="flow-text">Module One</a></li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['module2']" class="flow-text">Module Two</a></li>
+        </ul>
+    </div>
+  </nav>
+</div>
+
+<!-- Content -->
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
