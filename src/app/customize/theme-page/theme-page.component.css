@@ -1,0 +1,25 @@
+.btn-large{
+	width:100%;
+}
+
+.padded{
+	padding:5%;
+}
+
+.padded-10{
+	padding:10%;
+}
+
+.lever {
+	height: 1.5rem;
+	width: 6rem;
+}
+
+.switch label .lever:before, .switch label .lever:after {
+	width: 1.8rem;
+	height: 1.8rem;
+}
+
+.switch label input[type=checkbox]:checked + .lever:before, .switch label input[type=checkbox]:checked + .lever:after {
+	left: 4.8rem;
+}
