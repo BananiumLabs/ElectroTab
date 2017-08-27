@@ -50,6 +50,7 @@ export class AuthService {
 
                 //Sync user info with database
                 this.saveCustom('email', user.email);
+                this.getDB().verify(user.uid);
                 userInfo.isActive = true;
                 this.authed = true;
 

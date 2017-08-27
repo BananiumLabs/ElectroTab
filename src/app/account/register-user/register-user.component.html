@@ -13,7 +13,7 @@
     <hr class="hr-or">
 </div>
 
-<form name="registerForm" [formGroup]="form" role="form" (ngSubmit)="onSubmit(form.value)" ng-app="recapApp" ng-controller="recapCtrl">
+<form name="registerForm" [formGroup]="form" role="form" (ngSubmit)="onSubmit(form.value)">
     <div class="form-group" [class.has-error]="name.invalid && name.touched">
         <label for="name" class="control-label flow-text">Name</label>
         <input [formControl]="name" required type="text" class="form-control" id="name" name="name">
@@ -56,15 +56,6 @@
                 </li>
             </ul>
         </div>
-    </div>
-	<div
-        vc-recaptcha
-        theme="'light'"
-        key="model.key">
-        <!--
-        on-create="setWidgetId(widgetId)"
-        on-success="setResponse(response)"
-        on-expire="cbExpiration()"-->
     </div>
 	<div class="help-block">
             <ul class="list-unstyled">

@@ -17,9 +17,8 @@ export class dbconnect {
 	}
 
 
-	//Write to Database
-  saveUID(uid: string, controlVar: any){
-    var controlMultiplier = controlVar;
+	//Make sure all database items are valid
+  verify(uid: string) {
     var db = firebase.database().ref('users').child(uid);
     var usersRef = firebase.database().ref('users');
 		var theme : string;
