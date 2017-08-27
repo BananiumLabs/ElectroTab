@@ -1,8 +1,10 @@
-Travis Build Status [Master]: [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=master)](https://travis-ci.org/dbqeo/ElectroTab)
-
 # ElectroTab: The electrifying new tab experience!
 
+![Favicon](src/assets/images/favicon.png)
+
 ## Built with [Angular](https://angular.io/) and [Firebase](https://firebase.google.com/) with styles and components from [MaterializeCSS](http://materializecss.com/). Cross Platform support for Windows, Mac OS X, and Linux.
+
+**Build Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=master)](https://travis-ci.org/dbqeo/ElectroTab)
 
 ## Current Features
  - **Support for Google Chrome/Chromium.** View the `chrome-extension` branch for the extension's source code.
