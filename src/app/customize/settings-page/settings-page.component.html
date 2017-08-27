@@ -1,0 +1,73 @@
+<div class="container">
+	<h2 class="center-align" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''">Plugins and Settings</h2>
+
+	  <div class="col s12 m7">
+			<div class="card horizontal z-depth-3" [ngClass]="(getSetting('color') !== 'none' || getSetting('color') === 'black') ? 'white' : getSetting('color') + ' lighten-4'">
+				<div class="card-image">
+					<img src="../../../assets/images/searchengines.png">
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<span class="card-title">Search Engine</span>
+						<p>Currently we support searches using Bing, Google, and Duckduckgo! If you have any more engines to suggest, <a [routerLink]="['../../info/support']" >let us know!</a></p>
+					</div>
+					<div class="card-action">
+
+						<p>Current Engine: <span class="radioValue">{{ getEngine() }}</span> </p>
+
+							<form>
+								<p>
+						      <input name="group1" type="radio" id="google" (click)="engineChoice = 'Google'" />
+						      <label for="google">Google</label>
+						    </p>
+						    <p>
+						      <input name="group1" type="radio" id="bing" (click)="engineChoice = 'Bing'" />
+						      <label for="bing">Bing</label>
+						    </p>
+						    <p>
+						      <input name="group1" type="radio" id="duck" (click)="engineChoice = 'DuckDuckGo'" />
+						      <label for="duck">DuckDuckGo</label>
+						    </p>
+
+								 <button class="btn waves-effect waves-light" type="submit" name="action" (click)="setEngine()">Submit</button>
+							</form>
+
+
+					</div>
+
+
+				</div>
+			</div>
+	</div>
+
+	<div class="col s12 m7">
+			<div class="card horizontal z-depth-3" [ngClass]="(getSetting('color') !== 'none' || getSetting('color') === 'black') ? 'white' : getSetting('color') + ' lighten-4'">
+				<div class="card-image">
+					<img src="../../../assets/images/customcolor.png">
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<span class="card-title">Custom Colors</span>
+						<p>Set your custom color! <br/>
+							<a href="http://materializecss.com/color.html" target="_blank">Click here</a> to view all accepted color names. <br/>
+							Input syntax: (Text Color) (Modifier) (Main Color) <br/>
+							Text Color: Optional. Examples: 'purple-text', 'orange-text', 'black-text' <br/>
+							Modifier: Optional. Examples: 'darken-2', 'lighten-4', 'accent-1' <br/>
+							Main Color: Required. Examples: 'pink', 'blue-grey', 'deep-purple'
+						</p>
+					</div>
+					<div class="card-action">
+								<form>
+									<div class="input-field col s6">
+										<i class="material-icons prefix">color_lens</i>
+										<input id="icon_prefix" type="text" class="validate active" #color>
+										<label for="icon_prefix">Custom Color</label>
+									</div>
+
+									 <button class="btn waves-effect waves-light" type="submit" name="action" (click)="setColor()">Submit</button>
+								</form>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>

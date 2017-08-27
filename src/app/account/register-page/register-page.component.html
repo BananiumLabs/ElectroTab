@@ -1,0 +1,22 @@
+<div class="col-md-4 col-md-offset-1 container">
+  <div *ngIf="(errorRegister)" class="col s6 m12">
+  <h5 class="red-text">This email is already registered.</h5>
+      <!-- <app-reset-password></app-reset-password> -->
+  </div>
+  <div *ngIf="(successRegister)" class="col s6 m12">
+  <h5 class="green-text">Your account has been successfully created! Please log in by navigating to the home page.</h5>
+      <!-- <app-reset-password></app-reset-password> -->
+  </div>
+  <app-register-user (onSuccess)="showSuccess()" (onError)="showError()"></app-register-user>
+  <div *ngIf="(errorRegister)" class="col s6 m12">
+  <h5 class="red-text">This email is already registered.</h5>
+      <!-- <app-reset-password></app-reset-password> -->
+  </div>
+  <div *ngIf="(successRegister)" class="col s6 m12">
+  <h5 class="green-text">Your account has been successfully created! Please log in by navigating to the home page.</h5>
+      <!-- <app-reset-password></app-reset-password> -->
+  </div>
+  <div class="col s6 m12">
+      <!-- <app-reset-password></app-reset-password> -->
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div *ngIf="!(isLoggedIn|async)" class="col s6 m12">
+          <div *ngIf="(errorLogin)" class="col s6 m12">
+          <h5 class="red-text">The email and password combination you have entered is incorrect. Please check your password and try again. If you are sure your email and password combination are correct and you are getting an error during registration, please email contact@enumc.com</h5>
+              <!-- <app-reset-password></app-reset-password> -->
+          </div>
+            <app-login-user (onSuccess)="navigateToHome()" (onError)="showError()"></app-login-user>
+          <div *ngIf="(errorLogin)" class="col s6 m12">
+          <h5 class="red-text">The email and password combination you have entered is incorrect. Please check your password and try again. If you are sure your email and password combination are correct and you are getting an error during registration, please email contact@enumc.com</h5>
+              <!-- <app-reset-password></app-reset-password> -->
+          </div>
+        </div>
+
+        <div *ngIf="isLoggedIn|async">
+            <div class="{{navigateToHome()}}"></div>
+        </div>
+
+    </div>
+
+	<div class="row">
+		 <div class="divider"></div>
+    </div>
+        
+	<div class="row">
+		 <div class="col s6 m12">
+		 	No account? <a [routerLink]="['../register']">Register here</a>
+		</div>
+    </div>
+    
+	<div class="row">
+		<div class="col s6 m12">
+		 <a [routerLink]="['../reset-password']"> Forgot password?</a>
+	    </div>
+    </div>
+
+    <div class="row">
+        <div *ngIf="(register|async)" class="col s6 m12">
+			  <app-register-user></app-register-user>
+            <!-- <app-reset-password></app-reset-password> -->
+        </div>
+    </div>
+</div>

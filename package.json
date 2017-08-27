@@ -22,7 +22,9 @@
     "@angular/router": "4.3.6",
     "@ngtools/json-schema": "^1.1.0",
     "@ngtools/webpack": "^1.5.0",
+    "angular-gridster2": "^3.11.6",
     "angular2-materialize": "^15.0.4",
+    "angularfire2": "^4.0.0-rc.2",
     "bootstrap": "3.3.7",
     "common-tags": "^1.4.0",
     "core-js": "2.5.0",
@@ -57,11 +59,11 @@
   "description": "Starter Template for Angular2",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dbqeo/angular2-starter-template"
+    "url": "git+https://github.com/dbqeo/ElectroTab"
   },
-  "author": "Eric Q",
+  "author": "Ben Cuan, Vikram Peddinti, Eric Qian",
   "bugs": {
-    "url": "https://github.com/dbqeo/angular2-starter-template/issues"
+    "url": "https://github.com/dbqeo/ElectroTab/issues"
   },
-  "homepage": "https://github.com/dbqeo/angular2-starter-template/ProtoTab#readme"
+  "homepage": "https://github.com/dbqeo/ElectroTab/ElectroTab#readme"
 }

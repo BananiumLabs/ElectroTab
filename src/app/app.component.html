@@ -1,22 +1,92 @@
-<!-- Top Navbar -->
-<div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper red">
-        
-        <!-- Title -->
-        <a class="brand-logo flow-text" [routerLink]="['']">Angular2 Starter Template</a>
-        
-        <!-- Navbar Content -->
-        <ul class="right">
-          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text">Home</a></li>
-          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['module1']" class="flow-text">Module One</a></li>
-          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['module2']" class="flow-text">Module Two</a></li>
-        </ul>
-    </div>
-  </nav>
-</div>
+<!-- Color Wrapper -->
+<div [ngClass]="getSetting('modifier') === 'color' ? getSetting('color') + ' lighten-3' : (getSetting('modifier') === 'dark' ? 'grey darken-4' : '')">
 
-<!-- Content -->
-<div class="container">
-  <router-outlet></router-outlet>
+  <!-- Materialize Default  -->
+  <div class="navbar-fixed" *ngIf="getSetting('theme') === 'default'">
+      <nav>
+        <div class="nav-wrapper {{getSetting('color')}}">
+          <a class="brand-logo flow-text" [routerLink]="['']">ElectroTab</a>
+          <!-- Dropdown trigger -->
+          <a materialize="dropdown" class="button-collapse dropdown-button" href="#" data-activates="dropdown"><i class="material-icons">menu</i></a>
+
+          <!-- Regular screen Logged In -->
+          <ul class="right hide-on-med-and-down" *ngIf="(isLoggedIn|async)">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text">Home</a></li>
+
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['customize/grid']" class="flow-text">Your Tab</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['customize/settings']" class="flow-text">Settings</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['customize/theme']" class="flow-text">Theme</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['info/support']" class="flow-text">Support</a></li>
+
+            <li><a materialize="dropdown" class="dropdown-button flow-text" href="#" data-activates="dropdown-color"><i class="material-icons left fa fa-paint-brush"></i>Colors</a></li>
+            <li><a (click)="logout()" href="#" class="flow-text">Logout</a></li>
+          </ul>
+
+          <!-- Regular Screen Not Logged In -->
+          <ul class="right hide-on-med-and-down" *ngIf="!(isLoggedIn|async)">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text">Home</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['faq']" class="flow-text">FAQ</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['login']" class="flow-text">Login</a></li>
+          </ul>
+
+        <ul class="right">
+          <li *ngIf="(isLoggedIn|async)"><a materialize="dropdown" class="dropdown-button flow-text button-collapse" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left fa fa-paint-brush white-text"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Vanilla -->
+  <div class="navbar-fixed" *ngIf="getSetting('theme') === 'vanilla'">
+    <nav [ngClass]="getSetting('theme') === 'vanilla' ? 'no-nav' : ''">
+      <div class="nav-wrapper" [ngClass]="getSetting('modifier') === 'dark' ? 'grey lighten-2' : 'white'">
+
+        <!-- Dropdown trigger -->
+        <ul class="right">
+          <li *ngIf="getSetting('modifier') !== 'dark' && !(getSetting('color') === 'black' && getSetting('modifier') === 'color')" ><a materialize="dropdown" class="dropdown-button" href="#" data-activates="dropdown"><i class="material-icons {{getSetting('color')}}-text" >menu</i></a><li>
+          <li *ngIf="getSetting('modifier') === 'dark' || (getSetting('color') === 'black' && getSetting('modifier') === 'color')" ><a materialize="dropdown" class="dropdown-button" href="#" data-activates="dropdown"><i class="material-icons white-text" >menu</i></a><li>
+        </ul>
+
+        <ul class="left">
+          <li *ngIf="(isLoggedIn|async) && (getSetting('modifier') !== 'dark' && !(getSetting('color') === 'black' && getSetting('modifier') === 'color'))" ><a materialize="dropdown"  class="dropdown-button flow-text" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left fa fa-paint-brush {{getSetting('color')}}-text"></i></a></li>
+          <li *ngIf="(isLoggedIn|async) && (getSetting('modifier') === 'dark' || (getSetting('color') === 'black' && getSetting('modifier') === 'color'))" ><a materialize="dropdown" class="dropdown-button flow-text" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left fa fa-paint-brush white-text"></i></a></li>
+
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Content -->
+  <div id="dynRes" >
+      <router-outlet></router-outlet>
+  </div>
+
+  <!-- Menu Dropdown (logged in) -->
+  <ul class="dropdown-content" id="dropdown" *ngIf="(isLoggedIn|async)">
+
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text {{getSetting('color')}}-text">Home</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  ><a [routerLink]="['customize/grid']" class="flow-text {{getSetting('color')}}-text">Your Tab</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  ><a [routerLink]="['customize/settings']" class="flow-text {{getSetting('color')}}-text">Settings</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  ><a [routerLink]="['customize/theme']" class="flow-text {{getSetting('color')}}-text">Theme</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['info/support']" class="flow-text {{getSetting('color')}}-text">Support</a></li>
+
+    <li><a (click)="logout()" href="#" class="flow-text {{getSetting('color')}}-text">Logout</a></li>
+  </ul>
+
+  <!-- Menu Dropdown (not logged in) -->
+  <ul class="dropdown-content" id="dropdown" *ngIf="!(isLoggedIn|async)">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text {{getSetting('color')}}-text">Home</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['faq']" class="flow-text {{getSetting('color')}}-text">FAQ</a></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['login']" class="flow-text {{getSetting('color')}}-text">Login</a></li>
+  </ul>
+
+  <!-- Colors Dropdown -->
+  <ul class="dropdown-content" id="dropdown-color">
+    <li class="green"><a (click)="setSetting('color', 'green')" href="#" class="white-text">Grassy Green</a></li>
+    <li class="blue"><a (click)="setSetting('color', 'blue')" href="#" class="white-text">Ocean Blue</a></li>
+    <li class="red"><a (click)="setSetting('color', 'red')" href="#" class="white-text">Inferno Red</a></li>
+    <li class="black"><a (click)="setSetting('color', 'black')" href="#" class="white-text">Black and White</a></li>
+    <li class="indigo darken-3"><a (click)="setSetting('color', 'indigo')" href="#" class="white-text">Midnight Blue</a></li>
+    <li><a [routerLink]="['customize/settings']" class="white-text {{getSetting('color')}}">CUSTOM</a></li>
+  </ul>
 </div>

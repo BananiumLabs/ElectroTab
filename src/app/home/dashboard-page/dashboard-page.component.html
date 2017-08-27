@@ -1,0 +1,8 @@
+ <!-- Grid -->
+  <gridster [options]="options" class="{{getGrid()}} {{getOptions()}}" style="height:1000px; background:transparent">
+	<gridster-item [item]="item" *ngFor="let item of dashboard">
+		<div class="button-holder center-align" [ngClass]="getSetting('modifier') === 'color' ? getSetting('color') + ' lighten-3' : (getSetting('modifier') === 'dark' ? 'grey darken-4' : '')" style="position: relative">
+			<grid-content [item]="item"></grid-content>
+		</div>
+	</gridster-item>
+</gridster> 

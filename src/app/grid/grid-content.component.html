@@ -1,0 +1,43 @@
+
+<div [ngSwitch]="item.id" style="background: transparent; height: 100%; width: 100%;" class="child">
+
+  <!-- Welcome Screen -->
+  <div *ngSwitchCase="0">
+    <img src="../../../assets/images/favicon.png" alt="" class="responsive-img size" />
+    <h2 class="center-align" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''">Welcome to ElectroTab!</h2> 
+    <button class="btn-large waves-effect waves-light {{getSetting('color')}}" type="submit" name="action" [routerLink]="['/customize/grid']">Start Customizing</button>
+  </div>
+
+  <!-- ElectroTab Logo -->
+  <div *ngSwitchCase="1" class="fit">
+    <img src="../../../assets/images/favicon.png" alt="" class="responsive-img" />
+  </div>
+
+  <!-- Search Bar -->
+  <div *ngSwitchCase="2">
+    <form method="get" id="search-form">
+      <div class="input-field white center-align z-depth-2 card">
+        <input #search id="search" ng-focus="true" (keyup.enter)="searchFor(search.value)" type="search" class="flow-text" placeholder="{{item.setting}} Search" required autofocus>
+        <label class="label-icon" for="search" id="search-label"><i class="material-icons">search</i></label>
+        <i id="search-label" class="material-icons">close</i>
+      </div>
+    </form>
+  </div>
+
+  <!-- Clock -->
+  <div *ngSwitchCase="3">
+    <div [ngSwitch]="item.setting">
+      <!-- White -->
+      <iframe *ngSwitchCase='AnalogWhite' src="http://free.timeanddate.com/clock/i5u1qpwv/n283/szw160/szh160/cf100/hncfff" frameborder="0" width="160" height="160"></iframe>
+      <!-- Green -->
+      <iframe *ngSwitchCase='AnalogGreen' src="http://free.timeanddate.com/clock/i5u1qpwv/n283/szw160/szh160/hoc090/hbw4/hfc0c0/cf100/hnc0c0/fas20/facfff/fdi86/mqcfff/mqs2/mql3/mqw4/mqd70/mhcfff/mhs2/mhl3/mhw4/mhd70/mmv0/hhcfff/hhs2/hmcfff/hms2" frameborder="0" width="160" height="160"></iframe>
+      <!-- Digital Blue -->
+      <iframe *ngSwitchCase='DigitalBlue' src="http://free.timeanddate.com/clock/i5u1qpwv/n283/fs16/fc06f/tc0ff/pc9ff/ftb/pa8/tt0/tw1/th1/ta1/tb4" frameborder="0" width="208" height="52"></iframe>
+      <div *ngSwitchDefault>Invalid</div>
+    </div>
+  </div>
+
+  <div *ngSwitchDefault class="red-text">Invalid ID!</div>
+</div>
+
+  

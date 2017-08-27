@@ -1,0 +1,150 @@
+<div id="dynamicSize">
+
+	<ul materialize="collapsible" class="collapsible {{getGrid()}}" data-collapsible="expandable" >
+
+	  <!-- Settings window -->
+	   <li>
+		<div class="collapsible-header valign-wrapper flow-text"><i class="material-icons">settings</i>Settings</div>
+		  
+		<div class="collapsible-body white">
+			<md-toolbar colo="primary">
+			  <div class="main-toolbar"> 
+
+				 <md-select aria-label="Grid type" [(ngModel)]="options.gridType" (ngModelChange)="changedOptions()" placeholder="Grid Type">
+				  <md-option value="fit">Fit to screen</md-option>
+				  <md-option value="scrollVertical">Scroll Vertical</md-option>
+				  <md-option value="scrollHorizontal">Scroll Horizontal</md-option>
+				  <md-option value="fixed">Fixed</md-option>
+				  <md-option value="verticalFixed">Vertical Fixed</md-option>
+				  <md-option value="horizontalFixed">Horizontal Fixed</md-option>
+				</md-select>
+
+				<md-select aria-label="Compact type" [(ngModel)]="options.compactType" (ngModelChange)="changedOptions()" placeholder="Compact Type">
+				  <md-option value="none">None</md-option>
+				  <md-option value="compactUp">Compact Up</md-option>
+				  <md-option value="compactLeft">Compact Left</md-option>
+				  <md-option value="compactLeft&Up">Compact Left & Up</md-option>
+				  <md-option value="compactUp&Left">Compact Up & Left</md-option>
+				</md-select>
+
+				
+				<div class="margin-slider">
+				  <div><span>Margin</span></div>
+				  <md-slider aria-label="Margin" thumbLabel min="0" max="30" step="1" (ngModelChange)="changedOptions()" [(ngModel)]="options.margin"></md-slider>
+				</div>
+				
+				<md-checkbox [(ngModel)]="options.outerMargin" (ngModelChange)="changedOptions()">Outer Margin</md-checkbox>
+				
+				<md-input-container>
+				  <input mdInput [(ngModel)]="options.fixedColWidth" type="number" placeholder="Fixed Col Width" (ngModelChange)="changedOptions()">
+				</md-input-container>
+				<md-input-container>
+				  <input mdInput [(ngModel)]="options.fixedRowHeight" type="number" placeholder="Fixed Row Height" (ngModelChange)="changedOptions()">
+				</md-input-container>
+				<md-checkbox [(ngModel)]="options.keepFixedHeightInMobile" (ngModelChange)="changedOptions()">
+				  Keep Fixed Height In Mobile
+				</md-checkbox>
+			  </div>
+			</md-toolbar>
+		</div>
+	  </li> 
+
+	  <!-- Add components window -->
+	  <li>
+		<div class="collapsible-header valign-wrapper flow-text"><i class="material-icons">add_circle</i>Add Components</div>
+			
+	   
+		<div class="collapsible-body white">
+		  <table class="responsive-table">
+			<tbody style="max-height: 600px;">
+
+			  <!-- 1. Logo -->
+			  <tr>
+				<td>
+				  <div class="card responsive-40 ">
+					<div class="card-image waves-effect waves-block waves-light">
+					  <img class="responsive-img" src="../../../assets/images/favicon.png" (click)="addItem(1,1,1,false)" />
+					  <span class="card-title black-text">ElectroTab Logo</span>
+					</div>
+				  </div>
+				<td>
+			  </tr>
+
+			  <!-- 2. Search Bar -->
+			  <tr>
+				<td>
+				  <div class="card responsive-40 ">
+					<div class="card-image waves-effect waves-block waves-light">
+					  <img class="responsive-img" src="../../../assets/images/search-icon.png" (click)="addItemCustom(2,7,1,true,'Google')" />
+					  <span class="card-title black-text">Search Bar</span>
+					</div>
+				  </div>
+				<td>
+				</tr>
+					
+			  <!-- 3. Clock -->
+			  <tr>
+				<td>
+				  <div class="card responsive-40 ">
+					<div class="card-image waves-effect waves-block waves-light">
+					  <img class="responsive-img" src="../../../assets/images/clock.png" (click)="addItemCustom(3,1,1,true,'AnalogWhite')" />
+					  <span class="card-title black-text">Clock</span>
+					</div>
+				  </div>
+				<td>
+				</tr>
+			
+			</tbody>
+		  </table>
+		</div>
+	  </li>
+
+	  <!-- Quick Actions Buttons -->
+	  <li>
+		<div class="collapsible-header center-align" style="padding:1%;">
+		  <a (click)="resetGrid()" class="waves-effect waves-light btn-large {{getSetting('color')}}" style="margin-right:3%">Reset Grid</a>
+		  <a (click)="refresh()" class="waves-effect waves-light btn-large {{getSetting('color')}}" style="margin-right:3%">Refresh Page</a>
+		  <a (click)="resetOptions()" class="waves-effect waves-light btn-large {{getSetting('color')}}" style="margin-right:3%">Reset Options</a>
+		</div>
+	  </li>
+	</ul>
+
+	<gridster [options]="options">
+
+	  <gridster-item [item]="item" *ngFor="let item of dashboard">
+
+		  <div class="card hoverable fill">
+				<div class="card-content" style="padding: 0;">
+
+				<!-- Top menubar -->
+				<div class="navbar z1" style="position: relative;">
+					<nav class="no-nav">
+					<div class="nav-wrapper white">
+
+						<!-- Dropdown trigger -->
+						<ul class="left" >
+							<li *ngIf="item.menu"><a materialize="dropdown" class="dropdown-button activator"><i class="material-icons {{getSetting('color')}}-text">menu</i></a></li>
+							<li><a materialize="dropdown" class="dropdown-button drag-handler"><i class="material-icons {{getSetting('color')}}-text">zoom_out_map</i></a></li>
+						</ul>
+
+						<!-- Destroy -->
+						<ul class="right">
+						<li><a *ngIf="dashboard.length > 1" class="dropdown-button" (click)="removeItem($event,item)"><i class="material-icons red-text" >close</i></a></li>
+						</ul>
+
+					</div>
+					</nav>
+				</div>
+					<grid-content  class="button-holder center-align" [item]="item" style="top: 2vh;"></grid-content>
+				</div>
+				<div class="card-reveal white z2">
+					<span class="card-title grey-text text-darken-4">Settings<i class="material-icons right">close</i></span>
+					<grid-menu [item]="item"></grid-menu>
+				</div>
+			</div>
+
+		</gridster-item>
+
+	</gridster>
+
+</div>
