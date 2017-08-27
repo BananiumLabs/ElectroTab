@@ -256,11 +256,11 @@ export class AuthService {
                 .catch(err => result.error(err));
             return result.asObservable();
         }
-        else if (provider === "twitter") {
+        else if (provider === "github") {
 
             this.angularFireAuth
                 .auth
-                .signInWithPopup(new firebase.auth.TwitterAuthProvider())
+                .signInWithPopup(new firebase.auth.GithubAuthProvider())
                 .then(auth => result.next("success"))
                 .catch(err => result.error(err));
             return result.asObservable();

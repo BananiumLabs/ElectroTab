@@ -23,7 +23,7 @@ import { AuthService } from "app/shared/auth.service";
 const routes: Routes = [
     { path: '', loadChildren: 'app/home/home.module#HomeModule' },
     { path: 'info', loadChildren: 'app/info/info.module#InfoModule' },
-    // { path: 'account', loadChildren: 'app/account/account.module#AccountModule' }, 
+    { path: 'account', loadChildren: 'app/account/account.module#AccountModule' }, 
     // { path: 'customize', loadChildren: 'app/customize/customize.module#CustomizeModule' }
 ]
 

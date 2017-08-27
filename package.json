@@ -59,11 +59,11 @@
   "description": "Starter Template for Angular2",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dbqeo/angular2-starter-template"
+    "url": "git+https://github.com/dbqeo/ElectroTab"
   },
   "author": "Ben Cuan, Vikram Peddinti, Eric Qian",
   "bugs": {
-    "url": "https://github.com/dbqeo/angular2-starter-template/issues"
+    "url": "https://github.com/dbqeo/ElectroTab/issues"
   },
-  "homepage": "https://github.com/dbqeo/angular2-starter-template/ElectroTab#readme"
+  "homepage": "https://github.com/dbqeo/ElectroTab/ElectroTab#readme"
 }
