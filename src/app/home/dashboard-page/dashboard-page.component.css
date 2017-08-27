@@ -1,0 +1,85 @@
+.input-field {
+	padding-top: 0.6rem;
+}
+
+.cap-first {
+	text-transform:capitalize;
+}
+
+.size {
+    height: 15vh;
+}
+
+input {
+	border-bottom-width: 0px !important;
+}
+
+input[type=search] ~ .material-icons {
+  padding-top:0.5rem;
+  
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+   padding-left: 3rem;
+   padding-bottom: 0.3rem;
+}
+
+ng2-adsense {
+	padding: 2%;
+}
+
+.margin-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.main-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1 auto;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+:host /deep/ .mat-toolbar-row {
+  height: initial !important;
+}
+
+ md-toolbar {
+  flex: 0 0 auto;
+} 
+
+gridster-item div.button-holder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+gridster-item .item-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+gridster-item .gridster-item-content {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

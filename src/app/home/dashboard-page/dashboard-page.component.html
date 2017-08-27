@@ -1,0 +1,32 @@
+
+<nav *ngIf="getSetting('theme') === 'default'">
+	  <form method="get">
+		 <div class="input-field {{getSetting('color')}} lighten-2">
+			<input #search id="search" ng-focus="true" (keyup.enter)="searchFor(search.value)" type="search" class="flow-text" placeholder="{{getEngine()}} Search" autofocus="" required >
+			<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+			<i class="material-icons">close</i>
+		 </div>
+	  </form>
+ </nav>
+
+<div class="container">
+
+	<div *ngIf="getSetting('theme') === 'vanilla' || getSetting('theme') === 'invert'" class="center-align">
+		<img src="../../../assets/images/favicon.png" alt="" class="responsive-img size" />
+		<form method="get">
+		 <div class="input-field white center-align z-depth-2 card">
+			<input #search id="search" ng-focus="true" (keyup.enter)="searchFor(search.value)" type="search" class="flow-text" placeholder="{{getEngine()}} Search" required autofocus>
+			<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+			<i class="material-icons">close</i>
+		 </div>
+	  </form>
+	</div>
+
+</div>
+  <gridster [options]="options" class="{{getGrid()}} {{getOptions()}}" style="height:1000px; background:transparent">
+	<gridster-item [item]="item" *ngFor="let item of dashboard">
+		<div class="button-holder center-align" [ngClass]="getSetting('modifier') === 'color' ? getSetting('color') + ' lighten-3' : (getSetting('modifier') === 'dark' ? 'grey darken-4' : '')" style="position: relative">
+			<grid-content [item]="item"></grid-content>
+		</div>
+	</gridster-item>
+</gridster> 

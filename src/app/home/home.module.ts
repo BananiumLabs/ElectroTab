@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
-import { HomePageComponent } from 'app/home/home-page.component';
-
+import { DashboardPageComponent } from 'app/home/dashboard-page/dashboard-page.component';
+import { GridsterModule } from 'angular-gridster2';
+import { GridContentComponent } from 'app/grid/grid-content.component';
 
 @NgModule({
     declarations: [
-        HomePageComponent
+        DashboardPageComponent,
+        GridContentComponent,
     ],
     imports: [
         CommonModule,
+        GridsterModule,
 
         RouterModule.forChild([
-            { path: '', component: HomePageComponent },
+            { path: '', component: DashboardPageComponent },
         ]),
     ],
     exports: [
-        RouterModule
+        RouterModule,
+        GridContentComponent
     ]
 })
 export class HomeModule {
