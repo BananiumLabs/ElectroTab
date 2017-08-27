@@ -48,15 +48,15 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
 	 if(this._inputElement)
 		this._inputElement.nativeElement.focus();
 
-   if(document.getElementById("version_no")) {
-		var version_no = document.getElementById("version_no").innerText;
-		this.authService.saveVersion(version_no);
-		console.log(version_no);
-   }
-   else {
-     this.authService.saveVersion("NO_EXT");
-	  console.log('Version Number Invalid!');
-   }
+  //  if(document.getElementById("version_no")) {
+	// 	var version_no = document.getElementById("version_no").innerText;
+	// 	this.authService.saveVersion(version_no);
+	// 	console.log(version_no);
+  //  }
+  //  else {
+  //    this.authService.saveVersion("NO_EXT");
+	//   console.log('Version Number Invalid!');
+  //  }
   }
 
   ngOnInit() {
@@ -149,7 +149,7 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
   redirect() {
     setTimeout(() => {
       // console.log('redirect ran');
-      console.log(this.isLoggedIn);
+      // console.log(this.isLoggedIn);
       if(!this.isLoggedIn.value)
         this.router.navigate(['info']);
     }, 1000)

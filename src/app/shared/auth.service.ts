@@ -30,7 +30,8 @@ export class AuthService {
     private user: firebase.User;
 
     constructor(private angularFireAuth: AngularFireAuth, private jsonp: Jsonp, private http: Http) {
-      console.log("%cHi there friend :)", "color: green;font-size: large");
+        console.log("%cHi! :)", "color: green;font-size: x-large");
+        console.log("%cIf there are any errors below, please file an issue at https://github.com/dbqeo/ElectroTab/issues. Thanks!", "color:red;font-size: medium");
     this.database = new dbconnect();
 
         this.angularFireAuth.authState.subscribe(user => {
