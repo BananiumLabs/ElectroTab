@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { InfoPageComponent } from 'app/info/info-page/info-page.component';
 import { FaqPageComponent } from 'app/info/faq-page/faq-page.component';
 import { SupportPageComponent } from 'app/info/support-page/support-page.component';
+import {MaterializeModule} from "angular2-materialize";
+
 
 @NgModule({
     declarations: [
@@ -13,6 +15,7 @@ import { SupportPageComponent } from 'app/info/support-page/support-page.compone
     ],
     imports: [
         CommonModule,
+        MaterializeModule,
 
         RouterModule.forChild([
             { path: '', component: InfoPageComponent },

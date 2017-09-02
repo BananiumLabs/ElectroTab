@@ -30,8 +30,16 @@ textarea {
   }
 
   h1{
-	color: rgb(255, 255, 255);
+		color: rgb(255, 255, 255);
+		font-weight: 900;
+		font-size: 100px;
   }
   h5{
-	color: rgb(255, 255, 255);
-  }
+		color: rgb(255, 255, 255);
+		font-family: 'Open Sans', sans-serif;
+		
+	}
+
+.waves-effect waves-light btn{
+	margin: 1000px;
+}
