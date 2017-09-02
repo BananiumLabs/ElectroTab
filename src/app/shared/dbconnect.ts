@@ -21,6 +21,7 @@ export class dbconnect {
       storageBucket: "electrotab-project.appspot.com",
       messagingSenderId: "503957073726"
     });
+    
 	}
 
 
@@ -31,12 +32,12 @@ export class dbconnect {
       return;
 
     this.user = this.db.object('/users/' + uid, { preserveSnapshot: true });
-  
+
     this.uid = uid;
 
     this.user.subscribe(snapshot => {
       console.log(snapshot.val())
-        
+
         if (!snapshot.hasChild("settings"))
           this.user.update({
             "settings": {
@@ -94,25 +95,58 @@ export class dbconnect {
     });
   }
 
+
+  template(uid: string) {
+
+    if(!uid)
+      return;
+
+    this.user = this.db.object('/users/' + uid, { preserveSnapshot: true });
+
+    this.uid = uid;
+
+    this.user.subscribe(snapshot => {
+      console.log(snapshot.val())
+      if (!snapshot.hasChild("settings"))
+        this.user.update({
+          "settings": {
+            theme: 'vanilla',
+            color: 'green',
+            modifier: 'none',
+            engine: 'Google',
+            clock: 0
+          }
+        });
+        });
+      }
+
+
+
+
+
+
   //read custom value from database
   getCustom(uid: string, name: string, callback) {
-      if(uid != undefined) {
-      var db = firebase.database().ref('users').child(uid).child(name);
-      db.on('value', function(rtrn) {
-          //if(rtrn.val() != undefined && rtrn.val() != null )
-            callback(rtrn.val());
+    if(!uid)
+      return null;
+      this.user = this.db.object('/users/' + uid, { preserveSnapshot: true });
+
+      this.uid = uid;
+      this.user.subscribe(snapshot => {
+          if (!snapshot.hasChild(name))
+            return null;
+          else {
+            console.log(snapshot[name]);
+            return snapshot[name];
+          }
       });
-    }
+
   }
 
   getCustomOnce(uid: string, name: string, callback) {
-      if(uid != undefined) {
-      var db = firebase.database().ref('users').child(uid).child(name);
-      db.once('value', function(rtrn) {
-          //if(rtrn.val() != undefined && rtrn.val() != null )
-            callback(rtrn.val());
+      this.getCustom(uid, name, function(rtrn) {
+        return rtrn;
       });
-    }
   }
 
   //read custom value from settings object
