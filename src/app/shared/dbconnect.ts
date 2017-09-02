@@ -25,8 +25,8 @@ export class dbconnect {
 	}
 
 
-	//Make sure all database items are valid
-  verify(uid: string) {
+	/**Initializes the database. Sets the UID and verifies that the user's data is valid. */
+  initialize(uid: string) {
 
     if(!uid)
       return;
@@ -81,14 +81,14 @@ export class dbconnect {
 
 	}
 
-  //Add custom field( ex. dynamic name, ip list )
+  /**Sets a given data set to a certain value. */
   saveCustom(name: string, data: any) {
     this.user.update({
       [name]: data
     });
   }
 
-  //Add custom setting
+  /** Sets a given setting to a given value. */
   saveSetting(name: string, data: any) {
     this.db.object('/users/' + this.uid + '/settings/').update({
       [name]: data
@@ -120,16 +120,11 @@ export class dbconnect {
         });
       }
 
-
-
-
-
-
-  //read custom value from database
+  /**Reads a custom value from database. */
   getCustom(name: string, callback) {
-    console.log(name);
+    // console.log(name);
     this.db.object('users/' + this.uid + `/${name}`, { preserveSnapshot: true }).subscribe(snapshot => {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
       callback(snapshot.val());
       return;
     });
@@ -141,7 +136,7 @@ export class dbconnect {
       });
   }
 
-  //read custom value from settings object
+  /** Reads a custom value from the user's list of settings. */
   getSetting(uid: string, name: string, callback) {
       this.db.object('users/' + this.uid + '/settings' + `/${name}` , { preserveSnapshot: true }).subscribe(snapshot => {
         console.log(snapshot.val());
