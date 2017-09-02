@@ -2,10 +2,16 @@ import * as firebase from 'firebase';
 import {UserInfo} from "./user-info";
 import { AuthService } from "app/shared/auth.service";
 import {AppComponent} from "app/app.component";
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 
 export class dbconnect {
-
-  constructor(){
+  users : FirebaseObjectObservable<any>;
+  constructor(db: AngularFireDatabase){
+    this.users = db.object('/users', { preserveSnapshot: true });
+    this.users.subscribe(snapshot => {
+      console.log(snapshot.key)
+      console.log(snapshot.val())
+    });
     var app = firebase.initializeApp({
       apiKey: "AIzaSyBjPOhHoGlvgBvgtr6Sfpg9OsIao2Ux8a8",
       authDomain: "electrotab-project.firebaseapp.com",

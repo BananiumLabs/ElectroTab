@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions,  Jsonp} from '@angular/http';
 import * as firebase from 'firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import {UserInfo} from "./user-info";
 import { Observable, Subject, BehaviorSubject } from "rxjs";
 import 'rxjs/add/operator/map';
@@ -29,10 +30,10 @@ export class AuthService {
     userInfo = new BehaviorSubject<UserInfo>(AuthService.UNKNOWN_USER);
     private user: firebase.User;
 
-    constructor(private angularFireAuth: AngularFireAuth, private jsonp: Jsonp, private http: Http) {
+    constructor(private angularFireAuth: AngularFireAuth, private jsonp: Jsonp, private http: Http, private db: AngularFireDatabase) {
         console.log("%cHi! :)", "color: green;font-size: x-large");
         console.log("%cIf there are any errors below, please file an issue at https://github.com/dbqeo/ElectroTab/issues. Thanks!", "color:red;font-size: medium");
-    this.database = new dbconnect();
+    this.database = new dbconnect(db);
 
         this.angularFireAuth.authState.subscribe(user => {
             //console.log("user: ", JSON.stringify(user));
