@@ -136,13 +136,13 @@ export class AuthService {
     }
 
     saveCustom(item: string, input: any) {
-        this.getDB().saveCustom(this.getUID(), item, input);
+        this.getDB().saveCustom(item, input);
     }
     saveSetting(item: string, input: any) {
-        this.getDB().saveSetting(this.getUID(), item, input);
+        this.getDB().saveSetting(item, input);
     }
     saveCustomUID(uid: string, item: string, input: any) {
-        this.getDB().saveCustom(uid, item, input);
+        this.getDB().saveCustom(item, input);
     }
 
     checkData(uid: string, value: string, callback) {

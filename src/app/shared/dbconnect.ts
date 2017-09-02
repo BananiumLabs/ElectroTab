@@ -80,32 +80,18 @@ export class dbconnect {
 
 	}
 
-	//Read from database
-  getUID(uid: string, callback) {
-    
-      if(uid != undefined) {
-      var db = firebase.database().ref('users').child(uid);
-      db.on('value', function(data) {
-          if(data.val() != undefined && data.val() != null )
-            callback(data.val());
-      });
-    }
-  }
-
   //Add custom field( ex. dynamic name, ip list )
-  saveCustom(uid: string, name: string, data: any) {
-      var db = firebase.database().ref('users').child(uid);
-      db.update({
-        [name]: data
-      });
+  saveCustom(name: string, data: any) {
+    this.user.update({
+      [name]: data
+    });
   }
 
   //Add custom setting
-  saveSetting(uid: string, name: string, data: any) {
-      var db = firebase.database().ref('users').child(uid).child('settings');
-      db.update({
-        [name]: data
-      });
+  saveSetting(name: string, data: any) {
+    this.user.$ref.child('settings').update({
+      [name]: data
+    });
   }
 
   //read custom value from database
