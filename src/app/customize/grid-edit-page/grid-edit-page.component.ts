@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GridsterConfig} from 'angular-gridster2/dist/gridsterConfig.interface';
 import { Observable } from "rxjs";
 import { AuthService } from "app/shared/auth.service";
@@ -6,6 +6,8 @@ import { UserInfo } from 'app/shared/user-info';
 import { NgClass, NgSwitch } from '@angular/common';
 import { Router } from "@angular/router";
 
+/**Delay, in milliseconds, of database methods which need to wait for initialization. */
+const DELAY = 500;
 
 @Component({
   selector: 'grid-edit-page',
@@ -13,20 +15,17 @@ import { Router } from "@angular/router";
   styleUrls: ['./grid-edit-page.component.css']
 })
 
-export class GridEditPageComponent implements OnInit, OnChanges {
+export class GridEditPageComponent implements OnInit {
 options: GridsterConfig;
 dashboard: Array<Object>;
 gridLoaded: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
-    Observable.interval(1000).subscribe(x => {
-        this.saveGrid();
-    });
   }
 
  ngOnInit() {
    this.options = {
-     gridType: 'fixed',
+     gridType: 'fit',
      compactType: 'none',
      margin: 10,
       outerMargin: true,
@@ -59,16 +58,24 @@ gridLoaded: boolean;
    this.dashboard = [
       
     ];
- }
 
- ngOnChanges(...args: any[]) {
-   console.log('onChange fired');
-   console.log('changing', args);
+   setTimeout(() => {
+     this.getGrid();
+     this.getOptions();
+
+     Observable.interval(2000).subscribe(x => {
+       this.saveGrid();
+     });
+   }, DELAY)
  }
 
  changedOptions() {
    this.options.api.optionsChanged();
-   this.saveOptions();
+   setTimeout(() => {
+    //  console.log("options changed");
+     this.saveOptions();
+   }, DELAY)
+   
  }
 
  removeItem($event, item) {
@@ -79,13 +86,11 @@ gridLoaded: boolean;
 
  addItem(id: number, height: number, width: number, hasMenu: boolean) {
    this.dashboard.push({id: id, cols: height, rows: width, menu: hasMenu});
-   console.log(this.dashboard);
  };
 
  //Adds an item with a custom setting value
  addItemCustom(id: number, height: number, width: number, hasMenu: boolean, settingValue: any) {
    this.dashboard.push({id: id, cols: height, rows: width, menu: hasMenu, setting: settingValue});
-   console.log(this.dashboard);
  };
 
  isLoggedIn(): Observable<boolean> {
@@ -109,6 +114,7 @@ gridLoaded: boolean;
  }
 
  getOptions() {
+   console.log("got options");
    Object.assign(this.options, this.authService.getCustom("gridOptions"));
  }
 
@@ -118,7 +124,6 @@ gridLoaded: boolean;
    if(!this.gridLoaded && gridArr !== undefined) {
     for(var i = 0; i < gridArr.length; i++) 
       this.dashboard.push(gridArr[i]);
-    this.getOptions();
     this.changedOptions();
       this.gridLoaded = true;
    }
@@ -160,7 +165,6 @@ gridLoaded: boolean;
    };
 
    Object.assign(this.options, defaultOptions);
-   console.log(this.options);
    this.saveOptions();
  }
 

@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions,  Jsonp} from '@angular/http';
 import * as firebase from 'firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import {UserInfo} from "./user-info";
 import { Observable, Subject, BehaviorSubject } from "rxjs";
 import 'rxjs/add/operator/map';
@@ -29,10 +30,10 @@ export class AuthService {
     userInfo = new BehaviorSubject<UserInfo>(AuthService.UNKNOWN_USER);
     private user: firebase.User;
 
-    constructor(private angularFireAuth: AngularFireAuth, private jsonp: Jsonp, private http: Http) {
+    constructor(private angularFireAuth: AngularFireAuth, private jsonp: Jsonp, private http: Http, private db: AngularFireDatabase) {
         console.log("%cHi! :)", "color: green;font-size: x-large");
         console.log("%cIf there are any errors below, please file an issue at https://github.com/dbqeo/ElectroTab/issues. Thanks!", "color:red;font-size: medium");
-    this.database = new dbconnect();
+    this.database = new dbconnect(db);
 
         this.angularFireAuth.authState.subscribe(user => {
             //console.log("user: ", JSON.stringify(user));
@@ -50,8 +51,8 @@ export class AuthService {
                 userInfo.emailVerified = user.emailVerified;
 
                 //Sync user info with database
+                this.getDB().initialize(user.uid);
                 this.saveCustom('email', user.email);
-                this.getDB().verify(user.uid);
                 userInfo.isActive = true;
                 this.authed = true;
 
@@ -61,9 +62,6 @@ export class AuthService {
             }
             this.userInfo.next(userInfo);
         });
-
-
-
     }
 
 /////////////////////////////Getters/////////////////////////////////////
@@ -82,7 +80,7 @@ export class AuthService {
     getCustom(item: string): any {
         var val;
         if(this.currentUser() !== undefined && this.isLoggedInBool() !== undefined) {
-            this.getDB().getCustom(this.getUID(), item, function(returnValue) {
+            this.getDB().getCustom(item, function(returnValue) {
                 val = returnValue;
             });
         }
@@ -99,20 +97,10 @@ export class AuthService {
         return val;
     }
 
-    getCustomUID(uid: string, item: string): any {
-        var val;
-        if(this.currentUser() !== undefined && this.isLoggedInBool() !== undefined) {
-            this.getDB().getCustom(uid, item, function(returnValue) {
-                val = returnValue;
-            });
-        }
-        return val;
-    }
-
     getAsyncCustom(item: string, callback) {
         var val;
         if(this.currentUser() !== undefined && this.isLoggedInBool() !== undefined) {
-            this.getDB().getCustom(this.getUID(), item, function(returnValue) {
+            this.getDB().getCustom(item, function(returnValue) {
                 val = returnValue;
                 callback(val);
             });
@@ -135,19 +123,13 @@ export class AuthService {
     }
 
     saveCustom(item: string, input: any) {
-        this.getDB().saveCustom(this.getUID(), item, input);
+        this.getDB().saveCustom(item, input);
     }
     saveSetting(item: string, input: any) {
-        this.getDB().saveSetting(this.getUID(), item, input);
+        this.getDB().saveSetting(item, input);
     }
     saveCustomUID(uid: string, item: string, input: any) {
-        this.getDB().saveCustom(uid, item, input);
-    }
-
-    checkData(uid: string, value: string, callback) {
-        this.getDB().checkExist(uid, value, function(returnValue) {
- 				 callback(returnValue);
- 			 });
+        this.getDB().saveCustom(item, input);
     }
 
 ///////////////////////////Oauth Functions////////////////////////////

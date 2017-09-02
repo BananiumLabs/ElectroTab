@@ -46,7 +46,6 @@ export class SupportPageComponent {
         //var engine = (this.getEngine() === 'Google') ? 'Bing' : 'Google';
         this.authService.saveSetting("engine", String(this.engineChoice));
         //this.engineChoice = selected;
-        //console.log(this.engineChoice);
     }
 
     reload() {

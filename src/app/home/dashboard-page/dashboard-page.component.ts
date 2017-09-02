@@ -9,6 +9,8 @@ import {UserInfo} from 'app/shared/user-info';
 import {MaterializeModule} from "angular2-materialize";
 import { GridsterConfig } from 'angular-gridster2/dist/gridsterConfig.interface';
 
+/**Delay, in milliseconds, of database methods which need to wait for initialization. */
+const DELAY = 750;
 
 @Component({
   selector: 'app-dashboard-page',
@@ -31,7 +33,10 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
 
 	constructor(private authService: AuthService, private router: Router) {
 
-    this.redirect();
+    setTimeout(() => {
+      if (!this.isLoggedIn.value)
+        this.router.navigate(['info']);
+    }, DELAY)
 
     this.userInfo = authService.userInfo;
     this.userInfo
@@ -93,6 +98,13 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
     this.dashboard = [
 
     ];
+
+    setTimeout(() => {
+      this.getGrid();
+      this.getOptions();
+    }, DELAY)
+
+    
   }
 
   searchFor(value: string) {
@@ -145,15 +157,4 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
   changedOptions() {
     this.options.api.optionsChanged();
   }
-
-  redirect() {
-    setTimeout(() => {
-      // console.log('redirect ran');
-      // console.log(this.isLoggedIn);
-      if(!this.isLoggedIn.value)
-        this.router.navigate(['info']);
-    }, 1000)
-      
-  }
-
 }
