@@ -5,13 +5,14 @@ import {AppComponent} from "app/app.component";
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 
 export class dbconnect {
-  users : FirebaseObjectObservable<any>;
+
+  user : FirebaseObjectObservable<any>;
+  uid : string;
+  db : AngularFireDatabase;
+
   constructor(db: AngularFireDatabase){
-    this.users = db.object('/users', { preserveSnapshot: true });
-    this.users.subscribe(snapshot => {
-      console.log(snapshot.key)
-      console.log(snapshot.val())
-    });
+    this.db = db;
+
     var app = firebase.initializeApp({
       apiKey: "AIzaSyBjPOhHoGlvgBvgtr6Sfpg9OsIao2Ux8a8",
       authDomain: "electrotab-project.firebaseapp.com",
@@ -25,69 +26,63 @@ export class dbconnect {
 
 	//Make sure all database items are valid
   verify(uid: string) {
-    var db = firebase.database().ref('users').child(uid);
-    var usersRef = firebase.database().ref('users');
-		var theme : string;
-		var gridInvalid : boolean;
 
-    if(uid == undefined || uid == null)
+    if(!uid)
       return;
-		  //Get initial database values
-			this.getUID(uid, function(returnValue) {
-				theme = returnValue.theme;
-        gridInvalid = returnValue.gridOptions.swap !== undefined;
-	 		});
 
+    this.user = this.db.object('/users/' + uid, { preserveSnapshot: true });
+  
+    this.uid = uid;
 
-          db.once('value', function(snapshot) {
-
-            //First time setup
-
-
-            if (!snapshot.hasChild("settings"))
-              db.update({
-                "settings": {
-                  theme: 'vanilla',
-                  color: 'green',
-                  modifier: 'none',
-                  engine: 'Google',
-                  clock: 0
-                }
-              });
-
-            if(!snapshot.hasChild("gridOptions"))
-              db.update( {
-                "gridOptions": {
-                  gridType: 'fit',
-                  compactType: 'none',
-                  margin: 10,
-                  outerMargin: true,
-                  minCols: 1,
-                  maxCols: 100,
-                  minRows: 1,
-                  maxRows: 100,
-                  maxItemCols: 50,
-                  minItemCols: 1,
-                  maxItemRows: 50,
-                  minItemRows: 1,
-                  defaultItemCols: 1,
-                  defaultItemRows: 1,
-                  fixedColWidth: 250,
-                  fixedRowHeight: 250,
-                  displayGrid: 'none',
-                }
-              });
-
-            if (!snapshot.hasChild("grid"))
-              db.update({
-                "grid": [{ cols: 2, rows: 2, y: 0, x: 0, id: 0 }]
-              });
-
+    this.user.subscribe(snapshot => {
+      console.log(snapshot.val())
+        
+        if (!snapshot.hasChild("settings"))
+          this.user.update({
+            "settings": {
+              theme: 'vanilla',
+              color: 'green',
+              modifier: 'none',
+              engine: 'Google',
+              clock: 0
+            }
           });
+
+        if (!snapshot.hasChild("gridOptions"))
+          this.user.update({
+            "gridOptions": {
+              gridType: 'fit',
+              compactType: 'none',
+              margin: 10,
+              outerMargin: true,
+              minCols: 1,
+              maxCols: 100,
+              minRows: 1,
+              maxRows: 100,
+              maxItemCols: 50,
+              minItemCols: 1,
+              maxItemRows: 50,
+              minItemRows: 1,
+              defaultItemCols: 1,
+              defaultItemRows: 1,
+              fixedColWidth: 250,
+              fixedRowHeight: 250,
+              displayGrid: 'none',
+            }
+          });
+
+        if (!snapshot.hasChild("grid"))
+          this.user.update({
+            "grid": [{ cols: 2, rows: 2, y: 0, x: 0, id: 0 }]
+          });
+
+      });
+
 	}
 
 	//Read from database
   getUID(uid: string, callback) {
+    
       if(uid != undefined) {
       var db = firebase.database().ref('users').child(uid);
       db.on('value', function(data) {
