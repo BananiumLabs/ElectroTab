@@ -21,7 +21,7 @@ export class dbconnect {
       storageBucket: "electrotab-project.appspot.com",
       messagingSenderId: "503957073726"
     });
-    
+
 	}
 
 
@@ -90,7 +90,7 @@ export class dbconnect {
 
   //Add custom setting
   saveSetting(name: string, data: any) {
-    this.user.$ref.child('settings').update({
+    this.db.object('/users/' + this.uid + '/settings/').update({
       [name]: data
     });
   }
@@ -159,16 +159,4 @@ export class dbconnect {
       });
     }
   }
-
-  checkExist(uid: string, value: string, callback) {
-    var db = firebase.database().ref('users').child(uid);
-    db.once('value', function(snapshot) {
-      if (snapshot.hasChild(value))
-        callback(true);
-
-      else
-        callback(false);
-    });
-  }
-
 }

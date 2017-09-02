@@ -51,8 +51,8 @@ export class AuthService {
                 userInfo.emailVerified = user.emailVerified;
 
                 //Sync user info with database
-                this.saveCustom('email', user.email);
                 this.getDB().verify(user.uid);
+                this.saveCustom('email', user.email);
                 userInfo.isActive = true;
                 this.authed = true;
 
@@ -83,7 +83,7 @@ export class AuthService {
     getCustom(item: string): any {
         var val;
         if(this.currentUser() !== undefined && this.isLoggedInBool() !== undefined) {
-            this.getDB().getCustom(this.getUID(), item, function(returnValue) {
+            this.getDB().getCustom(item, function(returnValue) {
                 val = returnValue;
             });
         }
@@ -100,20 +100,10 @@ export class AuthService {
         return val;
     }
 
-    getCustomUID(uid: string, item: string): any {
-        var val;
-        if(this.currentUser() !== undefined && this.isLoggedInBool() !== undefined) {
-            this.getDB().getCustom(uid, item, function(returnValue) {
-                val = returnValue;
-            });
-        }
-        return val;
-    }
-
     getAsyncCustom(item: string, callback) {
         var val;
         if(this.currentUser() !== undefined && this.isLoggedInBool() !== undefined) {
-            this.getDB().getCustom(this.getUID(), item, function(returnValue) {
+            this.getDB().getCustom(item, function(returnValue) {
                 val = returnValue;
                 callback(val);
             });
@@ -143,12 +133,6 @@ export class AuthService {
     }
     saveCustomUID(uid: string, item: string, input: any) {
         this.getDB().saveCustom(item, input);
-    }
-
-    checkData(uid: string, value: string, callback) {
-        this.getDB().checkExist(uid, value, function(returnValue) {
- 				 callback(returnValue);
- 			 });
     }
 
 ///////////////////////////Oauth Functions////////////////////////////

@@ -59,6 +59,11 @@ gridLoaded: boolean;
    this.dashboard = [
       
     ];
+
+   setTimeout(() => {
+     this.getGrid();
+     this.getOptions();
+   }, 1000)
  }
 
  ngOnChanges(...args: any[]) {
@@ -118,7 +123,6 @@ gridLoaded: boolean;
    if(!this.gridLoaded && gridArr !== undefined) {
     for(var i = 0; i < gridArr.length; i++) 
       this.dashboard.push(gridArr[i]);
-    this.getOptions();
     this.changedOptions();
       this.gridLoaded = true;
    }
