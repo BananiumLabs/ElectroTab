@@ -131,6 +131,7 @@ export class dbconnect {
     this.db.object('users/' + this.uid + `/${name}`, { preserveSnapshot: true }).subscribe(snapshot => {
       console.log(snapshot.val());
       callback(snapshot.val());
+      return;
     });
   }
 
@@ -142,12 +143,10 @@ export class dbconnect {
 
   //read custom value from settings object
   getSetting(uid: string, name: string, callback) {
-      if(uid != undefined) {
-      var db = firebase.database().ref('users').child(uid).child('settings').child(name);
-      db.on('value', function(rtrn) {
-          //if(rtrn.val() != undefined && rtrn.val() != null )
-            callback(rtrn.val());
+      this.db.object('users/' + this.uid + '/settings' + `/${name}` , { preserveSnapshot: true }).subscribe(snapshot => {
+        console.log(snapshot.val());
+        callback(snapshot.val());
+        return;
       });
-    }
   }
 }
