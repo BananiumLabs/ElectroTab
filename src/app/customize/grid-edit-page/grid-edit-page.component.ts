@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GridsterConfig} from 'angular-gridster2/dist/gridsterConfig.interface';
 import { Observable } from "rxjs";
 import { AuthService } from "app/shared/auth.service";
@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./grid-edit-page.component.css']
 })
 
-export class GridEditPageComponent implements OnInit, OnChanges {
+export class GridEditPageComponent implements OnInit {
 options: GridsterConfig;
 dashboard: Array<Object>;
 gridLoaded: boolean;
@@ -66,11 +66,6 @@ gridLoaded: boolean;
    }, 1000)
  }
 
- ngOnChanges(...args: any[]) {
-   console.log('onChange fired');
-   console.log('changing', args);
- }
-
  changedOptions() {
    this.options.api.optionsChanged();
    this.saveOptions();
@@ -84,13 +79,11 @@ gridLoaded: boolean;
 
  addItem(id: number, height: number, width: number, hasMenu: boolean) {
    this.dashboard.push({id: id, cols: height, rows: width, menu: hasMenu});
-   console.log(this.dashboard);
  };
 
  //Adds an item with a custom setting value
  addItemCustom(id: number, height: number, width: number, hasMenu: boolean, settingValue: any) {
    this.dashboard.push({id: id, cols: height, rows: width, menu: hasMenu, setting: settingValue});
-   console.log(this.dashboard);
  };
 
  isLoggedIn(): Observable<boolean> {
@@ -164,7 +157,6 @@ gridLoaded: boolean;
    };
 
    Object.assign(this.options, defaultOptions);
-   console.log(this.options);
    this.saveOptions();
  }
 
