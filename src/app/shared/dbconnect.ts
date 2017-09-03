@@ -36,7 +36,7 @@ export class dbconnect {
     this.uid = uid;
 
     this.user.subscribe(snapshot => {
-      console.log(snapshot.val())
+      // console.log(snapshot.val())
 
         if (!snapshot.hasChild("settings"))
           this.user.update({
