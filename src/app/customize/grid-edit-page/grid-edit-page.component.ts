@@ -6,6 +6,8 @@ import { UserInfo } from 'app/shared/user-info';
 import { NgClass, NgSwitch } from '@angular/common';
 import { Router } from "@angular/router";
 
+/**Delay, in milliseconds, of database methods which need to wait for initialization. */
+const DELAY = 500;
 
 @Component({
   selector: 'grid-edit-page',
@@ -19,14 +21,11 @@ dashboard: Array<Object>;
 gridLoaded: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
-    Observable.interval(1000).subscribe(x => {
-        this.saveGrid();
-    });
   }
 
  ngOnInit() {
    this.options = {
-     gridType: 'fixed',
+     gridType: 'fit',
      compactType: 'none',
      margin: 10,
       outerMargin: true,
@@ -63,12 +62,20 @@ gridLoaded: boolean;
    setTimeout(() => {
      this.getGrid();
      this.getOptions();
-   }, 1000)
+
+     Observable.interval(2000).subscribe(x => {
+       this.saveGrid();
+     });
+   }, DELAY)
  }
 
  changedOptions() {
    this.options.api.optionsChanged();
-   this.saveOptions();
+   setTimeout(() => {
+    //  console.log("options changed");
+     this.saveOptions();
+   }, DELAY)
+   
  }
 
  removeItem($event, item) {
@@ -107,6 +114,7 @@ gridLoaded: boolean;
  }
 
  getOptions() {
+   console.log("got options");
    Object.assign(this.options, this.authService.getCustom("gridOptions"));
  }
 

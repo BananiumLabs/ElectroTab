@@ -139,7 +139,7 @@ export class dbconnect {
   /** Reads a custom value from the user's list of settings. */
   getSetting(uid: string, name: string, callback) {
       this.db.object('users/' + this.uid + '/settings' + `/${name}` , { preserveSnapshot: true }).subscribe(snapshot => {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         callback(snapshot.val());
         return;
       });
