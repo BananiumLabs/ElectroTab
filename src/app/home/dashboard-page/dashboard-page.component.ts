@@ -93,6 +93,8 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
     this.dashboard = [
 
     ];
+
+    
   }
 
   searchFor(value: string) {
@@ -150,6 +152,8 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
     setTimeout(() => {
       // console.log('redirect ran');
       // console.log(this.isLoggedIn);
+      this.getGrid();
+      this.getOptions();
       if(!this.isLoggedIn.value)
         this.router.navigate(['info']);
     }, 1000)
