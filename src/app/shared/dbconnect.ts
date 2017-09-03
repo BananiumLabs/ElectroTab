@@ -89,20 +89,17 @@ export class dbconnect {
 
   //Add custom setting
   saveSetting(name: string, data: any) {
-    this.user.$ref.child('settings').update({
+    this.db.object('/users/' + this.uid + '/settings/').update({
       [name]: data
     });
   }
 
-  //read custom value from database
-  getCustom(uid: string, name: string, callback) {
-      if(uid != undefined) {
-      var db = firebase.database().ref('users').child(uid).child(name);
-      db.on('value', function(rtrn) {
-          //if(rtrn.val() != undefined && rtrn.val() != null )
-            callback(rtrn.val());
-      });
-    }
+  getCustom(name: string, callback) {
+    console.log(name);
+    this.db.object('users/' + this.uid + `/${name}`, { preserveSnapshot: true } ).subscribe(snapshot => {
+      console.log(snapshot.val());
+       callback(snapshot.val());
+    });
   }
 
   getCustomOnce(uid: string, name: string, callback) {
@@ -125,16 +122,4 @@ export class dbconnect {
       });
     }
   }
-
-  checkExist(uid: string, value: string, callback) {
-    var db = firebase.database().ref('users').child(uid);
-    db.once('value', function(snapshot) {
-      if (snapshot.hasChild(value))
-        callback(true);
-
-      else
-        callback(false);
-    });
-  }
-
 }
