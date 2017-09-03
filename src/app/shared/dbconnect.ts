@@ -35,7 +35,6 @@ export class dbconnect {
     this.uid = uid;
 
     this.user.subscribe(snapshot => {
-      console.log(snapshot.val())
         
         if (!snapshot.hasChild("settings"))
           this.user.update({
@@ -95,9 +94,9 @@ export class dbconnect {
   }
 
   getCustom(name: string, callback) {
-    console.log(name);
+    // console.log(name);
     this.db.object('users/' + this.uid + `/${name}`, { preserveSnapshot: true } ).subscribe(snapshot => {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
        callback(snapshot.val());
     });
   }
