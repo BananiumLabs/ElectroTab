@@ -2,16 +2,16 @@
 
 ![Favicon](src/assets/images/favicon.png)
 
-## Built with [Angular](https://angular.io/) and [Firebase](https://firebase.google.com/) with styles and components from [MaterializeCSS](http://materializecss.com/). Cross Platform support for Windows, Mac OS X, and Linux.
+## Built with [Angular](https://angular.io/) and [Firebase](https://firebase.google.com/) with styles and components from [MaterializeCSS](http://materializecss.com/). Current support for Chrome and Chromium.
 
 **Build Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=master)](https://travis-ci.org/dbqeo/ElectroTab)
 
 ## Current Features
  - **Support for Google Chrome/Chromium.** View the `chrome-extension` branch for the extension's source code.
  - **Modularity** New features can be added without disrupting any other modules! Users can easily enable and disable modules.
- - **Drag and Drop Interface** Widgets can be rearranged, resized,added, and removed. All changes are automatically synced with the Firebase database.
+ - **Drag and Drop Interface** Widgets can be rearranged, resized, added, and removed. All changes are automatically synced with the Firebase database.
  - **Themes:** Change the color scheme! (That's about it for now, kind of sad.)
- - **Accounts:** Sign in with your Google account, or make one using your email! All of your settings are saved with your account, no matter what device you use.
+ - **Accounts:** Sign in with your Google or GitHub account, or make one using your email! All of your settings are saved with your account, no matter what device you use.
 
 ## Planned Features
  - **Support for Safari, Firefox, and Edge.** Shouldn't be too hard. 
