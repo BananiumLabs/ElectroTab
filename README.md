@@ -31,6 +31,9 @@
 
  If you do not have access to our Firebase database, you can still deploy the build on your own website to test.
  
+## Contributing
+Please read our [Contribution Guide](CONTRIBUTING.md) for step-by-step instructions on how to contribute to ElectroTab.
+ 
 ## Branches
  - **master:** This is the release branch. Please do not submit any pull requests directly to master. This branch will frequently be built and deployed directly to all of our users.
  - **develop** This is the branch containing the latest semi-stable changes. Commits should not be directly created to develop. Instead, create a new branch or fork the repository.
