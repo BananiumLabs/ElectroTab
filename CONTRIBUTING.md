@@ -29,7 +29,7 @@ If you feel that you absolutely need to import a dependency into `app.module.ts`
 
 ### Submission Checklist
 1. Before submitting, make sure that all of your dependencies match `package.json` and the production build throws no errors (neither compilation nor runtime).
-2. Create a pull request to the **develop** branch. Write 
+2. Create a pull request to the **develop** branch.
 3. Make sure that the TravisCI checks pass on your PR. If not, go back to step 1. 
 4. Wait for your contribution to be approved! We may contact you with any questions or concerns.
 
