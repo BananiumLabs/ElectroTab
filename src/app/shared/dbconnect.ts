@@ -126,25 +126,16 @@ export class dbconnect {
 
 
   //read custom value from database
-  getCustom(uid: string, name: string, callback) {
-    if(!uid)
-      return null;
-      this.user = this.db.object('/users/' + uid, { preserveSnapshot: true });
-
-      this.uid = uid;
-      this.user.subscribe(snapshot => {
-          if (!snapshot.hasChild(name))
-            return null;
-          else {
-            console.log(snapshot[name]);
-            return snapshot[name];
-          }
-      });
-
+  getCustom(name: string, callback) {
+    console.log(name);
+    this.db.object('users/' + this.uid + `/${name}`, { preserveSnapshot: true }).subscribe(snapshot => {
+      console.log(snapshot.val());
+      callback(snapshot.val());
+    });
   }
 
   getCustomOnce(uid: string, name: string, callback) {
-      this.getCustom(uid, name, function(rtrn) {
+      this.getCustom(name, function(rtrn) {
         return rtrn;
       });
   }
