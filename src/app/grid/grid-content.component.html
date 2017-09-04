@@ -15,13 +15,13 @@
 
   <!-- Search Bar -->
   <div *ngSwitchCase="2">
-
+    <div id="searchform">
       <div class="input-field white center-align z-depth-2 card">
         <input #search id="search" ng-focus="true" (keyup.enter)="searchFor(search.value, item)" type="search" class="flow-text" placeholder="{{item.setting}} Search" required autofocus>
         <label class="label-icon" for="search" id="search-label"><i class="material-icons">search</i></label>
         <i id="search-label" class="material-icons">close</i>
       </div>
-
+    </div>
   </div>
 
   <!-- Clock -->

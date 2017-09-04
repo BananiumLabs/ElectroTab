@@ -21,7 +21,7 @@ dashboard: Array<Object>;
 gridLoaded: boolean;
 
 @Input()
-search: any;
+widgetSearch: any;
 
   constructor(private authService: AuthService, private router: Router) {
   }

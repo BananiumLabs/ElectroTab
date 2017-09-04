@@ -3,18 +3,18 @@ input {
   border-bottom-width: 0px !important;
 }
 
-#search {
+#widget-search {
   margin-left: 3rem;
   margin-bottom: 0.5rem;
   width: 90%;
 }
 
-#search-form {
+#widget-search-form {
   margin-top: 0.5rem;
   padding: 0.5rem;
 }
 
-#search-label {
+#widget-search-label {
   margin-top: 0.4rem;
 }
 
