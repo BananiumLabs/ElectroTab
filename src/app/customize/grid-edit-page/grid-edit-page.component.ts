@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {GridsterConfig} from 'angular-gridster2/dist/gridsterConfig.interface';
 import { Observable } from "rxjs";
 import { AuthService } from "app/shared/auth.service";
@@ -19,6 +19,9 @@ export class GridEditPageComponent implements OnInit {
 options: GridsterConfig;
 dashboard: Array<Object>;
 gridLoaded: boolean;
+
+@Input()
+search: any;
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -81,21 +84,6 @@ gridLoaded: boolean;
    
  }
 
- removeItem($event, item) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.dashboard.splice(this.dashboard.indexOf(item), 1);
-  }
-
- addItem(id: number, height: number, width: number, hasMenu: boolean) {
-   this.dashboard.push({id: id, cols: height, rows: width, menu: hasMenu});
- };
-
- //Adds an item with a custom setting value
- addItemCustom(id: number, height: number, width: number, hasMenu: boolean, settingValue: any) {
-   this.dashboard.push({id: id, cols: height, rows: width, menu: hasMenu, setting: settingValue});
- };
-
  isLoggedIn(): Observable<boolean> {
    return this.authService.isLoggedIn();
  }
@@ -115,6 +103,10 @@ gridLoaded: boolean;
  refresh() {
    location.reload();
  }
+
+ //////////////////
+ // Grid Methods //
+ //////////////////
 
  getOptions() {
    console.log("got options");
