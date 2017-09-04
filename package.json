@@ -36,6 +36,7 @@
     "get-caller-file": "^1.0.2",
     "materialize-css": "^0.100.1",
     "moment": "^2.18.1",
+    "ng2-page-scroll": "^4.0.0-beta.11",
     "ngx-bootstrap": "^2.0.0-beta.3",
     "node-modules-path": "^1.0.1",
     "nopt": "^4.0.1",
@@ -54,7 +55,7 @@
     "codelyzer": "3.1.2",
     "ts-node": "3.3.0",
     "tslint": "5.7.0",
-    "typescript": "~2.3.2"    
+    "typescript": "~2.3.2"
   },
   "description": "Starter Template for Angular2",
   "repository": {

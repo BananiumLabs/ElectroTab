@@ -5,7 +5,7 @@ import { InfoPageComponent } from 'app/info/info-page/info-page.component';
 import { FaqPageComponent } from 'app/info/faq-page/faq-page.component';
 import { SupportPageComponent } from 'app/info/support-page/support-page.component';
 import {MaterializeModule} from "angular2-materialize";
-
+import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
 @NgModule({
     declarations: [
@@ -16,6 +16,7 @@ import {MaterializeModule} from "angular2-materialize";
     imports: [
         CommonModule,
         MaterializeModule,
+        Ng2PageScrollModule,
 
         RouterModule.forChild([
             { path: '', component: InfoPageComponent },
