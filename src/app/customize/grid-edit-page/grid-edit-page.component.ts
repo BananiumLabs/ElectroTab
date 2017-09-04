@@ -75,6 +75,7 @@ search: any;
    }, DELAY * 2)
  }
 
+
  changedOptions() {
    this.options.api.optionsChanged();
    setTimeout(() => {
@@ -107,6 +108,22 @@ search: any;
  //////////////////
  // Grid Methods //
  //////////////////
+
+
+ removeItem($event, item) {
+   $event.preventDefault();
+   $event.stopPropagation();
+   this.dashboard.splice(this.dashboard.indexOf(item), 1);
+ }
+
+ addItem(id: number, height: number, width: number, hasMenu: boolean) {
+   this.dashboard.push({ id: id, cols: height, rows: width, menu: hasMenu });
+ };
+
+ //Adds an item with a custom setting value
+ addItemCustom(id: number, height: number, width: number, hasMenu: boolean, settingValue: any) {
+   this.dashboard.push({ id: id, cols: height, rows: width, menu: hasMenu, setting: settingValue });
+ };
 
  getOptions() {
    console.log("got options");
@@ -170,8 +187,7 @@ search: any;
  }
 
  saveGrid() {
-   
-   if(this.dashboard !== [] && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard)) {
+   if(this.dashboard !== [] && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard) && this.router.url == '/customize/grid') {
      console.log('autosave grid');
      this.authService.saveCustom("grid", this.dashboard);
    }
