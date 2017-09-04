@@ -108,43 +108,45 @@
 		</div>
 	  </li>
 	</ul>
+ 
+	<div *ngIf="gridLoaded" id="dynamicSize">
+		<gridster [options]="options">
 
-	<gridster [options]="options">
+			<gridster-item [item]="item" *ngFor="let item of dashboard">
 
-	  <gridster-item [item]="item" *ngFor="let item of dashboard">
+				<div class="card hoverable fill">
+					<div class="card-content" style="padding: 0;">
 
-		  <div class="card hoverable fill">
-				<div class="card-content" style="padding: 0;">
+					<!-- Top menubar -->
+					<div class="navbar z1" style="position: relative;">
+						<nav class="no-nav">
+						<div class="nav-wrapper white">
 
-				<!-- Top menubar -->
-				<div class="navbar z1" style="position: relative;">
-					<nav class="no-nav">
-					<div class="nav-wrapper white">
+							<!-- Dropdown trigger -->
+							<ul class="left" >
+								<li *ngIf="item.menu"><a materialize="dropdown" class="dropdown-button activator"><i class="material-icons {{getSetting('color')}}-text">menu</i></a></li>
+								<li><a materialize="dropdown" class="dropdown-button drag-handler"><i class="material-icons {{getSetting('color')}}-text">zoom_out_map</i></a></li>
+							</ul>
 
-						<!-- Dropdown trigger -->
-						<ul class="left" >
-							<li *ngIf="item.menu"><a materialize="dropdown" class="dropdown-button activator"><i class="material-icons {{getSetting('color')}}-text">menu</i></a></li>
-							<li><a materialize="dropdown" class="dropdown-button drag-handler"><i class="material-icons {{getSetting('color')}}-text">zoom_out_map</i></a></li>
-						</ul>
+							<!-- Destroy -->
+							<ul class="right">
+							<li><a *ngIf="dashboard.length > 1" class="dropdown-button" (click)="removeItem($event,item)"><i class="material-icons red-text" >close</i></a></li>
+							</ul>
 
-						<!-- Destroy -->
-						<ul class="right">
-						<li><a *ngIf="dashboard.length > 1" class="dropdown-button" (click)="removeItem($event,item)"><i class="material-icons red-text" >close</i></a></li>
-						</ul>
-
+						</div>
+						</nav>
 					</div>
-					</nav>
+						<grid-content  class="button-holder center-align" [item]="item" style="top: 2vh;"></grid-content>
+					</div>
+					<div class="card-reveal white z2">
+						<span class="card-title grey-text text-darken-4">Settings<i class="material-icons right">close</i></span>
+						<grid-menu [item]="item"></grid-menu>
+					</div>
 				</div>
-					<grid-content  class="button-holder center-align" [item]="item" style="top: 2vh;"></grid-content>
-				</div>
-				<div class="card-reveal white z2">
-					<span class="card-title grey-text text-darken-4">Settings<i class="material-icons right">close</i></span>
-					<grid-menu [item]="item"></grid-menu>
-				</div>
-			</div>
 
-		</gridster-item>
+			</gridster-item>
 
-	</gridster>
+		</gridster>
+	</div>
 
 </div>

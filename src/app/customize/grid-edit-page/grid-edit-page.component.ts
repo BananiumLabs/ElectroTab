@@ -7,7 +7,7 @@ import { NgClass, NgSwitch } from '@angular/common';
 import { Router } from "@angular/router";
 
 /**Delay, in milliseconds, of database methods which need to wait for initialization. */
-const DELAY = 500;
+const DELAY = 750;
 
 @Component({
   selector: 'grid-edit-page',
@@ -25,22 +25,22 @@ gridLoaded: boolean;
 
  ngOnInit() {
    this.options = {
-     gridType: 'fit',
-     compactType: 'none',
-     margin: 10,
-      outerMargin: true,
-      minCols: 1,
-      maxCols: 100,
-      minRows: 1,
-      maxRows: 100,
-      maxItemCols: 50,
-      minItemCols: 1,
-      maxItemRows: 50,
-      minItemRows: 1,
-      defaultItemCols: 1,
-      defaultItemRows: 1,
-      fixedColWidth: 250,
-      fixedRowHeight: 250,
+    //  gridType: 'fit',
+    //  compactType: 'none',
+    //  margin: 10,
+    //   outerMargin: true,
+    //   minCols: 1,
+    //   maxCols: 100,
+    //   minRows: 1,
+    //   maxRows: 100,
+    //   maxItemCols: 50,
+    //   minItemCols: 1,
+    //   maxItemRows: 50,
+    //   minItemRows: 1,
+    //   defaultItemCols: 1,
+    //   defaultItemRows: 1,
+    //   fixedColWidth: 250,
+    //   fixedRowHeight: 250,
       keepFixedHeightInMobile: false,
      displayGrid: 'none',
      draggable: {
@@ -60,13 +60,16 @@ gridLoaded: boolean;
     ];
 
    setTimeout(() => {
-     this.getGrid();
      this.getOptions();
-
+     
+     this.getGrid();
+     this.gridLoaded = true;
+   }, DELAY)
+   setTimeout(() => {
      Observable.interval(2000).subscribe(x => {
        this.saveGrid();
      });
-   }, DELAY)
+   }, DELAY * 2)
  }
 
  changedOptions() {
@@ -124,8 +127,7 @@ gridLoaded: boolean;
    if(!this.gridLoaded && gridArr !== undefined) {
     for(var i = 0; i < gridArr.length; i++) 
       this.dashboard.push(gridArr[i]);
-    this.changedOptions();
-      this.gridLoaded = true;
+    // this.changedOptions();
    }
  }
 
@@ -177,7 +179,7 @@ gridLoaded: boolean;
 
  saveGrid() {
    
-   if(this.dashboard && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard)) {
+   if(this.dashboard !== [] && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard)) {
      console.log('autosave grid');
      this.authService.saveCustom("grid", this.dashboard);
    }
