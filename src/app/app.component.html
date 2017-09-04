@@ -18,7 +18,7 @@
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['customize/theme']" class="flow-text">Theme</a></li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['info/support']" class="flow-text">Support</a></li>
 
-            <li><a materialize="dropdown" class="dropdown-button flow-text" href="#" data-activates="dropdown-color"><i class="material-icons left fa fa-paint-brush"></i>Colors</a></li>
+            <li><a materialize="dropdown" class="dropdown-button flow-text" href="#" data-activates="dropdown-color"><i class="material-icons left">color_lens</i>Colors</a></li>
             <li><a (click)="logout()" href="#" class="flow-text">Logout</a></li>
           </ul>
 
@@ -30,7 +30,7 @@
           </ul>
 
         <ul class="right">
-          <li *ngIf="(isLoggedIn|async)"><a materialize="dropdown" class="dropdown-button flow-text button-collapse" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left fa fa-paint-brush white-text"></i></a></li>
+          <li *ngIf="(isLoggedIn|async)"><a materialize="dropdown" class="dropdown-button flow-text button-collapse" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left white-text">color_lens</i></a></li>
         </ul>
       </div>
     </nav>
@@ -48,8 +48,8 @@
         </ul>
 
         <ul class="left">
-          <li *ngIf="(isLoggedIn|async) && (getSetting('modifier') !== 'dark' && !(getSetting('color') === 'black' && getSetting('modifier') === 'color'))" ><a materialize="dropdown"  class="dropdown-button flow-text" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left fa fa-paint-brush {{getSetting('color')}}-text"></i></a></li>
-          <li *ngIf="(isLoggedIn|async) && (getSetting('modifier') === 'dark' || (getSetting('color') === 'black' && getSetting('modifier') === 'color'))" ><a materialize="dropdown" class="dropdown-button flow-text" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left fa fa-paint-brush white-text"></i></a></li>
+          <li *ngIf="(isLoggedIn|async) && (getSetting('modifier') !== 'dark' && !(getSetting('color') === 'black' && getSetting('modifier') === 'color'))" ><a materialize="dropdown"  class="dropdown-button flow-text" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left {{getSetting('color')}}-text">color_lens</i></a></li>
+          <li *ngIf="(isLoggedIn|async) && (getSetting('modifier') === 'dark' || (getSetting('color') === 'black' && getSetting('modifier') === 'color'))" ><a materialize="dropdown" class="dropdown-button flow-text" href="#" data-activates="dropdown-color" data-constrainwidth="false"><i class="material-icons left white-text">color_lens</i></a></li>
 
         </ul>
       </div>
