@@ -44,8 +44,6 @@ export class dbconnect {
               theme: 'vanilla',
               color: 'green',
               modifier: 'none',
-              engine: 'Google',
-              clock: 0
             }
           });
 

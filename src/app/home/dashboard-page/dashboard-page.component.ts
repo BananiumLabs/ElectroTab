@@ -18,7 +18,7 @@ const DELAY = 750;
   styleUrls: ['./dashboard-page.component.css'],
 
 })
-export class DashboardPageComponent implements AfterViewInit, OnInit {
+export class DashboardPageComponent implements  OnInit {
   options: GridsterConfig;
   dashboard: Array<Object>;
   gridLoaded: boolean;
@@ -27,9 +27,6 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
   isLoggedIn = new BehaviorSubject(false);
 
   private myUrl:any;
-
-	@ViewChild("search")
-  private _inputElement: ElementRef;
 
 	constructor(private authService: AuthService, private router: Router) {
 
@@ -47,22 +44,6 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
    currentUser(): Observable<UserInfo> {
  		return this.authService.currentUser();
    }
-
-  ngAfterViewInit() {
-	 var that = this;
-	 if(this._inputElement)
-		this._inputElement.nativeElement.focus();
-
-  //  if(document.getElementById("version_no")) {
-	// 	var version_no = document.getElementById("version_no").innerText;
-	// 	this.authService.saveVersion(version_no);
-	// 	console.log(version_no);
-  //  }
-  //  else {
-  //    this.authService.saveVersion("NO_EXT");
-	//   console.log('Version Number Invalid!');
-  //  }
-  }
 
   ngOnInit() {
     this.options = {
@@ -107,14 +88,6 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
     
   }
 
-  searchFor(value: string) {
-    if (value !== "" && value !== undefined && value !== null)
-      if (this.getSetting('engine') !== "DuckDuckGo")
-        window.location.href = 'https://' + this.getSetting('engine') + '.com/search?q=' + value;
-    if (this.getSetting('engine') === "DuckDuckGo")
-      window.location.href = 'https://' + this.getSetting('engine') + '.com/?q=' + value;
-  }
-
   getSetting(setting: string) {
     return this.authService.getSetting(setting);
   }
@@ -148,10 +121,6 @@ export class DashboardPageComponent implements AfterViewInit, OnInit {
       this.changedOptions();
       this.gridLoaded = true;
     }
-  }
-
-  getEngine(): string {
-    return this.authService.getSetting("engine").charAt(0).toUpperCase() + this.authService.getSetting("engine").slice(1);
   }
 
   changedOptions() {

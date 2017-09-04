@@ -21,6 +21,9 @@ export class GridContentComponent implements OnInit {
   @Input()
   item: any;
 
+  @Input()
+  search: any;
+
 
 	constructor(private authService: AuthService, private router: Router) {
 
@@ -59,11 +62,11 @@ export class GridContentComponent implements OnInit {
     }
   }
 
-  searchFor(value: string) {
+  searchFor(value: string, item: any) {
     if (value !== "" && value !== undefined && value !== null)
-      if (this.getSetting('engine') !== "DuckDuckGo")
-        window.location.href = 'https://' + this.getSetting('engine') + '.com/search?q=' + value;
-    if (this.getSetting('engine') === "DuckDuckGo")
-      window.location.href = 'https://' + this.getSetting('engine') + '.com/?q=' + value;
+      if (item.setting !== "DuckDuckGo")
+        window.location.href = 'https://' + item.setting + '.com/search?q=' + value;
+    if (item.setting === "DuckDuckGo")
+      window.location.href = 'https://' + item.setting + '.com/?q=' + value;
   }
 }

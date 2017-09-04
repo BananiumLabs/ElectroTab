@@ -193,12 +193,4 @@ search: any;
    }
     
  }
-
- searchFor(value: string) {
-   if (value !== "" && value !== undefined && value !== null)
-     if (this.getSetting('engine') !== "DuckDuckGo")
-       window.location.href = 'https://' + this.getSetting('engine') + '.com/search?q=' + value;
-   if (this.getSetting('engine') === "DuckDuckGo")
-     window.location.href = 'https://' + this.getSetting('engine') + '.com/?q=' + value;
- }
 }
