@@ -72,6 +72,12 @@ gridster-item .gridster-item-content {
   height: auto;
 }
 
+.responsive-30 {
+  max-width: 300px;
+  max-height: 30%;
+  height: auto;
+}
+
 .z1 {
   z-index: 88888;
 }
