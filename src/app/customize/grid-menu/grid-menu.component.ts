@@ -21,10 +21,10 @@ export class GridMenuComponent {
   @Input()
   item: any;
 
-  
+
   engines = ["Google", "Bing", "DuckDuckGo"];
   clocks = ["AnalogWhite", "AnalogGreen", "DigitalBlue"];
-  
+
 	constructor(private authService: AuthService, private router: Router) {
 
    }
@@ -32,9 +32,21 @@ export class GridMenuComponent {
   currentUser(): Observable<UserInfo> {
     return this.authService.currentUser();
   }
-  
+
   getSetting(setting: string) {
     return this.authService.getSetting(setting);
+  }
+  changeURL() {
+    alert("Original: " + this.item.setting);
+    var txt;
+    var url = prompt("Please enter the website's url:", "https://www.google.com");
+    if (url == null || url == "") {
+        alert("User cancelled the prompt.");
+        return;
+    } else {
+        txt = url;
+    this.item.setting = url;
+    }
   }
 
   setSetting(setting: string, value: any) {
