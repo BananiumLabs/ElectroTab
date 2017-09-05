@@ -5,10 +5,10 @@
 	  <!-- Settings window -->
 	   <li>
 		<div class="collapsible-header valign-wrapper flow-text"><i class="material-icons">settings</i>Settings</div>
-		  
+
 		<div class="collapsible-body white">
 			<md-toolbar colo="primary">
-			  <div class="main-toolbar"> 
+			  <div class="main-toolbar">
 
 				 <md-select aria-label="Grid type" [(ngModel)]="options.gridType" (ngModelChange)="changedOptions()" placeholder="Grid Type">
 				  <md-option value="fit">Fit to screen</md-option>
@@ -27,14 +27,14 @@
 				  <md-option value="compactUp&Left">Compact Up & Left</md-option>
 				</md-select>
 
-				
+
 				<div class="margin-slider">
 				  <div><span>Margin</span></div>
 				  <md-slider aria-label="Margin" thumbLabel min="0" max="30" step="1" (ngModelChange)="changedOptions()" [(ngModel)]="options.margin"></md-slider>
 				</div>
-				
+
 				<md-checkbox [(ngModel)]="options.outerMargin" (ngModelChange)="changedOptions()">Outer Margin</md-checkbox>
-				
+
 				<md-input-container>
 				  <input mdInput [(ngModel)]="options.fixedColWidth" type="number" placeholder="Fixed Col Width" (ngModelChange)="changedOptions()">
 				</md-input-container>
@@ -47,13 +47,13 @@
 			  </div>
 			</md-toolbar>
 		</div>
-	  </li> 
+	  </li>
 
 	  <!-- Add components window -->
 	  <li>
 		<div class="collapsible-header valign-wrapper flow-text"><i class="material-icons">add_circle</i>Add Components</div>
-			
-	   
+
+
 		<div class="collapsible-body white">
 		  <table class="responsive-table">
 			<tbody style="max-height: 600px;">
@@ -81,7 +81,7 @@
 				  </div>
 				<td>
 				</tr>
-					
+
 			  <!-- 3. Clock -->
 			  <tr>
 				<td>
@@ -93,7 +93,19 @@
 				  </div>
 				<td>
 				</tr>
-			
+
+				<!-- 4. Custom URL SpeedDial-->
+			  <tr>
+				<td>
+				  <div class="card responsive-40 ">
+					<div class="card-image waves-effect waves-block waves-light">
+					  <img class="responsive-img" src="../../../assets/images/shortcut.png" (click)="addItem(4,1,1,true)" />
+					  <span class="card-title black-text">Website Shortcut</span>
+					</div>
+				  </div>
+				<td>
+				</tr>
+
 			</tbody>
 		  </table>
 		</div>
@@ -108,7 +120,7 @@
 		</div>
 	  </li>
 	</ul>
- 
+
 	<div *ngIf="gridLoaded" id="dynamicSize">
 		<gridster [options]="options">
 

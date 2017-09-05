@@ -4,7 +4,7 @@
   <!-- Welcome Screen -->
   <div *ngSwitchCase="0">
     <img src="../../../assets/images/favicon.png" alt="" class="responsive-img size" />
-    <h2 class="center-align" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''">Welcome to ElectroTab!</h2> 
+    <h2 class="center-align" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''">Welcome to ElectroTab!</h2>
     <button class="btn-large waves-effect waves-light {{getSetting('color')}}" type="submit" name="action" [routerLink]="['/customize/grid']">Start Customizing</button>
   </div>
 
@@ -37,7 +37,15 @@
     </div>
   </div>
 
+  <!-- Custom URL SpeedDial-->
+  <div *ngSwitchCase="4">
+    <div (click)="redirectToCustom()" class="fit" *ngSwitchCase="4">
+
+      <img id="p2i" class="fit" [src]=getURL() />
+
+      <p class="webName">{{item.setting}}</p>
+    </div>
+  </div>
+
   <div *ngSwitchDefault class="red-text">Invalid ID!</div>
 </div>
-
-  

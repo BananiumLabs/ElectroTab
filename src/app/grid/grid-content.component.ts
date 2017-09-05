@@ -18,8 +18,10 @@ export class GridContentComponent implements OnInit {
   dashboard: Array<Object>;
   gridLoaded: boolean;
 
+
   @Input()
   item: any;
+
 
 
 	constructor(private authService: AuthService, private router: Router) {
@@ -38,6 +40,13 @@ export class GridContentComponent implements OnInit {
 
   getSetting(setting: string) {
     return this.authService.getSetting(setting);
+  }
+  getURL() : string {
+    return "http://api.screenshotlayer.com/api/capture?access_key=a2f073b50b57b8c177482fa83b336efc&url=" + this.item.setting;
+  }
+
+  redirectToCustom() : any {
+    window.location.href = this.item.setting;
   }
 
   setSetting(setting: string, value: any) {
