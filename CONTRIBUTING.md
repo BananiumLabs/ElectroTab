@@ -12,6 +12,10 @@ If you're not familiar with these, please take a moment to skim through them, ju
 
 We reserve the right to refuse your contribution if you do not follow the above terms.
 
+If you need any assistance, either create a new issue or [join our Discord server.][discord]
+
+[discord]:https://discord.gg/FnvQ6MG
+
 ## Contributing Code
 
 ### Initialization Checklist
@@ -30,8 +34,9 @@ If you feel that you absolutely need to import a dependency into `app.module.ts`
 ### Submission Checklist
 1. Before submitting, make sure that all of your dependencies match `package.json` and the production build throws no errors (neither compilation nor runtime).
 2. Create a pull request to the **develop** branch.
-3. Make sure that the TravisCI checks pass on your PR. If not, go back to step 1. 
-4. Wait for your contribution to be approved! We may contact you with any questions or concerns.
+3. Write a good description, and don't forget to add a label and milestone!
+4. Make sure that the TravisCI checks pass on your PR. If not, go back to step 1. 
+5. Wait for your contribution to be approved! We may contact you with any questions or concerns.
 
 [style]: https://google.github.io/styleguide/jsguide.html
 [jsdoc]: http://usejsdoc.org/about-getting-started.html
