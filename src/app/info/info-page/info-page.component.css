@@ -43,3 +43,8 @@ textarea {
 .waves-effect waves-light btn{
 	margin: 1000px;
 }
+
+.pic{
+    width: 256px !important;
+    height: 256px !important;
+}

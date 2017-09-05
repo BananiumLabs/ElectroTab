@@ -1,21 +1,5 @@
 <!-- Materialize Default  -->
-
-
-  
-<!-- First section -->
-<section id="main">
-    <div class="gradient-overlay"></div>
-        <div class="container">
-                <div class="row">
-                    <div class="center-align">
-                        <h1 class="animated fadeInUp">ElectroTab</h1>
-                        <h5 class="animated fadeInUp">An Electrifying New Tab Experience!</h5>
-                    </div>
-                </div>
-                <a pageScroll href="#navBar" class="waves-effect waves-light btn">Discover Now</a>
-        </div>
-</section>
-
+<div class="navbar-fixed">
 <nav>
     <div id="navBar" class="nav-wrapper">
         <a class="brand-logo flow-text" [routerLink]="['']">ElectroTab</a>
@@ -23,26 +7,89 @@
         <a materialize="dropdown" class="button-collapse dropdown-button" href="#" data-activates="dropdown"><i class="material-icons">menu</i></a>
 
         <!-- Regular Screen Not Logged In -->
-        <ul class="right hide-on-med-and-down">
+        <ul class="right  hide-on-med-and-down">
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text">Home</a></li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['faq']" class="flow-text">FAQ</a></li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['../account/login']" class="flow-text">Login</a></li>
         </ul>
     </div>
 </nav>
-
-<div class="parallax-container">
-    <div class="parallax" materialize = "parallax"><img src="../assets/images/1.jpg"></div>
 </div>
-    <div class="section white">
-        <div class="row container">
-            <h2 class="header">Features</h2>
-            <p class="grey-text text-darken-3 lighten-3">Tons and Tons of features</p>
+
+
+<!-- First section -->
+<section id="main">
+    <div class="gradient-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="center-align">
+                <h1 class="animated fadeInUp">ElectroTab</h1>
+                <h5 class="animated fadeInUp">An Electrifying New Tab Experience!</h5>
+            </div>
+        </div>
+        <a pageScroll href="#parallax" class="waves-effect waves-light btn">Discover Now</a>
+    </div>
+</section>
+
+<div id="parallax" class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="center-align">
+                <br>
+                <img class="pic" src="./assets/images/favicon.png">
+            </div>
+        </div>
+
+        <div class="row">
+            <h3 class="col s12 light center header">ElectroTab electrifies your browser with unbeatable speed and modularity.</h3>
+        </div>
+
+        <!--   Main Features  -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="center promo">
+                    <!-- Icon Here -->
+                    <p class="promo-caption">Electrifying Modularity</p>
+                    <p class="light center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus turpis lacus, non porttitor odio ornare ac. Ut ut ullamcorper nisl. Phasellus pulvinar, neque vitae lobortis ultricies, ex metus vulputate enim, ut auctor justo augue sit amet eros. </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="center promo">
+                    <!-- Icon Here -->
+                    <p class="promo-caption">Lorem Ipsum Blah</p>
+                    <p class="light center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus turpis lacus, non porttitor odio ornare ac. Ut ut ullamcorper nisl. Phasellus pulvinar, neque vitae lobortis ultricies, ex metus vulputate enim, ut auctor justo augue sit amet eros.</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="center promo">
+                    <!-- Icon Here -->
+                    <p class="promo-caption">Lorem Ipsum Blah</p>
+                    <p class="light center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus turpis lacus, non porttitor odio ornare ac. Ut ut ullamcorper nisl. Phasellus pulvinar, neque vitae lobortis ultricies, ex metus vulputate enim, ut auctor justo augue sit amet eros. </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+        <div class="row center">
+            <h3 class="light header">Download Soon</h3>
+            <p class="col s12 m8 offset-m2 caption">Want to join in and get electrifyed with a touch of modularity? Download our Electrifying extension below!</p>
+            <a href="" class="btn-large waves-effect waves-dark">Download Now</a>
         </div>
     </div>
-<div class="parallax-container">
-    <div class="parallax" materialize = "parallax"><img src="../assets/images/2.jpg"></div>
+    <div class="divider"></div>
 </div>
 
-
- 
+<div class="section white">
+    <div class="row container">
+        <h2 class="header">Features</h2>
+        <p class="grey-text text-darken-3 lighten-3">Tons and Tons of features</p>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax" materialize="parallax"><img src="../assets/images/2.jpg"></div>
+</div>
