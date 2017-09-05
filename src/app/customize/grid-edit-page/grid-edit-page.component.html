@@ -68,7 +68,7 @@
 			<tbody style="max-height: 400px;">
 
 			  <!-- 1. Logo -->
-			  <tr>
+			  <tr *ngIf="'electrotab logo'.includes(widgetSearch.value.toLowerCase())">
 				<td>
 				  <div class="card responsive-30 ">
 					<div class="card-image waves-effect waves-block waves-light">
@@ -80,7 +80,7 @@
 			  </tr>
 
 			  <!-- 2. Search Bar -->
-			  <tr>
+			  <tr *ngIf="'search bar'.includes(widgetSearch.value.toLowerCase())">
 				<td>
 				  <div class="card responsive-30 ">
 					<div class="card-image waves-effect waves-block waves-light">
@@ -92,7 +92,7 @@
 				</tr>
 					
 			  <!-- 3. Clock -->
-			  <tr>
+			  <tr *ngIf="'clock'.includes(widgetSearch.value.toLowerCase())">
 				<td>
 				  <div class="card responsive-30 ">
 					<div class="card-image waves-effect waves-block waves-light">
