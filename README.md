@@ -6,6 +6,9 @@
 
 **Build Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=master)](https://travis-ci.org/dbqeo/ElectroTab)
 
+## Discord Server
+We use **Discord** for realtime collaboration (it's not just for gaming!) Our invite code is https://discord.gg/FnvQ6MG. **Everyone is welcome to join!**
+
 ## Current Features
  - **Support for Google Chrome/Chromium.** View the `chrome-extension` branch for the extension's source code.
  - **Modularity** New features can be added without disrupting any other modules! Users can easily enable and disable modules.
