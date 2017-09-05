@@ -1,3 +1,23 @@
+/* Search bar formatting */
+input {
+  border-bottom-width: 0px !important;
+}
+
+#widget-search {
+  margin-left: 3rem;
+  margin-bottom: 0.5rem;
+  width: 90%;
+}
+
+#widget-search-form {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+}
+
+#widget-search-label {
+  margin-top: 0.4rem;
+}
+
 .margin-slider {
   display: flex;
   justify-content: center;
@@ -69,6 +89,12 @@ gridster-item .gridster-item-content {
 .responsive-40 {
   max-width: 400px;
   max-height: 40%;
+  height: auto;
+}
+
+.responsive-30 {
+  max-width: 300px;
+  max-height: 30%;
   height: auto;
 }
 

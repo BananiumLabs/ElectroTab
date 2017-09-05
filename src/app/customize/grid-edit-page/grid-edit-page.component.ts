@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {GridsterConfig} from 'angular-gridster2/dist/gridsterConfig.interface';
 import { Observable } from "rxjs";
 import { AuthService } from "app/shared/auth.service";
@@ -19,6 +19,9 @@ export class GridEditPageComponent implements OnInit {
 options: GridsterConfig;
 dashboard: Array<Object>;
 gridLoaded: boolean;
+
+@Input()
+widgetSearch: any;
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -72,6 +75,7 @@ gridLoaded: boolean;
    }, DELAY * 2)
  }
 
+
  changedOptions() {
    this.options.api.optionsChanged();
    setTimeout(() => {
@@ -80,21 +84,6 @@ gridLoaded: boolean;
    }, DELAY)
    
  }
-
- removeItem($event, item) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.dashboard.splice(this.dashboard.indexOf(item), 1);
-  }
-
- addItem(id: number, height: number, width: number, hasMenu: boolean) {
-   this.dashboard.push({id: id, cols: height, rows: width, menu: hasMenu});
- };
-
- //Adds an item with a custom setting value
- addItemCustom(id: number, height: number, width: number, hasMenu: boolean, settingValue: any) {
-   this.dashboard.push({id: id, cols: height, rows: width, menu: hasMenu, setting: settingValue});
- };
 
  isLoggedIn(): Observable<boolean> {
    return this.authService.isLoggedIn();
@@ -115,6 +104,26 @@ gridLoaded: boolean;
  refresh() {
    location.reload();
  }
+
+ //////////////////
+ // Grid Methods //
+ //////////////////
+
+
+ removeItem($event, item) {
+   $event.preventDefault();
+   $event.stopPropagation();
+   this.dashboard.splice(this.dashboard.indexOf(item), 1);
+ }
+
+ addItem(id: number, height: number, width: number, hasMenu: boolean) {
+   this.dashboard.push({ id: id, cols: height, rows: width, menu: hasMenu });
+ };
+
+ //Adds an item with a custom setting value
+ addItemCustom(id: number, height: number, width: number, hasMenu: boolean, settingValue: any) {
+   this.dashboard.push({ id: id, cols: height, rows: width, menu: hasMenu, setting: settingValue });
+ };
 
  getOptions() {
    console.log("got options");
@@ -178,19 +187,10 @@ gridLoaded: boolean;
  }
 
  saveGrid() {
-   
-   if(this.dashboard !== [] && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard)) {
+   if(this.dashboard !== [] && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard) && this.router.url == '/customize/grid') {
      console.log('autosave grid');
      this.authService.saveCustom("grid", this.dashboard);
    }
     
- }
-
- searchFor(value: string) {
-   if (value !== "" && value !== undefined && value !== null)
-     if (this.getSetting('engine') !== "DuckDuckGo")
-       window.location.href = 'https://' + this.getSetting('engine') + '.com/search?q=' + value;
-   if (this.getSetting('engine') === "DuckDuckGo")
-     window.location.href = 'https://' + this.getSetting('engine') + '.com/?q=' + value;
  }
 }
