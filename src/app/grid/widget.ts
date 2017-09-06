@@ -6,4 +6,12 @@ export class Widget {
     name: string;
     /**The widget's HTML data. This will be injected into the grid when called. All Angular2 directives, all custom methods in our Widget API, and all Materialize directives are allowed. */
     html: string;
+    /**OPTIONAL: The HTML data for the customization menu. Allowed to write to widget `setting` data, accessible using the field `item.data`. */
+    menuHtml?: string;
+    /**OPTIONAL: The starting height of the widget. Default is 1 unit. */
+    height?: number = 1;
+    /**OPTIONAL: The starting width of the widget. Default is 1 unit. */
+    width?: number = 1;
+    /**OPTIONAL: The default value for the `setting` field. */
+    defaultSetting?: string;
 }
