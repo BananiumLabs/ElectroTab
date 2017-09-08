@@ -5,6 +5,7 @@ import { GridsterModule } from 'angular-gridster2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterializeModule } from "angular2-materialize";
 
+
 import 'hammerjs';
 import {
   MdIconModule,
@@ -28,7 +29,7 @@ import { HomeModule } from 'app/home/home.module';
         GridEditPageComponent,
         ThemePageComponent,
         SettingsPageComponent,
-        GridMenuComponent,
+        GridMenuComponent
     ],
     imports: [
         CommonModule,
@@ -43,7 +44,7 @@ import { HomeModule } from 'app/home/home.module';
             { path: 'settings', component: SettingsPageComponent },
             { path: 'theme', component: ThemePageComponent },
             { path: 'grid', component: GridEditPageComponent },
-        ]),
+        ])
     ],
     exports: [
         RouterModule

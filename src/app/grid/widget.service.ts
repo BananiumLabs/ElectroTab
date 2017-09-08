@@ -3,7 +3,7 @@ import { Widget } from './widget';
 
 /** Manages the database of valid Widgets. Includes the `widget` array and the `getWidget()` method to get a widget based on the ID. */
 @Injectable()
-export class HeroService {
+export class WidgetService {
     
     /**Array containing all declared widgets. 
      * Allowed variables include `id`, `name`, `template`, `menu_template` (optional), `height` (optional), `width` (optional), `defaultSetting` (optional). */
@@ -23,8 +23,8 @@ export class HeroService {
             width: 2,
             template:
             `<img src="../../../assets/images/favicon.png" alt="" class="responsive-img size" />
-             <h2 class="center-align"[ngClass] = "(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''" > Welcome to ElectroTab! < /h2>
-             <button class="btn-large waves-effect waves-light {{getSetting('color')}}" type="submit" name="action"[routerLink] = "['/customize/grid']" > Start Customizing</button>`
+             <h2 class="center-align"[ngClass] = "(authService.getSetting('modifier') === 'dark' || authService.getSetting('color') === 'black') ? 'white-text' : ''" > Welcome to ElectroTab! </h2>
+             <button class="btn-large waves-effect waves-light {{authService.getSetting('color')}}" type="submit" name="action" [routerLink]="['/customize/grid']"> Start Customizing</button>`
         },
             
         {

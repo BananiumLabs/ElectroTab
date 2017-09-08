@@ -7,6 +7,7 @@ import { Observable, BehaviorSubject } from "rxjs";
 import {Router} from "@angular/router";
 import {UserInfo} from 'app/shared/user-info';
 import {MaterializeModule} from "angular2-materialize";
+import {WidgetService} from 'app/grid/widget.service'
 
 @Component({
   selector: 'grid-content',
@@ -26,8 +27,7 @@ export class GridContentComponent implements OnInit {
   search: any;
 
 
-
-	constructor(private authService: AuthService, private router: Router) {
+	constructor(private authService: AuthService, private router: Router, private widgets: WidgetService) {
 
    }
 
@@ -37,7 +37,7 @@ export class GridContentComponent implements OnInit {
 
   ngOnInit() {
     this.dashboard = [
-
+  
     ];
   }
 

@@ -4,11 +4,16 @@ import { RouterModule } from '@angular/router';
 import { DashboardPageComponent } from 'app/home/dashboard-page/dashboard-page.component';
 import { GridsterModule } from 'angular-gridster2';
 import { GridContentComponent } from 'app/grid/grid-content.component';
+import { SafeHtml } from 'app/shared/safe-html.pipe';
+import { WidgetService } from 'app/grid/widget.service';
+import { CompileService } from 'app/shared/compile.service';
+import { CompileModule } from 'app/shared/compile.module';
 
 @NgModule({
     declarations: [
         DashboardPageComponent,
         GridContentComponent,
+        SafeHtml
     ],
     imports: [
         CommonModule,
@@ -17,10 +22,21 @@ import { GridContentComponent } from 'app/grid/grid-content.component';
         RouterModule.forChild([
             { path: '', component: DashboardPageComponent },
         ]),
+
+        CompileModule.forRoot({
+            module: {
+                imports: [HomeModule]
+            }
+        }),
     ],
     exports: [
         RouterModule,
-        GridContentComponent
+        GridContentComponent,
+        SafeHtml
+    ],
+    providers: [
+        WidgetService,
+        CompileService
     ]
 })
 export class HomeModule {
