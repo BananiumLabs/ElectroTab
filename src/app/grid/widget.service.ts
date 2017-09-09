@@ -26,9 +26,15 @@ export class WidgetService {
 
         console.error("WidgetNotFoundError: Widget with id " + id + " does not exist or is improperly defined.");
         return this.getWidget(-1);
+    }
 
-        
+    /** Returns the contents of the 'widgets' array that are not hidden.*/
+    getWidgets() : Widget[] {
+        var result = [];
+        for(var i = 0; i < this.widgets.length; i++)
+            if(!this.widgets[i].hidden)
+                result.push(this.widgets[i]);
 
-        
+        return result;
     }
 }

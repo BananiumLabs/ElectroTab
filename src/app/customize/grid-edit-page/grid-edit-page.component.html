@@ -65,46 +65,22 @@
 				</div>
 			</form>
 		  <table class="responsive-table">
-			<tbody style="max-height: 400px;">
+				<tbody style="max-height: 400px;">
+					<tr *ngFor="let widget of widgetService.getWidgets()">
+						<td *ngIf="widget.name.toLowerCase().includes(widgetSearch.value.toLowerCase())">
+							<div class="card responsive-30 ">
+								<div class="card-image waves-effect waves-block waves-light">
+									<img class="responsive-img" src="../../../assets/images/{{widget.icon}}" (click)="addItem(widget.id, widget.width, widget.height, widget.menuTemplate)" />
+									<span class="card-title black-text">{{widget.name}}</span>
+								</div>
+							</div>
+							<td>
+					</tr>
 
-			  <!-- 1. Logo -->
-			  <tr *ngIf="'electrotab logo'.includes(widgetSearch.value.toLowerCase())">
-				<td>
-				  <div class="card responsive-30 ">
-					<div class="card-image waves-effect waves-block waves-light">
-					  <img class="responsive-img" src="../../../assets/images/favicon.png" (click)="addItem(1,1,1,false)" />
-					  <span class="card-title black-text">ElectroTab Logo</span>
-					</div>
-				  </div>
-				<td>
-			  </tr>
-
-			  <!-- 2. Search Bar -->
-			  <tr *ngIf="'search bar'.includes(widgetSearch.value.toLowerCase())">
-				<td>
-				  <div class="card responsive-30 ">
-					<div class="card-image waves-effect waves-block waves-light">
-					  <img class="responsive-img" src="../../../assets/images/search-icon.png" (click)="addItemCustom(2,7,1,true,'Google')" />
-					  <span class="card-title black-text">Search Bar</span>
-					</div>
-				  </div>
-				<td>
-				</tr>
-
-			  <!-- 3. Clock -->
-			  <tr *ngIf="'clock'.includes(widgetSearch.value.toLowerCase())">
-				<td>
-				  <div class="card responsive-30 ">
-					<div class="card-image waves-effect waves-block waves-light">
-					  <img class="responsive-img" src="../../../assets/images/clock.png" (click)="addItemCustom(3,1,1,true,'AnalogWhite')" />
-					  <span class="card-title black-text">Clock</span>
-					</div>
-				  </div>
-				<td>
-				</tr>
+			  
 
 				<!-- 4. Custom URL SpeedDial-->
-			  <tr>
+			  <!-- <tr>
 				<td>
 				  <div class="card responsive-40 ">
 					<div class="card-image waves-effect waves-block waves-light">
@@ -113,7 +89,7 @@
 					</div>
 				  </div>
 				<td>
-				</tr>
+				</tr> -->
 
 			</tbody>
 		  </table>
