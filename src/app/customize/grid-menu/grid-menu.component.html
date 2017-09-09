@@ -24,8 +24,16 @@
   </div>
 
   <!-- Custom URL SpeedDial-->
-  <div *ngSwitchCase="4">
-    <button (click)="changeURL()">Change URL</button>
+  <div *ngSwitchCase="4" class="padded">
+    <a class="waves-effect waves-light btn {{getSetting('color')}}" (click)="changeURL()">Change URL</a>
+    <ol>
+      <li>
+        <button md-raised-button (click)="openDialog()">Pick one</button>
+      </li>
+      <li *ngIf="url">
+        Your URL: <i>{{url}}</i>
+      </li>
+    </ol>
 
 
 
