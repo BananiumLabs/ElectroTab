@@ -12,7 +12,9 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AuthService } from '../auth.service';
+import { WidgetService } from 'app/grid/widget.service';
 
 import { cloneDeep } from 'lodash';
 
@@ -78,7 +80,7 @@ export class CompileService  {
                 })
                 class TemplateComponent {
                     context: any
-                    constructor(private authService: AuthService) {}
+                    constructor(private authService: AuthService, private widget: WidgetService) {}
                 }
 
                 let module : NgModule = {};

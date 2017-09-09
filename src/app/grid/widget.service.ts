@@ -7,16 +7,28 @@ import { WIDGETS } from './widget-db';
 export class WidgetService {
     
     widgets = WIDGETS;
-    
+
     /** Returns the widget with the given ID number.
      * @param {number} id - The ID of the widget to be retrieved.
      */
     getWidget(id: number) : Widget {
-        var result = this.widgets.filter(widget => widget.id === id)[0];
+        var result = this.widgets.filter(widget => widget.id === id);
+        
+        if(result) {
+            if (result.length > 1) {
+                console.error("WidgetIDError: Multiple widgets with the same id " + id);
+                return this.getWidget(-1);
+            }
 
-        if(result)
-            return result;
+            if (result)
+                return result[0];
+        }
 
+        console.error("WidgetNotFoundError: Widget with id " + id + " does not exist or is improperly defined.");
         return this.getWidget(-1);
+
+        
+
+        
     }
 }
