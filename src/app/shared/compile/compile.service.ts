@@ -139,6 +139,7 @@ export class CompileService  {
                         dialogRef.afterClosed().subscribe(result => {
                             console.log('The dialog was closed');
                             this.url = result;
+                            this.item.setting = this.url;
                         });
                     }
                 }

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import { ChangeURLDialog } from 'app/customize/grid-menu/changeURLDialog.component';
-import { MdDialogRef, MD_DIALOG_DATA, MdFormFieldModule, MdDialogModule, MdInputModule } from '@angular/material';
+import { MdDialogRef, MD_DIALOG_DATA, MdFormFieldModule, MdDialogModule, MdInputModule, MdInput } from '@angular/material';
 import { NgModel, FormsModule } from '@angular/forms';
 
 /** Dummy module to declare imports for CompileModule. */

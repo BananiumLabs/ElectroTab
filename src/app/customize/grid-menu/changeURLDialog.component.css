@@ -1,0 +1,5 @@
+.mat-form-field-underline::after {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+}

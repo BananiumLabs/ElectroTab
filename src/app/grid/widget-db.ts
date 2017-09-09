@@ -105,14 +105,11 @@ export const WIDGETS : Widget[] =
         menuTemplate: `
         <div class="padded">
             <a class="waves-effect waves-light btn {{authService.getSetting('color')}}" (click)="openDialog()">Change URL</a>
-            <ol>
-            <li>
-                <button md-raised-button (click)="openDialog()">Pick one</button>
-            </li>
+            <ul>
             <li *ngIf="url">
                 Your URL: <i>{{url}}</i>
             </li>
-            </ol>`
+            </ul>`
     },
 
 
