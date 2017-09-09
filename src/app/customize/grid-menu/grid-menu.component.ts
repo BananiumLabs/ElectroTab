@@ -1,5 +1,4 @@
 import { Component, Inject, AfterViewInit, ViewChild, ElementRef, OnInit, Input} from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import {AuthService} from "app/shared/auth.service";
 import { Observable, BehaviorSubject } from "rxjs";
 import {Router} from "@angular/router";
@@ -23,7 +22,7 @@ export class GridMenuComponent {
 
   
 
-	constructor(private authService: AuthService, private router: Router, private widgets: WidgetService, public dialog: MdDialog) {
+	constructor(private authService: AuthService, private router: Router, private widgets: WidgetService) {
       
    }
 
@@ -32,7 +31,3 @@ export class GridMenuComponent {
   }
 
 }
-
-
-
-

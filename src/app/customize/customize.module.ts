@@ -22,7 +22,7 @@ import {
 import { GridEditPageComponent } from 'app/customize/grid-edit-page/grid-edit-page.component';
 import { ThemePageComponent } from 'app/customize/theme-page/theme-page.component';
 import { SettingsPageComponent } from 'app/customize/settings-page/settings-page.component';
-import { GridMenuComponent, ChangeURLDialog } from 'app/customize/grid-menu/grid-menu.component';
+import { GridMenuComponent} from 'app/customize/grid-menu/grid-menu.component';
 import { CompileService } from 'app/shared/compile/compile.service';
 import { CompileModule } from 'app/shared/compile/compile.module';
 
@@ -33,8 +33,7 @@ import { HomeModule } from 'app/home/home.module';
         GridEditPageComponent,
         ThemePageComponent,
         SettingsPageComponent,
-        GridMenuComponent,
-        ChangeURLDialog
+        GridMenuComponent
     ],
     imports: [
         CommonModule,
@@ -66,9 +65,6 @@ import { HomeModule } from 'app/home/home.module';
       HomeModule,
       MdDialogModule
 
-    ],
-    entryComponents: [
-      ChangeURLDialog
     ]
 })
 export class CustomizeModule {

@@ -166,6 +166,8 @@ export class CompileService  {
                 module.imports.push( RouterModule ); 
                 module.providers = module.providers || [];
                 module.providers.push( MdDialog );
+                module.entryComponents = module.entryComponents || [];
+                module.entryComponents.push( ChangeURLDialog );
                 if (opts.imports !== undefined) {
                     module.imports = module.imports.concat(opts.imports)
                 }
