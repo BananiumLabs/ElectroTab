@@ -21,12 +21,12 @@ export class GridMenuComponent {
   @Input()
   item: any;
 
-
+  url: string;
   engines = ["Google", "Bing", "DuckDuckGo"];
   clocks = ["AnalogWhite", "AnalogGreen", "DigitalBlue"];
 
 	constructor(private authService: AuthService, private router: Router, private widgets: WidgetService, public dialog: MdDialog) {
-      url: string;
+      
    }
 
   currentUser(): Observable<UserInfo> {
