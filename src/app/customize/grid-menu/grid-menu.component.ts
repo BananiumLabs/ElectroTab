@@ -21,9 +21,7 @@ export class GridMenuComponent {
   @Input()
   item: any;
 
-  url: string;
-  engines = ["Google", "Bing", "DuckDuckGo"];
-  clocks = ["AnalogWhite", "AnalogGreen", "DigitalBlue"];
+  
 
 	constructor(private authService: AuthService, private router: Router, private widgets: WidgetService, public dialog: MdDialog) {
       
@@ -33,58 +31,8 @@ export class GridMenuComponent {
     return this.authService.currentUser();
   }
 
-  getSetting(setting: string) {
-    return this.authService.getSetting(setting);
-  }
-  changeURL() {
-    this.openDialog();
-    alert("Your Current URL Setting: " + this.item.setting);
-    var txt;
-    var url = prompt("Please enter the new website's url:");
-    if (url == null || url == "") {
-        alert("No changes has been made.");
-        return;
-    } else {
-        txt = url;
-    this.item.setting = url;
-    }
-  }
-
-
-  openDialog(): void {
-      let dialogRef = this.dialog.open(ChangeURLDialog, {
-        width: '250px',
-        data: {url: this.url }
-      });
-      dialogRef.componentInstance.dialogRef = dialogRef;
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.url = result;
-      });
-    }
-
-
-
-  setSetting(setting: string, value: any) {
-    this.authService.saveSetting(setting, value);
-  }
 }
 
 
 
-@Component({
-  selector: 'changeURL-dialog',
-  templateUrl: 'changeURLDialog.html',
-})
-export class ChangeURLDialog {
 
-  constructor(
-    public dialogRef: MdDialogRef<ChangeURLDialog>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}

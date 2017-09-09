@@ -91,10 +91,10 @@ export const WIDGETS : Widget[] =
         icon: 'shortcut.png',
         template:`
         <div>
-            <div (click)="redirectToCustom()" class="fit">
+            <div (click)="window.location.href = item.setting" class="fit">
                 <div class="card horizontal z-depth-3 fit" [ngClass]="(authService.getSetting('color') !== 'none' || authService.getSetting('color') === 'black') ? 'white' : authService.getSetting('color') + ' lighten-4'">
                     <div class="card-content">
-                        <img id="p2i" class="fit" [src]=getURL() />
+                        <img id="p2i" class="fit" [src]=getURL(item.setting) />
                         <span class="webName">{{item.setting}}</span>
                     </div>
                 </div>

@@ -41,18 +41,6 @@ export class GridContentComponent implements OnInit {
     ];
   }
 
-  getURL() : string {
-    return "http://api.screenshotlayer.com/api/capture?access_key=a2f073b50b57b8c177482fa83b336efc&url=" + this.item.setting;
-  }
-
-  redirectToCustom() : any {
-    window.location.href = this.item.setting;
-  }
-
-  refresh() {
-    location.reload();
-  }
-
   getGrid() {
     //console.log(this.authService.getCustom("grid"));
     var gridArr = this.authService.getCustom("grid");
@@ -64,11 +52,5 @@ export class GridContentComponent implements OnInit {
     }
   }
 
-  searchFor(value: string, item: any) {
-    if (value !== "" && value !== undefined && value !== null)
-      if (item.setting !== "DuckDuckGo")
-        window.location.href = 'https://' + item.setting + '.com/search?q=' + value;
-    if (item.setting === "DuckDuckGo")
-      window.location.href = 'https://' + item.setting + '.com/?q=' + value;
-  }
+  
 }
