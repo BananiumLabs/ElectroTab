@@ -11,13 +11,16 @@ import {
     Inject
 } from '@angular/core';
 
+import { NgModel, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from "@angular/router";
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA, MdFormFieldModule, MdDialogModule } from '@angular/material';
 
 import { AuthService } from '../auth.service';
 import { WidgetService } from 'app/grid/widget.service';
+import { ChangeURLDialog } from 'app/customize/grid-menu/changeURLDialog.component';
+import { ImporterModule } from './importer.module';
 
 import { cloneDeep } from 'lodash';
 
@@ -79,6 +82,8 @@ export class CompileService  {
         cache[cacheKey] = (async() => {
 
             try {
+                
+
                 @Component({
                     template: opts.template
                 })
@@ -138,21 +143,7 @@ export class CompileService  {
                     }
                 }
 
-                @Component({
-                    selector: 'changeURL-dialog',
-                    templateUrl: '../../customize/grid-menu/changeURLDialog.html',
-                })
-                class ChangeURLDialog {
-
-                    constructor(
-                        public dialogRef: MdDialogRef<ChangeURLDialog>,
-                        @Inject(MD_DIALOG_DATA) public data: any) { }
-
-                    onNoClick(): void {
-                        this.dialogRef.close();
-                    }
-
-                }
+               
 
                 let module : NgModule = {};
                 if (opts.module !== undefined) {
@@ -160,14 +151,19 @@ export class CompileService  {
                 } else if (SingletonDefaultModule !== undefined && SingletonDefaultModule !== null) {
                     module = cloneDeep(SingletonDefaultModule);
                 }
+                module.entryComponents = [ChangeURLDialog];
                 module.imports = module.imports || [];
                 module.imports.push( CommonModule );
                 module.imports.push( BrowserModule ); 
                 module.imports.push( RouterModule ); 
+                module.imports.push( FormsModule ); 
+                module.imports.push( MdFormFieldModule ); 
+                module.imports.push( MdDialogModule ); 
+                module.imports.push( ImporterModule );
+                
                 module.providers = module.providers || [];
                 module.providers.push( MdDialog );
-                module.entryComponents = module.entryComponents || [];
-                module.entryComponents.push( ChangeURLDialog );
+                
                 if (opts.imports !== undefined) {
                     module.imports = module.imports.concat(opts.imports)
                 }
@@ -177,6 +173,7 @@ export class CompileService  {
                     ];
                 } else {
                     module.declarations.push(TemplateComponent);
+                    
                 }
                 @NgModule(module)
                 class TemplateModule {

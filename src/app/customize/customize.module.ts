@@ -16,7 +16,8 @@ import {
   MdTooltipModule,
   MdCheckboxModule,
   MdDialogModule,
-  MdDialogRef
+  MdDialogRef,
+  MdFormFieldModule
 } from '@angular/material';
 
 import { GridEditPageComponent } from 'app/customize/grid-edit-page/grid-edit-page.component';
@@ -39,7 +40,7 @@ import { HomeModule } from 'app/home/home.module';
         CommonModule,
         GridsterModule,
         FormsModule, ReactiveFormsModule,
-        MdIconModule, MdButtonModule, MdSelectModule, MdSliderModule, MdInputModule, MdTooltipModule, MdCheckboxModule,
+        MdIconModule, MdButtonModule, MdSelectModule, MdSliderModule, MdInputModule, MdTooltipModule, MdCheckboxModule, MdFormFieldModule,
         MaterializeModule,
         MdDialogModule,
         HomeModule,
