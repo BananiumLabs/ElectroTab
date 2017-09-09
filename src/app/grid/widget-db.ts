@@ -8,6 +8,7 @@ export const WIDGETS : Widget[] =
     {
         id: -1,
         name: "Invalid",
+        hidden: true,
         template:
         `<div class="red-text">Invalid ID!</div>`
     },
@@ -17,6 +18,7 @@ export const WIDGETS : Widget[] =
         name: "Get Started",
         height: 2,
         width: 2,
+        hidden: true,
         template:
         `<img src="../../../assets/images/favicon.png" alt="" class="responsive-img size" />
             <h2 class="center-align"[ngClass] = "(authService.getSetting('modifier') === 'dark' || authService.getSetting('color') === 'black') ? 'white-text' : ''" > Welcome to ElectroTab! </h2>

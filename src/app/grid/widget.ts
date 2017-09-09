@@ -16,4 +16,6 @@ export class Widget {
     width?: number = 1;
     /**OPTIONAL: The default value for the `setting` field. */
     defaultSetting?: string;
+    /**DO NOT USE FOR NON CORE WIDGETS: Tell the Widget Menu to ignore this widget in the `Add Components` drawer. */
+    hidden?: boolean = false;
 }
