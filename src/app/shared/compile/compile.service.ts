@@ -106,6 +106,17 @@ export class CompileService  {
                         location.reload();
                     }
 
+                    navigate(url: string) {
+                        if(url && url.includes('.')) {
+                            if(url.charAt(6) === '/')
+                                window.location.href = url;
+                            else
+                                window.location.href = "//" + url;
+                        } else 
+                            console.warn('URL invalid or undefined. Cannot navigate.');
+                       
+                    }
+
                     searchFor(value: string, item: any) {
                         if (value !== "" && value !== undefined && value !== null)
                             if (item.setting !== "DuckDuckGo")
@@ -117,14 +128,12 @@ export class CompileService  {
                     changeURL() {
                         this.openDialog();
                         alert("Your Current URL Setting: " + this.item.setting);
-                        var txt;
-                        var url = prompt("Please enter the new website's url:");
-                        if (url == null || url == "") {
+                        this.url = prompt("Please enter the new website's url:");
+                        if (this.url == null || this.url == "") {
                             alert("No changes has been made.");
                             return;
                         } else {
-                            txt = url;
-                            this.item.setting = url;
+                            this.item.setting = this.url;
                         }
                     }
 
