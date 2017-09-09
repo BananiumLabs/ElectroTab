@@ -5,6 +5,7 @@ import { GridsterModule } from 'angular-gridster2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterializeModule } from "angular2-materialize";
 
+
 import 'hammerjs';
 import {
   MdIconModule,
@@ -22,6 +23,8 @@ import { GridEditPageComponent } from 'app/customize/grid-edit-page/grid-edit-pa
 import { ThemePageComponent } from 'app/customize/theme-page/theme-page.component';
 import { SettingsPageComponent } from 'app/customize/settings-page/settings-page.component';
 import { GridMenuComponent, ChangeURLDialog } from 'app/customize/grid-menu/grid-menu.component';
+import { CompileService } from 'app/shared/compile/compile.service';
+import { CompileModule } from 'app/shared/compile/compile.module';
 
 import { HomeModule } from 'app/home/home.module';
 
@@ -42,16 +45,25 @@ import { HomeModule } from 'app/home/home.module';
         MdDialogModule,
         HomeModule,
 
+        CompileModule.forRoot({
+            module: {
+                imports: []
+            }
+        }),
+
         RouterModule.forChild([
             { path: 'settings', component: SettingsPageComponent },
             { path: 'theme', component: ThemePageComponent },
             { path: 'grid', component: GridEditPageComponent },
-        ]),
+        ])
     ],
     exports: [
         RouterModule
     ],
     providers: [
+
+      CompileService,
+      HomeModule,
       MdDialogModule
 
     ],

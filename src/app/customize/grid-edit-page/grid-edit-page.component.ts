@@ -5,6 +5,7 @@ import { AuthService } from "app/shared/auth.service";
 import { UserInfo } from 'app/shared/user-info';
 import { NgClass, NgSwitch } from '@angular/common';
 import { Router } from "@angular/router";
+import { WidgetService } from 'app/grid/widget.service';
 
 /**Delay, in milliseconds, of database methods which need to wait for initialization. */
 const DELAY = 750;
@@ -23,7 +24,7 @@ gridLoaded: boolean;
 @Input()
 widgetSearch: any;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private widgetService: WidgetService ) {
   }
 
  ngOnInit() {

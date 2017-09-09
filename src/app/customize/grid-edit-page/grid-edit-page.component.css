@@ -18,6 +18,11 @@ input {
   margin-top: 0.4rem;
 }
 
+#add-component-label {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
 .margin-slider {
   display: flex;
   justify-content: center;
@@ -153,7 +158,6 @@ table.responsive-table {
     display: block;
     width: auto;
     position: relative;
-    overflow-x: auto;
     white-space: nowrap;
   }
   table.responsive-table tbody tr {

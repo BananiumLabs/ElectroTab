@@ -1,30 +1,9 @@
-<div [ngSwitch]="item.id" style="background: transparent">
+<div style="background: transparent">
 
-  <!-- Search Bar -->
-  <div *ngSwitchCase="2">
-
-    <form>
-      <p *ngFor="let engine of engines">
-        <input name="engineChoose" type="radio" id="{{engine}}" (click)="item.setting = engine" [checked]="engine === item.setting"/>
-        <label for="{{engine}}" class="black-text">{{engine}}</label>
-      </p>
-    </form>
-  </div>
-
-  <!-- Clock -->
-  <div *ngSwitchCase="3">
-
-    <form>
-      <p *ngFor="let clock of clocks">
-        <input name="clockChoose" type="radio" id="{{clock}}" (click)="item.setting = clock" [checked]="clock === item.setting"/>
-        <label for="{{clock}}" class="black-text">{{clock}}</label>
-      </p>
-    </form>
-
-  </div>
+    <div [p3x-compile]="widgets.getWidget(item.id).menuTemplate" [p3x-compile-ctx]="this"></div>
 
   <!-- Custom URL SpeedDial-->
-  <div *ngSwitchCase="4" class="padded">
+  <!-- <div *ngSwitchCase="4" class="padded">
     <a class="waves-effect waves-light btn {{getSetting('color')}}" (click)="changeURL()">Change URL</a>
     <ol>
       <li>
@@ -39,5 +18,6 @@
 
   </div>
 
-  <div *ngSwitchDefault class="red-text">Invalid ID!</div>
+  <div *ngSwitchDefault class="red-text">Invalid ID!</div> -->
+
 </div>
