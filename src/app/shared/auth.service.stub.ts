@@ -9,7 +9,7 @@ export class AuthServiceStub {
     login(email: string, password: string) {
     }
 
-    currentUser(): Observable<UserInfo> {
+    currentUser(): any { //Originally "Observable<UserInfo>". Changed To Any To Avoid New Compiler Errors
         let userInfo = new UserInfo();
         userInfo.displayName = "my-display-name";
         userInfo.email = "my-email";
