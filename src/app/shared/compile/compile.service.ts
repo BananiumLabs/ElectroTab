@@ -12,6 +12,7 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from "@angular/router";
 
 import { AuthService } from '../auth.service';
 import { WidgetService } from 'app/grid/widget.service';
@@ -91,7 +92,8 @@ export class CompileService  {
                 }
                 module.imports = module.imports || [];
                 module.imports.push( CommonModule );
-                module.imports.push( BrowserModule );
+                module.imports.push( BrowserModule ); 
+                module.imports.push( RouterModule ); 
                 if (opts.imports !== undefined) {
                     module.imports = module.imports.concat(opts.imports)
                 }

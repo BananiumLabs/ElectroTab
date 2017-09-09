@@ -23,7 +23,7 @@ import { CompileModule } from 'app/shared/compile/compile.module';
 
         CompileModule.forRoot({
             module: {
-                imports: [HomeModule]
+                imports: []
             }
         }),
     ],

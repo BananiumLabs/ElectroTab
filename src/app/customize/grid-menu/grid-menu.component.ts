@@ -1,12 +1,11 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, Input} from '@angular/core';
-import * as firebase from 'firebase';
-import 'firebase/auth';
-import 'firebase/database';
 import {AuthService} from "app/shared/auth.service";
 import { Observable, BehaviorSubject } from "rxjs";
 import {Router} from "@angular/router";
 import {UserInfo} from 'app/shared/user-info';
 import {MaterializeModule} from "angular2-materialize";
+import {HomeModule} from 'app/home/home.module';
+import { WidgetService } from 'app/grid/widget.service';
 
 @Component({
   selector: 'grid-menu',
@@ -25,7 +24,7 @@ export class GridMenuComponent {
   engines = ["Google", "Bing", "DuckDuckGo"];
   clocks = ["AnalogWhite", "AnalogGreen", "DigitalBlue"];
 
-	constructor(private authService: AuthService, private router: Router) {
+	constructor(private authService: AuthService, private router: Router, private widgets: WidgetService) {
 
    }
 

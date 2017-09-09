@@ -21,6 +21,8 @@ import { GridEditPageComponent } from 'app/customize/grid-edit-page/grid-edit-pa
 import { ThemePageComponent } from 'app/customize/theme-page/theme-page.component';
 import { SettingsPageComponent } from 'app/customize/settings-page/settings-page.component';
 import { GridMenuComponent } from 'app/customize/grid-menu/grid-menu.component';
+import { CompileService } from 'app/shared/compile/compile.service';
+import { CompileModule } from 'app/shared/compile/compile.module';
 
 import { HomeModule } from 'app/home/home.module';
 
@@ -40,6 +42,12 @@ import { HomeModule } from 'app/home/home.module';
 
         HomeModule,
 
+        CompileModule.forRoot({
+            module: {
+                imports: []
+            }
+        }),
+
         RouterModule.forChild([
             { path: 'settings', component: SettingsPageComponent },
             { path: 'theme', component: ThemePageComponent },
@@ -48,6 +56,10 @@ import { HomeModule } from 'app/home/home.module';
     ],
     exports: [
         RouterModule
+    ],
+    providers: [
+        CompileService,
+        HomeModule
     ]
 })
 export class CustomizeModule {
