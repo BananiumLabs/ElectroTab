@@ -38,7 +38,11 @@ If you feel that you absolutely need to import a dependency into `app.module.ts`
 4. Make sure that the TravisCI checks pass on your PR. If not, go back to step 1. 
 5. Wait for your contribution to be approved! We may contact you with any questions or concerns.
 
+### After Approval
+Remember to update the [API Documentation][api] for any new methods, classes, or behaviors! 
+
 [style]: https://google.github.io/styleguide/jsguide.html
 [jsdoc]: http://usejsdoc.org/about-getting-started.html
+[api]: https://github.com/dbqeo/ElectroTab/wiki
 
 #### Thanks for helping ElectroTab!

@@ -19,10 +19,6 @@ export class SettingsPageComponent {
     constructor(private authService: AuthService, private router: Router) {
     }
 
-    ngAfterViewInit() {
-
-    }
-
     isLoggedIn(): Observable<boolean> {
         return this.authService.isLoggedIn();
     }

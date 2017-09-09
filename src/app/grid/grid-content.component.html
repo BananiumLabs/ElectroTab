@@ -10,9 +10,17 @@
   <div  *ngIf="false">
     <div (click)="redirectToCustom()" class="fit">
 
-      <img id="p2i" class="fit" [src]=getURL() />
+      <div class="card horizontal z-depth-3 fit" [ngClass]="(getSetting('color') !== 'none' || getSetting('color') === 'black') ? 'white' : getSetting('color') + ' lighten-4'">
 
-      <p class="webName">{{item.setting}}</p>
+          <div class="card-content">
+            <img id="p2i" class="fit" [src]=getURL() />
+
+            <span class="webName">{{item.setting}}</span>
+          </div>
+
+      </div>
+
+
     </div>
   </div>
 

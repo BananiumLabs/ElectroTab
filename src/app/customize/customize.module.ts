@@ -14,13 +14,15 @@ import {
   MdSliderModule,
   MdInputModule,
   MdTooltipModule,
-  MdCheckboxModule
+  MdCheckboxModule,
+  MdDialogModule,
+  MdDialogRef
 } from '@angular/material';
 
 import { GridEditPageComponent } from 'app/customize/grid-edit-page/grid-edit-page.component';
 import { ThemePageComponent } from 'app/customize/theme-page/theme-page.component';
 import { SettingsPageComponent } from 'app/customize/settings-page/settings-page.component';
-import { GridMenuComponent } from 'app/customize/grid-menu/grid-menu.component';
+import { GridMenuComponent, ChangeURLDialog } from 'app/customize/grid-menu/grid-menu.component';
 import { CompileService } from 'app/shared/compile/compile.service';
 import { CompileModule } from 'app/shared/compile/compile.module';
 
@@ -31,7 +33,8 @@ import { HomeModule } from 'app/home/home.module';
         GridEditPageComponent,
         ThemePageComponent,
         SettingsPageComponent,
-        GridMenuComponent
+        GridMenuComponent,
+        ChangeURLDialog
     ],
     imports: [
         CommonModule,
@@ -39,7 +42,7 @@ import { HomeModule } from 'app/home/home.module';
         FormsModule, ReactiveFormsModule,
         MdIconModule, MdButtonModule, MdSelectModule, MdSliderModule, MdInputModule, MdTooltipModule, MdCheckboxModule,
         MaterializeModule,
-
+        MdDialogModule,
         HomeModule,
 
         CompileModule.forRoot({
@@ -58,9 +61,15 @@ import { HomeModule } from 'app/home/home.module';
         RouterModule
     ],
     providers: [
-        CompileService,
-        HomeModule
+
+      CompileService,
+      HomeModule,
+      MdDialogModule
+
+    ],
+    entryComponents: [
+      ChangeURLDialog
     ]
 })
 export class CustomizeModule {
-}  
+}
