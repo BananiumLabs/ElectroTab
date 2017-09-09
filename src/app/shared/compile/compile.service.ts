@@ -27,6 +27,7 @@ export interface CompileOptions {
     onCompiled?: Function,
     onError?: Function;
     module?: NgModule;
+    item?: any;
 }
 
 const cache : any = {};
@@ -81,6 +82,7 @@ export class CompileService  {
                 })
                 class TemplateComponent {
                     context: any
+                    item = opts.item;
                     constructor(private authService: AuthService, private widget: WidgetService) {}
                 }
 

@@ -64,7 +64,7 @@ export const WIDGETS : Widget[] =
         icon: 'clock.png',
         defaultSetting: 'AnalogWhite',
         template: `
-        <div *ngIf="false">
+        <div>
             <div [ngSwitch]="item.setting">
             <!-- White -->
             <iframe *ngSwitchCase='AnalogWhite' src="http://free.timeanddate.com/clock/i5u1qpwv/n283/szw160/szh160/cf100/hncfff" frameborder="0" width="160" height="160"></iframe>
@@ -83,6 +83,37 @@ export const WIDGETS : Widget[] =
                 <label for="{{clock}}" class="black-text">{{clock}}</label>
             </p>
         </form>`
-    }
+    },
+
+    {
+        id: 4,
+        name: "Speed Dial",
+        icon: 'shortcut.png',
+        template:`
+        <div>
+            <div (click)="redirectToCustom()" class="fit">
+                <div class="card horizontal z-depth-3 fit" [ngClass]="(authService.getSetting('color') !== 'none' || authService.getSetting('color') === 'black') ? 'white' : authService.getSetting('color') + ' lighten-4'">
+                    <div class="card-content">
+                        <img id="p2i" class="fit" [src]=getURL() />
+                        <span class="webName">{{item.setting}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+        ,
+        menuTemplate: `
+        <div class="padded">
+            <a class="waves-effect waves-light btn {{authService.getSetting('color')}}" (click)="changeURL()">Change URL</a>
+            <ol>
+            <li>
+                <button md-raised-button (click)="openDialog()">Pick one</button>
+            </li>
+            <li *ngIf="url">
+                Your URL: <i>{{url}}</i>
+            </li>
+            </ol>`
+    },
+
 
 ]

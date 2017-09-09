@@ -1,28 +1,6 @@
 
 <div style="background: transparent; height: 100%; width: 100%;" class="child">
 
-  <div [p3x-compile]="widgets.getWidget(item.id).template" [p3x-compile-ctx]="this"></div>
+  <div [p3x-compile]="widgets.getWidget(item.id).template" [p3x-compile-ctx]="this" [item]="item"></div>
 
-
-  <!-- All items below this line are temporary -->
-
-  <!-- Custom URL SpeedDial-->
-  <div  *ngIf="false">
-    <div (click)="redirectToCustom()" class="fit">
-
-      <div class="card horizontal z-depth-3 fit" [ngClass]="(getSetting('color') !== 'none' || getSetting('color') === 'black') ? 'white' : getSetting('color') + ' lighten-4'">
-
-          <div class="card-content">
-            <img id="p2i" class="fit" [src]=getURL() />
-
-            <span class="webName">{{item.setting}}</span>
-          </div>
-
-      </div>
-
-
-    </div>
-  </div>
-
-  <div *ngIf="false" class="red-text">Invalid ID!</div>
 </div>

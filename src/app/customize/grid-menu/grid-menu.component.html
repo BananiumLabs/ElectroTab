@@ -1,23 +1,5 @@
 <div style="background: transparent">
 
-    <div [p3x-compile]="widgets.getWidget(item.id).menuTemplate" [p3x-compile-ctx]="this"></div>
-
-  <!-- Custom URL SpeedDial-->
-  <!-- <div *ngSwitchCase="4" class="padded">
-    <a class="waves-effect waves-light btn {{getSetting('color')}}" (click)="changeURL()">Change URL</a>
-    <ol>
-      <li>
-        <button md-raised-button (click)="openDialog()">Pick one</button>
-      </li>
-      <li *ngIf="url">
-        Your URL: <i>{{url}}</i>
-      </li>
-    </ol>
-
-
-
-  </div>
-
-  <div *ngSwitchDefault class="red-text">Invalid ID!</div> -->
+    <div [p3x-compile]="widgets.getWidget(item.id).menuTemplate" [p3x-compile-ctx]="this" [item]="item"></div>
 
 </div>
