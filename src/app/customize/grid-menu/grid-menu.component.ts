@@ -37,11 +37,11 @@ export class GridMenuComponent {
     return this.authService.getSetting(setting);
   }
   changeURL() {
-    alert("Original: " + this.item.setting);
+    alert("Your Current URL Setting: " + this.item.setting);
     var txt;
-    var url = prompt("Please enter the website's url:", "https://www.google.com");
+    var url = prompt("Please enter the new website's url:");
     if (url == null || url == "") {
-        alert("User cancelled the prompt.");
+        alert("No changes has been made.");
         return;
     } else {
         txt = url;
