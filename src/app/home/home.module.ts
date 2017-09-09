@@ -4,16 +4,14 @@ import { RouterModule } from '@angular/router';
 import { DashboardPageComponent } from 'app/home/dashboard-page/dashboard-page.component';
 import { GridsterModule } from 'angular-gridster2';
 import { GridContentComponent } from 'app/grid/grid-content.component';
-import { SafeHtml } from 'app/shared/safe-html.pipe';
 import { WidgetService } from 'app/grid/widget.service';
-import { CompileService } from 'app/shared/compile.service';
-import { CompileModule } from 'app/shared/compile.module';
+import { CompileService } from 'app/shared/compile/compile.service';
+import { CompileModule } from 'app/shared/compile/compile.module';
 
 @NgModule({
     declarations: [
         DashboardPageComponent,
-        GridContentComponent,
-        SafeHtml
+        GridContentComponent
     ],
     imports: [
         CommonModule,
@@ -31,8 +29,7 @@ import { CompileModule } from 'app/shared/compile.module';
     ],
     exports: [
         RouterModule,
-        GridContentComponent,
-        SafeHtml
+        GridContentComponent
     ],
     providers: [
         WidgetService,

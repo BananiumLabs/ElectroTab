@@ -12,7 +12,7 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth.service';
 
 import { cloneDeep } from 'lodash';
 
