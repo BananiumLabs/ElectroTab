@@ -48,7 +48,6 @@ widgetSearch: any;
       keepFixedHeightInMobile: false,
      displayGrid: 'none',
      draggable: {
-       enabled: true,
        ignoreContent: true, // if true drag will start only from elements from `dragHandleClass`
        dragHandleClass: 'drag-handler' // drag event only from this class. If `ignoreContent` is true.
      },

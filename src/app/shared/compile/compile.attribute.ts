@@ -30,6 +30,9 @@ export class CompileAttribute implements OnInit, OnChanges{
     @Input('p3x-compile-imports')
     imports: Array<Type<any> | ModuleWithProviders | any[]>;
 
+    @Input('item')
+    item: any;
+
     async update() {
         if (this.html === undefined || this.html.trim() === '') {
             this.container.clear();
@@ -40,7 +43,8 @@ export class CompileAttribute implements OnInit, OnChanges{
             container: this.container,
             context: this.context,
             imports: this.imports,
-            module: this.module
+            module: this.module,
+            item: this.item
         })
     }
 

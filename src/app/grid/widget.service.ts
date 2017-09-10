@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { Widget } from './widget';
 import { WIDGETS } from './widget-db';
+import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
 /** Manages the database of valid Widgets. Includes the `widget` array and the `getWidget()` method to get a widget based on the ID. */
 @Injectable()

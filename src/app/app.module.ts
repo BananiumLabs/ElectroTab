@@ -8,6 +8,7 @@ import { AlertModule } from "ngx-bootstrap";
 import { Routes, RouterModule } from "@angular/router";
 import { MaterializeModule } from "angular2-materialize";
 import {HttpModule, JsonpModule, Jsonp, Response} from "@angular/http";
+import { NgModel, FormsModule } from '@angular/forms';
 
 import { firebaseConfig } from "environments/firebaseConfig";
 import { AngularFireModule } from 'angularfire2';
@@ -15,6 +16,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
+
+import { ChangeURLDialog } from 'app/customize/grid-menu/changeURLDialog.component';
+import { ImporterModule } from 'app/shared/compile/importer.module';
 
 // scripts
 import { LoggedInGuard } from "app/shared/logged-in-guard";
@@ -41,6 +45,8 @@ const routes: Routes = [
         MaterializeModule,
         JsonpModule,
         HttpModule,
+        FormsModule,
+        ImporterModule
     ],
     exports: [
         RouterModule
@@ -49,7 +55,10 @@ const routes: Routes = [
         AppComponent
     ],
     providers: [AuthService, LoggedInGuard],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        ChangeURLDialog
+    ]
 })
 export class AppModule {
 }

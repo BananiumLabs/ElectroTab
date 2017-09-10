@@ -64,15 +64,14 @@ export const WIDGETS : Widget[] =
         icon: 'clock.png',
         defaultSetting: 'AnalogWhite',
         template: `
-        <div *ngIf="false">
+        <div>
             <div [ngSwitch]="item.setting">
             <!-- White -->
-            <iframe *ngSwitchCase='AnalogWhite' src="http://free.timeanddate.com/clock/i5u1qpwv/n283/szw160/szh160/cf100/hncfff" frameborder="0" width="160" height="160"></iframe>
+            <iframe *ngSwitchDefault src="http://free.timeanddate.com/clock/i5u1qpwv/n283/szw160/szh160/cf100/hncfff" frameborder="0" width="160" height="160"></iframe>
             <!-- Green -->
             <iframe *ngSwitchCase='AnalogGreen' src="http://free.timeanddate.com/clock/i5u1qpwv/n283/szw160/szh160/hoc090/hbw4/hfc0c0/cf100/hnc0c0/fas20/facfff/fdi86/mqcfff/mqs2/mql3/mqw4/mqd70/mhcfff/mhs2/mhl3/mhw4/mhd70/mmv0/hhcfff/hhs2/hmcfff/hms2" frameborder="0" width="160" height="160"></iframe>
             <!-- Digital Blue -->
             <iframe *ngSwitchCase='DigitalBlue' src="http://free.timeanddate.com/clock/i5u1qpwv/n283/fs16/fc06f/tc0ff/pc9ff/ftb/pa8/tt0/tw1/th1/ta1/tb4" frameborder="0" width="208" height="52"></iframe>
-            <div *ngSwitchDefault>Invalid</div>
             </div>
         </div>
         `,
@@ -83,6 +82,34 @@ export const WIDGETS : Widget[] =
                 <label for="{{clock}}" class="black-text">{{clock}}</label>
             </p>
         </form>`
-    }
+    },
+
+    {
+        id: 4,
+        name: "Speed Dial",
+        icon: 'shortcut.png',
+        template:`
+        <div>
+            <div (click)="navigate(item.setting)" class="fit">
+                <div class="card horizontal z-depth-3 fit" [ngClass]="(authService.getSetting('color') !== 'none' || authService.getSetting('color') === 'black') ? 'white' : authService.getSetting('color') + ' lighten-4'">
+                    <div class="card-content">
+                        <img id="p2i" class="fit" [src]=getURL(item.setting) />
+                        <span class="webName">{{item.setting}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+        ,
+        menuTemplate: `
+        <div class="padded">
+            <a class="waves-effect waves-light btn {{authService.getSetting('color')}}" (click)="openDialog()">Change URL</a>
+            <ul>
+            <li *ngIf="url">
+                Your URL: <i>{{url}}</i>
+            </li>
+            </ul>`
+    },
+
 
 ]
