@@ -85,7 +85,8 @@ export class CompileService  {
 
 
                 @Component({
-                    template: opts.template
+                    template: opts.template,
+                    styleUrls: ['widget.css']
                 })
                 class TemplateComponent {
                     context: any
