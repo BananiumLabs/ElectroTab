@@ -82,7 +82,7 @@ export class CompileService  {
         cache[cacheKey] = (async() => {
 
             try {
-                
+
 
                 @Component({
                     template: opts.template
@@ -99,7 +99,9 @@ export class CompileService  {
                     clocks = ["AnalogWhite", "AnalogGreen", "DigitalBlue"];
 
                     getURL(url: string): string {
-                        return "http://api.screenshotlayer.com/api/capture?access_key=a2f073b50b57b8c177482fa83b336efc&url=" + url;
+                        //return "http://api.screenshotlayer.com/api/capture?access_key=a2f073b50b57b8c177482fa83b336efc&url=" + url;
+                        //Above Deprecated Due To 100 calls/month limit
+                        return "http://electrotab.epizy.com/getWebSnapshot.php?link="+ url;
                     }
 
                     refresh() {
@@ -112,9 +114,9 @@ export class CompileService  {
                                 window.location.href = url;
                             else
                                 window.location.href = "//" + url;
-                        } else 
+                        } else
                             console.warn('URL invalid or undefined. Cannot navigate.');
-                       
+
                     }
 
                     searchFor(value: string, item: any) {
@@ -153,7 +155,7 @@ export class CompileService  {
                     }
                 }
 
-               
+
 
                 let module : NgModule = {};
                 if (opts.module !== undefined) {
@@ -164,16 +166,16 @@ export class CompileService  {
                 module.entryComponents = [ChangeURLDialog];
                 module.imports = module.imports || [];
                 module.imports.push( CommonModule );
-                module.imports.push( BrowserModule ); 
-                module.imports.push( RouterModule ); 
-                module.imports.push( FormsModule ); 
-                module.imports.push( MdFormFieldModule ); 
-                module.imports.push( MdDialogModule ); 
+                module.imports.push( BrowserModule );
+                module.imports.push( RouterModule );
+                module.imports.push( FormsModule );
+                module.imports.push( MdFormFieldModule );
+                module.imports.push( MdDialogModule );
                 module.imports.push( ImporterModule );
-                
+
                 module.providers = module.providers || [];
                 module.providers.push( MdDialog );
-                
+
                 if (opts.imports !== undefined) {
                     module.imports = module.imports.concat(opts.imports)
                 }
@@ -183,7 +185,7 @@ export class CompileService  {
                     ];
                 } else {
                     module.declarations.push(TemplateComponent);
-                    
+
                 }
                 @NgModule(module)
                 class TemplateModule {
