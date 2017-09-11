@@ -32,7 +32,8 @@ Need help? View the documentation for the [ElectroTab API](https://github.com/db
  5. Open your web browser (hopefully Chromium/Chrome) to localhost:4200. Enjoy :)
 
 ## Deploy Guide
- 1. Run `ng build --prod --output-hashing=bundles` -> Start new build with partial hashing and uglifyJS. This will ensure that the cache will be refreshed quickly with new updates.
+ 1. Run `ng build --prod --output-hashing=bundles --no-aot` -> Start new build with partial hashing and uglifyJS. This will ensure that the cache will be refreshed quickly with new updates. 
+ **Note:** The `--no-aot` flag is a temporary workaround that will be removed in the next update.
  2. Run `firebase deploy` -> Deploy new build to Firebase
 
  If you do not have access to our Firebase database, you can still deploy the build on your own website to test.

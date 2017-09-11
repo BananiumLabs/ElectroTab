@@ -31,6 +31,10 @@ export class GridContentComponent implements OnInit {
 
    }
 
+  getWidgets() {
+    return this.widgets;
+  }
+
    currentUser(): Observable<UserInfo> {
  		return this.authService.currentUser();
    }
