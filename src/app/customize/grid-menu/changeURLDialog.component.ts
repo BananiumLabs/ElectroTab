@@ -18,4 +18,8 @@ export class ChangeURLDialog {
         this.dialogRef.close();
     }
 
+    getAuthService() : AuthService {
+        return this.authService;
+    }
+
 }

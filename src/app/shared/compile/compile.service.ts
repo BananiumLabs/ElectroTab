@@ -91,7 +91,7 @@ export class CompileService  {
                 class TemplateComponent {
                     context: any
                     item = opts.item;
-                    constructor(private authService: AuthService, private widget: WidgetService, public dialog: MdDialog) {}
+                    constructor(private authService: AuthService, public widget: WidgetService, public dialog: MdDialog) {}
 
                     //WIDGET FUNCTIONS: TEMPORARY//
 

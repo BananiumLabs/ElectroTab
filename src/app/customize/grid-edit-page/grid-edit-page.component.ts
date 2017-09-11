@@ -193,4 +193,8 @@ widgetSearch: any;
    }
     
  }
+
+ getWidgets() {
+   return this.widgetService.getWidgets();
+ }
 }

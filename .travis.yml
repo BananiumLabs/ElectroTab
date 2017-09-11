@@ -6,10 +6,10 @@ branches:
   only:
     - master
     - develop
+    - travis-fix
 
 before_script:
   - npm install -g firebase-tools
-  - npm install -g @angular/cli@1.2.0
 
 script:
   - ng build --prod --output-hashing=bundles
