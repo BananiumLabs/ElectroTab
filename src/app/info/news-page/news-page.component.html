@@ -5,12 +5,12 @@
             <a class="brand-logo flow-text" [routerLink]="['']">ElectroTab</a>
             <!-- Dropdown trigger -->
             <a materialize="dropdown" class="button-collapse dropdown-button" href="#" data-activates="dropdown"><i class="material-icons">menu</i></a>
-
+    
             <!-- Regular Screen Not Logged In -->
             <ul class="right  hide-on-med-and-down">
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text">Home</a></li>
-                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['faq']" class="flow-text">News</a></li>
-                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['../account/login']" class="flow-text">Login</a></li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['news']" class="flow-text">News</a></li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['../../account/login']" class="flow-text">Login</a></li>
             </ul>
         </div>
     </nav>
