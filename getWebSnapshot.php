@@ -140,7 +140,13 @@ function pageToImages() {
   $p2i .= preg_replace('#^https?://#', '', $_GET['link']);
   $p2i .= "&p2i_key=e44ef28bd592f8a5&p2i_size=128x128";
   return $p2i;
+}
 
+function bestIcon() {
+  $bestIco = "https://icons.better-idea.org/icon?url=";
+  $bestIco .= preg_replace('#^https?://#', '', $_GET['link']);
+  $bestIco .= "&size=120..128..256";
+  return $bestIco;
 }
 
 function displayError($text) {
@@ -165,14 +171,17 @@ function displayError($text) {
 
 }
 
-function tryDisplay($checkLink) {
+function tryDisplay($checkLink, $provider) {
   $get_http_response_code = get_http_response_code($checkLink);
-  list($width, $height) = getimagesize($checkLink);
-  if($width == 160 && $height == 160) {
+
+  if($provider == "page2img") {
+    list($width, $height) = getimagesize($checkLink);
+  }
+  if($provider == "page2img" && $width == 160 && $height == 160) {
     return false;
   }
 
-  if ( $get_http_response_code == 200 ) {
+  if ( $get_http_response_code == 200 || $provider == "bestIcon") {
     //echo "WORKING";
     header('Content-Type: image/png');
     displayURL($checkLink);
@@ -213,11 +222,13 @@ function checkURLValid() {
 //Start Of Algorithm
 checkURLValid();
 
-if(!tryDisplay(clearbit())) {
-  if(!tryDisplay(pageToImages())) {
-    if(!tryDisplay(thumbnailws())) {
-      $errorMsg = " Please Refresh!";
-      displayError($errorMsg);
+if(!tryDisplay(clearbit(), 'clearbit')) {
+  if(!tryDisplay(bestIcon(), 'bestIcon')) {
+    if(!tryDisplay(pageToImages(), 'page2img')) {
+      if(!tryDisplay(thumbnailws(), 'thumbnailws')) {
+        $errorMsg = " Please Refresh!";
+        displayError($errorMsg);
+      }
     }
   }
 }
