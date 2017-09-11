@@ -14,14 +14,10 @@ if (isset($_GET['link'])) {
         die;
     }
 
-
-
 function get_http_response_code($link) {
   $headers = get_headers($link);
   return substr($headers[0], 9, 3);
 }
-
-
 
 /**
  * get_redirect_url()
@@ -119,11 +115,9 @@ function displayURL($url) {
 function thumbnailws() {
   $thumbnailws = "https://api.thumbnail.ws/api/ab88b8821adee068d097104644bb97e800ffc71a02a3/thumbnail/get?url=";
   if(substr( $_GET['link'], 0, 4 ) === "http") {
-
     $thumbnailws .= $_GET['link'];
   }
   else {
-
     $thumbnailws .= "http://";
     $thumbnailws .= $_GET['link'];
   }
@@ -139,6 +133,16 @@ function clearbit() {
   $clearbit .= $_GET['link'];
   return get_final_url($clearbit);
 }
+
+function pageToImages() {
+  $p2i = "https://api.page2images.com/directlink?p2i_url=";
+  $p2i .= "http://";
+  $p2i .= preg_replace('#^https?://#', '', $_GET['link']);
+  $p2i .= "&p2i_key=e44ef28bd592f8a5&p2i_size=128x128";
+  return $p2i;
+
+}
+
 function displayError($text) {
 
   $width = 256;
@@ -163,6 +167,10 @@ function displayError($text) {
 
 function tryDisplay($checkLink) {
   $get_http_response_code = get_http_response_code($checkLink);
+  list($width, $height) = getimagesize($checkLink);
+  if($width == 160 && $height == 160) {
+    return false;
+  }
 
   if ( $get_http_response_code == 200 ) {
     //echo "WORKING";
@@ -176,6 +184,7 @@ function tryDisplay($checkLink) {
     return false;
   }
 }
+
 function ping($host, $port, $timeout) {
       $tB = microtime(true);
       $fP = fSockOpen($host, $port, $errno, $errstr, $timeout);
@@ -186,14 +195,11 @@ function ping($host, $port, $timeout) {
 
 function checkURLValid() {
   if(substr( $_GET['link'], 0, 4 ) === "http") {
-
     $curLink = $_GET['link'];
   }
   else {
-
     $curLink = "http://";
     $curLink .= $_GET['link'];
-
   }
 
   $get_http_response_code = get_http_response_code($curLink);
@@ -202,15 +208,17 @@ function checkURLValid() {
     displayError($errorMsg);
     die;
    }
-
 }
 
+//Start Of Algorithm
 checkURLValid();
 
 if(!tryDisplay(clearbit())) {
-  if(!tryDisplay(thumbnailws())) {
-    $errorMsg = " Please Refresh!";
-    displayError($errorMsg);
+  if(!tryDisplay(pageToImages())) {
+    if(!tryDisplay(thumbnailws())) {
+      $errorMsg = " Please Refresh!";
+      displayError($errorMsg);
+    }
   }
 }
 
