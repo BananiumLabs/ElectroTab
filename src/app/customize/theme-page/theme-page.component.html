@@ -1,0 +1,45 @@
+<div class="container">
+	<h2 class="center-align" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''">Theme Selection</h2>
+
+	<div class="row">
+		<div class="col s12 m12 l6 padded">
+			<img src="../../../assets/images/defaulttheme.png" class="responsive-img center-align">
+			<div class="padded-10"><a (click)="setSetting('theme', 'default')" (click)="reload()" class="waves-effect waves-light btn-large center-align {{getSetting('color')}}" [ngClass]="getSetting('theme') === 'default'?'disabled':'na'">Default Materialize</a></div>
+		</div>
+		<div class="col s12 m12 l6 padded">
+			<img src="../../../assets/images/vanilla.PNG" class="responsive-img center-align">	
+			<div class="padded-10"><a (click)="setSetting('theme','vanilla')" (click)="reload()" class="waves-effect waves-light btn-large center-align {{getSetting('color')}}" [ngClass]="getSetting('theme') === 'vanilla'?'disabled':'na'">Vanilla</a></div>
+		</div>
+		
+	</div>
+
+	<div class="row">
+		<div class="col s12 m12 l6 padded">
+			<img src="../../../assets/images/color.png" class="responsive-img center-align">
+			<h4 class="center-align " [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''">Colored Background</h4>	
+			<div class="switch center-align">
+				<label class="flow-text" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : 'black-text'">
+				Disabled
+				<input type="checkbox" (click)="setModifier('color')" (click)="reload()" [disabled]="getSetting('modifier') === 'dark'" [checked]="getSetting('modifier') === 'color'" #color>
+				<span class="lever"  style="height: 1.5rem; width: 6rem"></span>
+				Enabled
+				</label>
+			</div>
+		</div>
+		<div class="col s12 m12 l6 padded">
+			<img src="../../../assets/images/invert.png" class="responsive-img center-align">	
+			<h4 class="center-align " [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''">Dark Mode</h4>	
+			<div class="switch center-align">
+				<label class=" flow-text" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : 'black-text'">
+				Disabled
+				<input type="checkbox" (click)="setModifier('dark')" (click)="reload()" [disabled]="getSetting('modifier') === 'color'" [checked]="getSetting('modifier') === 'dark'" #dark>
+				<span class="lever"  style="height: 1.5rem; width: 6rem"></span>
+				Enabled
+				</label>
+			</div>
+		</div>
+	</div>
+
+	
+
+</div>

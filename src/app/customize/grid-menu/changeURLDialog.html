@@ -1,0 +1,12 @@
+
+<h1 md-dialog-title>Hi</h1>
+<div md-dialog-content>
+  <p>What's your website's URL?</p>
+  <md-form-field>
+    <input mdInput tabindex="1" [(ngModel)]="data.url">
+  </md-form-field>
+</div>
+<div md-dialog-actions>
+  <button class="waves-effect waves-light btn {{getAuthService().getSetting('color')}}" md-button [md-dialog-close]="data.url" tabindex="2" style="margin-right: 0.1rem">Ok</button>
+  <button class="waves-effect waves-light btn red" md-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>

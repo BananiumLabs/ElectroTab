@@ -1,0 +1,197 @@
+/* Search bar formatting */
+input {
+  border-bottom-width: 0px !important;
+}
+
+#widget-search {
+  margin-left: 3rem;
+  margin-bottom: 0.5rem;
+  width: 90%;
+}
+
+#widget-search-form {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+}
+
+#widget-search-label {
+  margin-top: 0.4rem;
+}
+
+#add-component-label {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.margin-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.main-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1 auto;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+#dynamicSize {
+height:1080px;                   /* Temporary as auto for some reason don't want to work here */
+}
+:host /deep/ .mat-toolbar-row {
+  height: initial !important;
+}
+
+ md-toolbar {
+  flex: 0 0 auto;
+} 
+
+gridster-item div.button-holder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+gridster-item .item-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+gridster-item .gridster-item-content {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.no-nav {
+  height: 0%;
+}
+
+.responsive-80 {
+  max-width: 80%;
+  height: auto;
+}
+
+.responsive-40 {
+  max-width: 400px;
+  max-height: 40%;
+  height: auto;
+}
+
+.responsive-30 {
+  max-width: 300px;
+  max-height: 30%;
+  height: auto;
+}
+
+.z1 {
+  z-index: 88888;
+}
+.z2 {
+  z-index: 99999;
+}
+
+.fill {
+  height: 100%;
+  width: 100%;
+}
+
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Materialize Responsive Table Styles */
+
+table.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+    /* sort out borders */
+  }
+  table.responsive-table td:empty:before {
+    content: '\00a0';
+  }
+  table.responsive-table th,
+  table.responsive-table td {
+    margin: 0;
+    vertical-align: top;
+  }
+  table.responsive-table th {
+    text-align: left;
+  }
+  table.responsive-table thead {
+    display: block;
+    float: left;
+  }
+  table.responsive-table thead tr {
+    display: block;
+    padding: 0 10px 0 0;
+  }
+  table.responsive-table thead tr th::before {
+    content: "\00a0";
+  }
+  table.responsive-table tbody {
+    display: block;
+    width: auto;
+    position: relative;
+    white-space: nowrap;
+  }
+  table.responsive-table tbody tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  table.responsive-table th {
+    display: block;
+    text-align: right;
+  }
+  table.responsive-table td {
+    display: block;
+    min-height: 1.25em;
+    text-align: left;
+  }
+  table.responsive-table tr {
+    padding: 0 10px;
+  }
+  table.responsive-table thead {
+    border: 0;
+    border-right: 1px solid #d0d0d0;
+  }
+  table.responsive-table.bordered th {
+    border-bottom: 0;
+    border-left: 0;
+  }
+  table.responsive-table.bordered td {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  table.responsive-table.bordered tr {
+    border: 0;
+  }
+  table.responsive-table.bordered tbody tr {
+    border-right: 1px solid #d0d0d0;
+  }

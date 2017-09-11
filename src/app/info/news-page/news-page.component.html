@@ -1,0 +1,107 @@
+<!-- Materialize Default  -->
+<div class="navbar-fixed" *ngIf="!(isLoggedIn | async)">
+    <nav>
+        <div id="navBar" class="nav-wrapper red darken-1">
+            <a class="brand-logo flow-text" [routerLink]="['']">ElectroTab</a>
+            <!-- Dropdown trigger -->
+            <a materialize="dropdown" class="button-collapse dropdown-button" href="#" data-activates="dropdown"><i class="material-icons">menu</i></a>
+    
+            <!-- Regular Screen Not Logged In -->
+            <ul class="right  hide-on-med-and-down">
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text">Home</a></li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['news']" class="flow-text">News</a></li>
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['../../account/login']" class="flow-text">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="section">
+
+        <div class="row">
+            <div class="center-align">
+                <br>
+                <img class="pic animated fadeInUp" src="./assets/images/favicon.png">
+            </div>
+        </div>
+
+        <div class="row">
+            <h3 class="col s12 light center header animated fadeInUp">ElectroTab News</h3>
+        </div>
+
+      
+    <div class="divider"></div>
+
+    <div class="section">
+        <div class="row center s12 m8 l6">
+            <h3 class="light header">Update 1.0.0!</h3>
+            <p><strong>1.0.0 is the first release ever! HYPE!!!!</strong> </p>
+        </div>
+
+        <p>Here's a short list of what we've done:</p>
+            <ul>
+                <li>
+                    <p><strong>Actual real content.</strong> We've imported our work from a previous repository, due to some
+                        security concerns regarding personal information. That's why there is so much content in 1.0.0! I'll
+                        briefly summarize what we did before the creation of this repository: 
+                    <ul>
+                        <li>a. <strong>Login system.</strong> Google and GitHub oAuth logins are functional, as well as standard email login.</li>
+                        <li>b. <strong>Firebase.</strong> Your data syncs to our database, allowing you to access all of your preferences from any device! Don't worry, we do not collect any personal information- just your email and ElectroTab settings (dashboard layout, colors, etc.)</li>
+                        <li>c. <strong>Drag and Drop grid.</strong> We're creating more modules right now, but we created the Logo, Search Bar, and Clock.</li>
+                    </ul>
+                </li>
+
+
+
+                <li>
+                    <p><strong>New widget- the speed dial!</strong> This widget is a bookmark for your favorite links. It displays
+                        a screenshot of the website it links to.</p>
+                </li>
+
+                <li>
+                    <p><strong>New improved database linking!</strong> More efficient and more secure. This should prevent against
+                        database leaks (another reason why we had to create a new repo).</p>
+                </li>
+
+                <li>
+                    <p><strong>Awesome home page!</strong> Before, we just had an "under construction" holding page. Now, it's
+                        actually looking pretty clean!</p>
+                </li>
+            </ul>
+        
+    </div>
+
+    <div class="divider"></div>
+
+</div>
+</div>
+<footer class="page-footer red darken-2">
+    <div class="container">
+        <div class="row">
+            <div class="col l4 s12">
+                <h5 class="white-text">Electrify the Discussion</h5>
+                <p class="grey-text text-lighten-4">We have a Discord channel set up for easy communication between developers. Join in on discussions about
+                    electrifying new features or drop some questions for developers.</p>
+                <a class="btn waves-effect waves-light grey darken-2" target="_blank" href="https://discordapp.com/invite/FnvQ6MG">Discord</a>
+            </div>
+            <div class="col l4 s12 center" style="overflow: hidden;">
+                <iframe height="300px" src="https://discordapp.com/widget?id=354464445914808320&theme=dark" allowtransparency="true" frameborder="0"></iframe>
+            </div>
+            <div class="col l4 s12 center" style="overflow: hidden;">
+                <h5 class="white-text center-align">Connect with Us</h5>
+                <iframe src="http://ghbtns.com/github-btn.html?user=dbqeo&amp;repo=ElectroTab&amp;type=watch&amp;count=true&amp;size=large"
+                    allowtransparency="true" scrolling="0" width="170" height="30" frameborder="0"></iframe>
+                <br>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 ElectroTab All Rights Reserved
+            <a class="grey-text text-lighten-4 right" href="#!">v1.0</a>
+        </div>
+    </div>
+</footer>

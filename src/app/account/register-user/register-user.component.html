@@ -1,0 +1,68 @@
+<h3>Register</h3>
+<div class="row">
+    <div class="col s6 m6">
+        <a href="#" class="waves-effect waves-light btn-large grey darken-2" (click)="loginVia($event, 'github')">GitHub</a>
+    </div>
+	  <!--<span class="span-or">or</span>-->
+    <div class="col s6 m6">
+		 <a class="waves-effect waves-light btn-large red lighten-1" (click)="loginVia($event, 'google')">Google</a>
+    </div>
+</div>
+
+<div class="login-or">
+    <hr class="hr-or">
+</div>
+
+<form name="registerForm" [formGroup]="form" role="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="form-group" [class.has-error]="name.invalid && name.touched">
+        <label for="name" class="control-label flow-text">Name</label>
+        <input [formControl]="name" required type="text" class="form-control" id="name" name="name">
+        <div class="help-block">
+            <ul class="list-unstyled">
+                <li *ngIf="name.dirty && name.hasError('required')" class="red-text">A name is required</li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group" [class.has-error]="email.invalid && email.touched">
+        <label for="email" class="control-label flow-text">Email</label>
+        <input [formControl]="email" required type="email" class="form-control" id="email" name="email">
+        <div class="help-block">
+            <ul class="list-unstyled">
+                <li *ngIf="email.dirty && email.hasError('required')" class="red-text">An email address is required</li>
+                <li *ngIf="email.dirty && email.hasError('email')" class="red-text">Please enter a valid email address</li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group" [class.has-error]="password.invalid && password.touched">
+        <label for="password" class="flow-text">Password</label>
+        <input [formControl]="password" type="password" required class="form-control" id="password" name="password">
+        <div class="help-block">
+            <ul class="list-unstyled">
+                <li *ngIf="password.dirty && password.hasError('required')" class="red-text">A password is required</li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group"
+         [class.has-error]="(password2.invalid || form.hasError('mismatchedPasswords')) && password2.touched">
+        <label for="password2" class="flow-text">Repeat Password</label>
+        <input [formControl]="password2" type="password" required class="form-control" id="password2"
+               name="password2">
+        <div class="help-block">
+            <ul class="list-unstyled">
+                <li *ngIf="password2.dirty && password2.hasError('required')" class="red-text">A password is required</li>
+                <li *ngIf="password2.dirty && password2.valid && form.hasError('mismatchedPasswords')" class="red-text">Passwords
+                    don't
+                    match
+                </li>
+            </ul>
+        </div>
+    </div>
+	<div class="help-block">
+            <ul class="list-unstyled">
+                <!--spacer-->
+            </ul>
+    </div>
+    <button ng-disabled="registerForm.$invalid || registerForm.$pending" type="submit" class="btn btn btn-primary">
+        Register
+    </button>
+</form>

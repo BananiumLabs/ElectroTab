@@ -1,0 +1,22 @@
+.radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+.mat-radio-label-content {
+    color: black;
+}
+
+.padded {
+  padding: 0.5rem;
+}
+
+.mat-form-field-underline::after {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+}
