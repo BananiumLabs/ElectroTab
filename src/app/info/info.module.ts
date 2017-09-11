@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { InfoPageComponent } from 'app/info/info-page/info-page.component';
-import { FaqPageComponent } from 'app/info/faq-page/faq-page.component';
+import { NewsPageComponent } from 'app/info/news-page/news-page.component';
 import { SupportPageComponent } from 'app/info/support-page/support-page.component';
 import {MaterializeModule} from "angular2-materialize";
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
@@ -10,7 +10,7 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll';
 @NgModule({
     declarations: [
         InfoPageComponent,
-        FaqPageComponent,
+        NewsPageComponent,
         SupportPageComponent
     ],
     imports: [
@@ -20,7 +20,7 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
         RouterModule.forChild([
             { path: '', component: InfoPageComponent },
-            { path: 'faq', component: FaqPageComponent },
+            { path: 'news', component: NewsPageComponent },
             { path: 'support', component: SupportPageComponent },
         ]),
     ],

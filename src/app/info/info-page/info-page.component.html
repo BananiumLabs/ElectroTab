@@ -1,7 +1,7 @@
 <!-- Materialize Default  -->
-<div class="navbar-fixed">
+<div class="navbar-fixed" *ngIf="!(isLoggedIn | async)">
 <nav>
-    <div id="navBar" class="nav-wrapper">
+    <div id="navBar" class="nav-wrapper red darken-1">
         <a class="brand-logo flow-text" [routerLink]="['']">ElectroTab</a>
         <!-- Dropdown trigger -->
         <a materialize="dropdown" class="button-collapse dropdown-button" href="#" data-activates="dropdown"><i class="material-icons">menu</i></a>
@@ -9,7 +9,7 @@
         <!-- Regular Screen Not Logged In -->
         <ul class="right  hide-on-med-and-down">
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" class="flow-text">Home</a></li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['faq']" class="flow-text">FAQ</a></li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['faq']" class="flow-text">News</a></li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['../account/login']" class="flow-text">Login</a></li>
         </ul>
     </div>
@@ -27,7 +27,7 @@
                 <h5 class="animated fadeInUp">An Electrifying New Tab Experience!</h5>
             </div>
         </div>
-        <a pageScroll href="#parallax" class="waves-effect waves-light btn">Discover Now</a>
+        <a pageScroll href="#parallax" class="waves-effect waves-light btn red darken-2">Learn More</a>
     </div>
 </section>
 
@@ -42,7 +42,7 @@
         </div>
 
         <div class="row">
-            <h3 class="col s12 light center header">ElectroTab electrifies your browser with unbeatable speed and modularity.</h3>
+            <h3 class="col s12 light center header">ElectroTab electrifies your browser with lightning speed and modularity.</h3>
         </div>
 
         <!--   Main Features  -->
@@ -51,23 +51,23 @@
                 <div class="center promo">
                     <!-- Icon Here -->
                     <p class="promo-caption">Electrifying Modularity</p>
-                    <p class="light center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus turpis lacus, non porttitor odio ornare ac. Ut ut ullamcorper nisl. Phasellus pulvinar, neque vitae lobortis ultricies, ex metus vulputate enim, ut auctor justo augue sit amet eros. </p>
+                    <p class="light center">ElectroTab uses a grid system to allow you ultimate control over all aspects of your New Tab experience! Drag, resize, create, and delete custom widgets to create the perfect page!</p>
                 </div>
             </div>
 
             <div class="col s12 m4">
                 <div class="center promo">
                     <!-- Icon Here -->
-                    <p class="promo-caption">Lorem Ipsum Blah</p>
-                    <p class="light center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus turpis lacus, non porttitor odio ornare ac. Ut ut ullamcorper nisl. Phasellus pulvinar, neque vitae lobortis ultricies, ex metus vulputate enim, ut auctor justo augue sit amet eros.</p>
+                    <p class="promo-caption">Open Source</p>
+                    <p class="light center">All of our code is available for your scrutiny under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0!</a> We believe in an open and redistributable future for coding, and wish to allow anyone to modify and contribute to our code base. If you find something that's not to your satisfaction, simply let us know and we'll try to fix it for you! Our GitHub repository link is below.</p>
                 </div>
             </div>
 
             <div class="col s12 m4">
                 <div class="center promo">
                     <!-- Icon Here -->
-                    <p class="promo-caption">Lorem Ipsum Blah</p>
-                    <p class="light center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus turpis lacus, non porttitor odio ornare ac. Ut ut ullamcorper nisl. Phasellus pulvinar, neque vitae lobortis ultricies, ex metus vulputate enim, ut auctor justo augue sit amet eros. </p>
+                    <p class="promo-caption">Custom Widgets</p>
+                    <p class="light center">We strive to allow users to customize howevery they wish, and feel that one of the best ways is to let everyone create and share custom widgets! At this time, we do not have an interactive editor, but anyone is welcome to use our <a href="https://github.com/dbqeo/ElectroTab/wiki">Widget Service</a>.</p>
                 </div>
             </div>
         </div>
@@ -75,21 +75,30 @@
     </div>
     <div class="divider"></div>
     <div class="section">
-        <div class="row center">
-            <h3 class="light header">Download Soon</h3>
-            <p class="col s12 m8 offset-m2 caption">Want to join in and get electrifyed with a touch of modularity? Download our Electrifying extension below!</p>
-            <a href="" class="btn-large waves-effect waves-dark">Download Now</a>
+        <div class="row center s12 m8 l6">
+            <h3 class="light header">Download</h3>
+            <p class="col s12 caption">Want to join in and get electrified with a touch of modularity? Download our Chrome extension below!</p>
+            <a href="" class="btn-large waves-effect waves-dark red">Get the Extension</a>
         </div>
     </div>
     <div class="divider"></div>
-</div>
-
-<div class="section white">
-    <div class="row container">
-        <h2 class="header">Features</h2>
-        <p class="grey-text text-darken-3 lighten-3">Tons and Tons of features</p>
+    <div class="section">
+        <div class="row center s12 m8 l6">
+            <h3 class="light header">Contribute</h3>
+            <p class="col s12 caption">We're open source on GitHub! Anyone is welcome to submit bug reports, feature requests, and contributions in our repository.</p>
+            <a href="https:/github.com/dbqeo/ElectroTab" class="btn-large waves-effect waves-dark grey darken-2">View our repository on GitHub</a>
+        </div>
+    </div>
+    <div class="section">
+        <div class="row center s12 m8 l6">
+            <h3 class="light header">Contact</h3>
+            <p class="col s12 caption">You can contact us mainly through GitHub issues (click on the link above!), but you can also reach us at our email, contact@enumc.com.</p>
+            <p></p>
+            <a href="mailto:contact@enumc.com" class="btn-large waves-effect waves-dark amber darken-4">Contact Us!</a>
+        </div>
     </div>
 </div>
+
 <div class="parallax-container">
     <div class="parallax" materialize="parallax"><img src="../assets/images/2.jpg"></div>
 </div>
