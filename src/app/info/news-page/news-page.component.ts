@@ -5,11 +5,11 @@ import {Router} from "@angular/router";
 import { UserInfo } from "app/shared/user-info";
 
 @Component({
-    selector: 'app-faq-page',
-    templateUrl: './faq-page.component.html',
-    styleUrls: ['./faq-page.component.css']
+    selector: 'app-news-page',
+    templateUrl: './news-page.component.html',
+    styleUrls: ['./news-page.component.css']
 })
-export class FaqPageComponent {
+export class NewsPageComponent {
     userInfo: Observable<UserInfo>;
     isLoggedIn = new BehaviorSubject(false);
 

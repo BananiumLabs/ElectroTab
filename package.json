@@ -36,6 +36,7 @@
     "lodash": "^4.17.4",
     "materialize-css": "^0.100.1",
     "moment": "^2.18.1",
+    "ng2-page-scroll": "^4.0.0-beta.11",
     "ngx-bootstrap": "^2.0.0-beta.3",
     "node-modules-path": "^1.0.1",
     "nopt": "^4.0.1",

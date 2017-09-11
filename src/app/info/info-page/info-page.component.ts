@@ -38,4 +38,6 @@ export class InfoPageComponent {
       return !this.authService.isLoggedInBool();
 
     }
+    
+   
 }
