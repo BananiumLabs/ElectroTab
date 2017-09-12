@@ -1,10 +1,11 @@
 # ElectroTab: The electrifying new tab experience!
-
-![Favicon](src/assets/images/favicon.png)
+<img align="left" src="src/assets/images/favicon.png" alt="Favicon" width="24%">
 
 ## Built with [Angular](https://angular.io/) and [Firebase](https://firebase.google.com/) with styles and components from [MaterializeCSS](http://materializecss.com/). Current support for Chrome and Chromium.
 
-**Build Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=master)](https://travis-ci.org/dbqeo/ElectroTab)
+**Master Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=master)](https://travis-ci.org/dbqeo/ElectroTab)
+
+**Develop Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=develop)](https://travis-ci.org/dbqeo/ElectroTab)
 
 ## Discord Server
 We use **Discord** for realtime collaboration (it's not just for gaming!) Our invite code is https://discord.gg/FnvQ6MG. **Everyone is welcome to join!**
@@ -32,7 +33,7 @@ Need help? View the documentation for the [ElectroTab API](https://github.com/db
  5. Open your web browser (hopefully Chromium/Chrome) to localhost:4200. Enjoy :)
 
 ## Deploy Guide
- 1. Run `ng build --prod --output-hashing=bundles --no-aot` -> Start new build with partial hashing and uglifyJS. This will ensure that the cache will be refreshed quickly with new updates. 
+ 1. Run `ng build --prod --output-hashing=bundles --no-aot` -> Start new build with partial hashing and uglifyJS. This will ensure that the cache will be refreshed quickly with new updates.
  **Note:** The `--no-aot` flag is a temporary workaround that will be removed in the next update.
  2. Run `firebase deploy` -> Deploy new build to Firebase
 
