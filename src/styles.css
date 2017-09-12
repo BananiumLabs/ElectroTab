@@ -1,3 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+.mat-input-subscript-wrapper.mat-form-field-subscript-wrapper {.mat-input-underline.mat-form-field-underline {
+    visibility: hidden;
+    display: none;
+    opacity: 0; }
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.mat-input-underline.mat-form-field-underline {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+}
