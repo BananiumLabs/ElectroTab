@@ -1,7 +1,7 @@
 <div class="container">
 	<h2 class="center-align" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : ''">Plugins and Settings</h2>
 
-	  <div class="col s12 m7">
+	  <!-- <div class="col s12 m7">
 			<div class="card horizontal z-depth-3" [ngClass]="(getSetting('color') !== 'none' || getSetting('color') === 'black') ? 'white' : getSetting('color') + ' lighten-4'">
 				<div class="card-image">
 					<img src="../../../assets/images/searchengines.png">
@@ -38,7 +38,7 @@
 
 				</div>
 			</div>
-	</div>
+	</div> -->
 
 	<div class="col s12 m7">
 			<div class="card horizontal z-depth-3" [ngClass]="(getSetting('color') !== 'none' || getSetting('color') === 'black') ? 'white' : getSetting('color') + ' lighten-4'">
@@ -64,7 +64,7 @@
 										<label for="icon_prefix">Custom Color</label>
 									</div>
 
-									 <button class="btn waves-effect waves-light" type="submit" name="action" (click)="setColor()">Submit</button>
+									 <button class="btn waves-effect waves-light {{getSetting('color')}}" type="submit" name="action" (click)="setColor()">Submit</button>
 								</form>
 					</div>
 				</div>

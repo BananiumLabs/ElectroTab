@@ -188,7 +188,7 @@ widgetSearch: any;
 
  saveGrid() {
    if(this.dashboard !== [] && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard) && this.router.url == '/customize/grid') {
-     console.log('autosave grid');
+    //  console.log('autosave grid');
      this.authService.saveCustom("grid", this.dashboard);
    }
     

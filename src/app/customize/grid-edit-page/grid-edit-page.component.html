@@ -69,7 +69,7 @@
 
 						<tr *ngFor="let widget of getWidgets()">
 							<td *ngIf="widget.name.toLowerCase().includes(widgetSearch.value.toLowerCase())">
-								<div class="card responsive-30 waves-effect waves-block waves-light" (click)="(widget.defaultSetting) ? addItemCustom(widget.id, widget.width, widget.height, widget.menuTemplate, widget.defaultSetting) : addItem(widget.id, widget.width, widget.height, widget.menuTemplate)">
+								<div class="card responsive-30 waves-effect waves-block waves-light" (click)="(widget.defaultSetting) ? addItemCustom(widget.id, widget.width, widget.height, (widget.menuTemplate) ? true : false, widget.defaultSetting) : addItem(widget.id, widget.width, widget.height, (widget.menuTemplate) ? true : false)">
 									<div class="card-content {{getSetting('color')}}" id="add-component-label"><span class="flow-text white-text">{{widget.name}}</span></div>
 									<div class="card-image"><img class="responsive-img" src="../../../assets/images/{{widget.icon}}"/></div>
 								</div>

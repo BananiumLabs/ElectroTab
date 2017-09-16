@@ -10,7 +10,7 @@ import {MaterializeModule} from "angular2-materialize";
 import { GridsterConfig } from 'angular-gridster2/dist/gridsterConfig.interface';
 
 /**Delay, in milliseconds, of database methods which need to wait for initialization. */
-const DELAY = 750;
+const DELAY = 1000;
 
 @Component({
   selector: 'app-dashboard-page',
