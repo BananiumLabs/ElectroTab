@@ -48,6 +48,7 @@ widgetSearch: any;
       keepFixedHeightInMobile: false,
      displayGrid: 'none',
      draggable: {
+       enabled: true,
        ignoreContent: true, // if true drag will start only from elements from `dragHandleClass`
        dragHandleClass: 'drag-handler' // drag event only from this class. If `ignoreContent` is true.
      },
@@ -67,12 +68,17 @@ widgetSearch: any;
      
      this.getGrid();
      this.gridLoaded = true;
-   }, DELAY)
+
+    //  console.log(this.options);
+   }, DELAY);
+
+   //Autosave checking loop
    setTimeout(() => {
      Observable.interval(2000).subscribe(x => {
        this.saveGrid();
      });
-   }, DELAY * 2)
+   }, DELAY * 2);
+
  }
 
 
@@ -141,13 +147,13 @@ widgetSearch: any;
  }
 
  resetGrid() {
-   this.dashboard = [{ cols: 2, rows: 2, y: 0, x: 0, id: 0 }];
+   this.dashboard = [{id: 0,cols: 2, rows: 2, y: 0, x: 0}];
    this.saveGrid();
  }
 
  resetOptions() {
    var defaultOptions = {
-     gridType: 'fixed',
+     gridType: 'fit',
      compactType: 'none',
      margin: 10,
      outerMargin: true,
@@ -165,12 +171,6 @@ widgetSearch: any;
      fixedRowHeight: 250,
      keepFixedHeightInMobile: false,
      displayGrid: 'none',
-     draggable: {
-       enabled: true
-     },
-     resizable: {
-       enabled: true
-     },
      swap: true,
      pushItems: true
    };
@@ -187,11 +187,11 @@ widgetSearch: any;
  }
 
  saveGrid() {
-   if(this.dashboard !== [] && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard) && this.router.url == '/customize/grid') {
+   if(this.router.url == '/customize/grid') {
     //  console.log('autosave grid');
      this.authService.saveCustom("grid", this.dashboard);
-   }
-    
+     this.getGrid();
+   } 
  }
 
  getWidgets() {

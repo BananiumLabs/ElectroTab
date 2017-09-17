@@ -65,7 +65,7 @@
 					</div>
 				</form>
 				<table class="responsive-table">
-					<tbody style="max-height: 400px;">
+					<tbody style="max-height: 400px; overflow-x: auto;">
 
 						<tr *ngFor="let widget of getWidgets()">
 							<td *ngIf="widget.name.toLowerCase().includes(widgetSearch.value.toLowerCase())">
