@@ -119,7 +119,10 @@
 						</div>
 						</nav>
 					</div>
-						<grid-content  class="button-holder center-align" [item]="item" style="top: 2vh;"></grid-content>
+					<!-- Grid Content -->
+						<div style="background: transparent; height: 100%; width: 100%;" class="child center-align">
+							<div [p3x-compile]="getWidgets().getWidget(item.id).template" [uid]="item.uid"></div>
+						</div>
 					</div>
 					<div class="card-reveal white z2">
 						<span class="card-title grey-text text-darken-4">Settings<i class="material-icons right">close</i></span>
