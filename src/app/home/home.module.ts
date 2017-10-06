@@ -5,6 +5,7 @@ import { DashboardPageComponent } from 'app/home/dashboard-page/dashboard-page.c
 import { GridsterModule } from 'angular-gridster2';
 import { GridContentComponent } from 'app/grid/grid-content.component';
 import { WidgetService } from 'app/grid/widget.service';
+import { GridService } from 'app/grid/grid.service';
 import { CompileService } from 'app/shared/compile/compile.service';
 import { CompileModule } from 'app/shared/compile/compile.module';
 
@@ -33,7 +34,8 @@ import { CompileModule } from 'app/shared/compile/compile.module';
     ],
     providers: [
         WidgetService,
-        CompileService
+        CompileService,
+        GridService
     ]
 })
 export class HomeModule {

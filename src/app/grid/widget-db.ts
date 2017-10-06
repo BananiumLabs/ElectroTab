@@ -43,7 +43,7 @@ export const WIDGETS : Widget[] =
         template: `
         <div id="searchform">
             <div class="input-field white center-align z-depth-2 card">
-                <input #search id="search" ng-focus="true" (keyup.enter)="searchFor(search.value, item)" type="search" class="flow-text" placeholder="{{item.setting}} Search" required autofocus>
+                <input #search id="search" ng-focus="true" (keyup.enter)="searchFor(search.value)" type="search" class="flow-text" placeholder="{{item.setting}} Search" required autofocus>
                 <label class="label-icon" for="search" id="search-label"><i class="material-icons">search</i></label>
                 <i id="search-label" class="material-icons">close</i>
             </div>
@@ -88,19 +88,17 @@ export const WIDGETS : Widget[] =
         id: 4,
         name: "Speed Dial",
         icon: 'shortcut.png',
+        defaultSetting: 'google.com',
         template:`
-        <div>
             <div (click)="navigate(item.setting)" class="fit">
                 <div class="card horizontal z-depth-3 fit" [ngClass]="(authService.getSetting('color') !== 'none' || authService.getSetting('color') === 'black') ? 'white' : authService.getSetting('color') + ' lighten-4'">
                     <div class="card-content">
-                        <img id="p2i" class="fit" [src]=getURL(item.setting) />
+                        <img id="p2i" class="responsive-img valign-wrapper center-align" [src]=getURL(item.setting) />
                         <span class="webName">{{item.setting}}</span>
                     </div>
                 </div>
             </div>
-        </div>
-        `
-        ,
+        `,
         menuTemplate: `
         <div class="padded">
             <a class="waves-effect waves-light btn {{authService.getSetting('color')}}" (click)="openDialog()">Change URL</a>
@@ -108,7 +106,8 @@ export const WIDGETS : Widget[] =
             <li *ngIf="url">
                 Your URL: <i>{{url}}</i>
             </li>
-            </ul>`
+            </ul>
+        `
     },
 
 

@@ -10,7 +10,7 @@
 			<md-toolbar colo="primary">
 			  <div class="main-toolbar">
 
-				 <md-select aria-label="Grid type" [(ngModel)]="options.gridType" (ngModelChange)="changedOptions()" placeholder="Grid Type">
+				 <md-select aria-label="Grid type" [(ngModel)]="grid.options.gridType" (ngModelChange)="grid.changedOptions()" placeholder="Grid Type">
 				  <md-option value="fit">Fit to screen</md-option>
 				  <md-option value="scrollVertical">Scroll Vertical</md-option>
 				  <md-option value="scrollHorizontal">Scroll Horizontal</md-option>
@@ -19,7 +19,7 @@
 				  <md-option value="horizontalFixed">Horizontal Fixed</md-option>
 				</md-select>
 
-				<md-select aria-label="Compact type" [(ngModel)]="options.compactType" (ngModelChange)="changedOptions()" placeholder="Compact Type">
+				<md-select aria-label="Compact type" [(ngModel)]="grid.options.compactType" (ngModelChange)="grid.changedOptions()" placeholder="Compact Type">
 				  <md-option value="none">None</md-option>
 				  <md-option value="compactUp">Compact Up</md-option>
 				  <md-option value="compactLeft">Compact Left</md-option>
@@ -30,18 +30,18 @@
 
 				<div class="margin-slider">
 				  <div><span>Margin</span></div>
-				  <md-slider aria-label="Margin" thumbLabel min="0" max="30" step="1" (ngModelChange)="changedOptions()" [(ngModel)]="options.margin"></md-slider>
+				  <md-slider aria-label="Margin" thumbLabel min="0" max="30" step="1" (ngModelChange)="grid.changedOptions()" [(ngModel)]="grid.options.margin"></md-slider>
 				</div>
 
-				<md-checkbox [(ngModel)]="options.outerMargin" (ngModelChange)="changedOptions()">Outer Margin</md-checkbox>
+				<md-checkbox [(ngModel)]="grid.options.outerMargin" (ngModelChange)="grid.changedOptions()">Outer Margin</md-checkbox>
 
 				<md-input-container>
-				  <input mdInput [(ngModel)]="options.fixedColWidth" type="number" placeholder="Fixed Col Width" (ngModelChange)="changedOptions()">
+				  <input mdInput [(ngModel)]="grid.options.fixedColWidth" type="number" placeholder="Fixed Col Width" (ngModelChange)="grid.changedOptions()">
 				</md-input-container>
 				<md-input-container>
-				  <input mdInput [(ngModel)]="options.fixedRowHeight" type="number" placeholder="Fixed Row Height" (ngModelChange)="changedOptions()">
+				  <input mdInput [(ngModel)]="grid.options.fixedRowHeight" type="number" placeholder="Fixed Row Height" (ngModelChange)="grid.changedOptions()">
 				</md-input-container>
-				<md-checkbox [(ngModel)]="options.keepFixedHeightInMobile" (ngModelChange)="changedOptions()">
+				<md-checkbox [(ngModel)]="grid.options.keepFixedHeightInMobile" (ngModelChange)="grid.changedOptions()">
 				  Keep Fixed Height In Mobile
 				</md-checkbox>
 			  </div>
@@ -67,27 +67,14 @@
 				<table class="responsive-table">
 					<tbody style="max-height: 400px;">
 
-						<tr *ngFor="let widget of getWidgets()">
+						<tr *ngFor="let widget of getWidgets().getWidgets()">
 							<td *ngIf="widget.name.toLowerCase().includes(widgetSearch.value.toLowerCase())">
-								<div class="card responsive-30 waves-effect waves-block waves-light" (click)="(widget.defaultSetting) ? addItemCustom(widget.id, widget.width, widget.height, widget.menuTemplate, widget.defaultSetting) : addItem(widget.id, widget.width, widget.height, widget.menuTemplate)">
+								<div class="card responsive-30 waves-effect waves-block waves-light" (click)="(widget.defaultSetting) ? grid.addItemCustom(widget.id, widget.width, widget.height, widget.menuTemplate, widget.defaultSetting) : grid.addItem(widget.id, widget.width, widget.height, widget.menuTemplate)">
 									<div class="card-content {{getSetting('color')}}" id="add-component-label"><span class="flow-text white-text">{{widget.name}}</span></div>
 									<div class="card-image"><img class="responsive-img" src="../../../assets/images/{{widget.icon}}"/></div>
 								</div>
 								<td>
 						</tr>
-
-						<!-- 4. Custom URL SpeedDial-->
-						<!-- <tr>
-						<td>
-							<div class="card responsive-40 ">
-							<div class="card-image waves-effect waves-block waves-light">
-								<img class="responsive-img" src="../../../assets/images/shortcut.png" (click)="addItem(4,1,1,true)" />
-								<span class="card-title black-text">Website Shortcut</span>
-							</div>
-							</div>
-						<td>
-						</tr> -->
-
 					</tbody>
 				</table>
 			</div>
@@ -96,17 +83,17 @@
 	  <!-- Quick Actions Buttons -->
 	  <li>
 		<div class="collapsible-header center-align" style="padding:1%;">
-		  <a (click)="resetGrid()" class="waves-effect waves-light btn-large {{getSetting('color')}}" style="margin-right:3%">Reset Grid</a>
+		  <a (click)="grid.resetGrid()" class="waves-effect waves-light btn-large {{getSetting('color')}}" style="margin-right:3%">Reset Grid</a>
 		  <a (click)="refresh()" class="waves-effect waves-light btn-large {{getSetting('color')}}" style="margin-right:3%">Refresh Page</a>
-		  <a (click)="resetOptions()" class="waves-effect waves-light btn-large {{getSetting('color')}}" style="margin-right:3%">Reset Options</a>
+		  <a (click)="grid.resetOptions()" class="waves-effect waves-light btn-large {{getSetting('color')}}" style="margin-right:3%">Reset Options</a>
 		</div>
 	  </li>
 	</ul>
 
-	<div *ngIf="gridLoaded" id="dynamicSize">
-		<gridster [options]="options">
+	<div *ngIf="grid.gridLoaded" id="dynamicSize">
+		<gridster [options]="grid.options">
 
-			<gridster-item [item]="item" *ngFor="let item of dashboard">
+			<gridster-item [item]="item" *ngFor="let item of grid.dashboard">
 
 				<div class="card hoverable fill">
 					<div class="card-content" style="padding: 0;">
@@ -124,7 +111,7 @@
 
 							<!-- Destroy -->
 							<ul class="right">
-							<li><a *ngIf="dashboard.length > 1" class="dropdown-button" (click)="removeItem($event,item)"><i class="material-icons red-text" >close</i></a></li>
+							<li><a *ngIf="grid.dashboard.length > 1" class="dropdown-button" (click)="grid.removeItem($event,item)"><i class="material-icons red-text" >close</i></a></li>
 							</ul>
 
 						</div>
@@ -134,7 +121,12 @@
 					</div>
 					<div class="card-reveal white z2">
 						<span class="card-title grey-text text-darken-4">Settings<i class="material-icons right">close</i></span>
-						<grid-menu [item]="item"></grid-menu>
+
+						<!-- Menu -->
+						<div style="background: transparent">
+							<div [p3x-compile]="getWidgets().getWidget(item.id).menuTemplate" [uid]="item.uid"></div>
+						</div>
+
 					</div>
 				</div>
 

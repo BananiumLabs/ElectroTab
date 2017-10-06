@@ -11,6 +11,8 @@ import {
     Inject
 } from '@angular/core';
 
+import { Observable } from 'rxjs';
+
 import { NgModel, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +21,7 @@ import { MdDialog, MdDialogRef, MD_DIALOG_DATA, MdFormFieldModule, MdDialogModul
 
 import { AuthService } from '../auth.service';
 import { WidgetService } from 'app/grid/widget.service';
+import { GridService } from 'app/grid/grid.service';
 import { ChangeURLDialog } from 'app/customize/grid-menu/changeURLDialog.component';
 import { ImporterModule } from './importer.module';
 
@@ -32,7 +35,7 @@ export interface CompileOptions {
     onCompiled?: Function,
     onError?: Function;
     module?: NgModule;
-    item?: any;
+    uid: string;
 }
 
 const cache : any = {};
@@ -90,12 +93,30 @@ export class CompileService  {
                 })
                 class TemplateComponent {
                     context: any
-                    item = opts.item;
-                    constructor(private authService: AuthService, public widget: WidgetService, public dialog: MdDialog) {}
+                    item: any 
+
+                    constructor(private authService: AuthService, public widget: WidgetService, public dialog: MdDialog, private grid: GridService ) {
+                        // console.log(opts);
+
+                        // console.log(grid.dashboard.findIndex(x => x.uid == opts.uid));
+                        this.getItem();
+                        
+                        // this.item = opts.item;
+                        // console.log(this.item);
+
+                        // Observable.interval(2000).subscribe(x => {
+                        //     console.log(this.item.uid + ',' + this.item.setting);
+                        // });
+                    }
+
+                    getItem() {
+                        this.item = this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)];
+                    }
+
+                    
 
                     //WIDGET FUNCTIONS: TEMPORARY//
 
-                    url: string;
                     engines = ["Google", "Bing", "DuckDuckGo"];
                     clocks = ["AnalogWhite", "AnalogGreen", "DigitalBlue"];
 
@@ -120,23 +141,23 @@ export class CompileService  {
 
                     }
 
-                    searchFor(value: string, item: any) {
+                    searchFor(value: string) {
                         if (value !== "" && value !== undefined && value !== null)
-                            if (item.setting !== "DuckDuckGo")
-                                window.location.href = 'https://' + item.setting + '.com/search?q=' + value;
-                        if (item.setting === "DuckDuckGo")
-                            window.location.href = 'https://' + item.setting + '.com/?q=' + value;
+                            if (this.item.setting !== "DuckDuckGo")
+                                window.location.href = 'https://' + this.item.setting + '.com/search?q=' + value;
+                        if (this.item.setting === "DuckDuckGo")
+                            window.location.href = 'https://' + this.item.setting + '.com/?q=' + value;
                     }
 
                     changeURL() {
                         this.openDialog();
                         alert("Your Current URL Setting: " + this.item.setting);
-                        this.url = prompt("Please enter the new website's url:");
-                        if (this.url == null || this.url == "") {
+                        var url = prompt("Please enter the new website's url:");
+                        if (url == null || url == "") {
                             alert("No changes has been made.");
                             return;
                         } else {
-                            this.item.setting = this.url;
+                            this.item.setting = url;
                         }
                     }
 
@@ -144,15 +165,30 @@ export class CompileService  {
                     openDialog(): void {
                         let dialogRef = this.dialog.open(ChangeURLDialog, {
                             width: '250px',
-                            data: { url: this.url }
+                            data: { url: this.item.setting }
                         });
                         dialogRef.componentInstance.dialogRef = dialogRef;
 
                         dialogRef.afterClosed().subscribe(result => {
                             console.log('The dialog was closed');
-                            this.url = result;
-                            this.item.setting = this.url;
+                            this.saveSetting(result);
                         });
+                    }
+
+                    /**Sets the item setting to the given value. */
+                    saveSetting(value: any) : void {
+                        // var gridArray = [];
+                        // gridArray = (this.authService.getCustom("grid"));
+                        
+                        // gridArray[gridArray.findIndex(x => x.uid == opts.item)].setting = value;
+
+                        // console.log(gridArray);
+                        // this.authService.saveCustom("grid", gridArray);
+
+                        this.getItem();
+                        // this.item.setting = value;
+                        this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)].setting = value;
+                        // console.log(this.item);
                     }
                 }
 
