@@ -1,8 +1,10 @@
  <!-- Grid -->
-  <gridster [options]="options" style="height:1000px; background:transparent">
-	<gridster-item [item]="item" *ngFor="let item of dashboard">
+  <gridster [options]="grid.options" style="height:1000px; background:transparent">
+	<gridster-item [item]="item" *ngFor="let item of grid.dashboard">
 		<div class="button-holder center-align" [ngClass]="getSetting('modifier') === 'color' ? getSetting('color') + ' lighten-3' : (getSetting('modifier') === 'dark' ? 'grey darken-4' : '')" style="position: relative">
-			<grid-content [item]="item"></grid-content>
+			<div style="background: transparent; height: 100%; width: 100%;" class="child">
+				<div [p3x-compile]="getWidgets().getWidget(item.id).template" [uid]="item.uid"></div>
+			</div>
 		</div>
 	</gridster-item>
 </gridster> 

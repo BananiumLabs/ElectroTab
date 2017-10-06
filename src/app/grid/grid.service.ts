@@ -12,7 +12,7 @@ const DELAY = 750;
 
 @Injectable()
 /** Methods for managing the Grid using the Angular-Gridster2 API */
-export class GridService implements OnInit {
+export class GridService  {
     options: GridsterConfig;
     dashboard: Array<any>;
     gridLoaded: boolean = false;
@@ -21,6 +21,10 @@ export class GridService implements OnInit {
     widgetSearch: any;
 
     constructor(private authService: AuthService, private router: Router, private widgetService: WidgetService) {
+        this.onInit();
+    }
+
+    onInit() {
         this.options = {
             //  gridType: 'fit',
             //  compactType: 'none',
@@ -41,6 +45,7 @@ export class GridService implements OnInit {
             keepFixedHeightInMobile: false,
             displayGrid: 'none',
             draggable: {
+                enabled: true,
                 ignoreContent: true, // if true drag will start only from elements from `dragHandleClass`
                 dragHandleClass: 'drag-handler' // drag event only from this class. If `ignoreContent` is true.
             },
@@ -57,19 +62,20 @@ export class GridService implements OnInit {
 
         setTimeout(() => {
             this.getOptions();
-            console.log('foobar');
+
             this.getGrid();
             this.gridLoaded = true;
-        }, DELAY)
+
+            //  console.log(this.options);
+        }, DELAY);
+
+        //Autosave checking loop
         setTimeout(() => {
             Observable.interval(2000).subscribe(x => {
                 this.saveGrid();
             });
-        }, DELAY * 2)
-    }
+        }, DELAY * 2);
 
-    ngOnInit() {
-        
     }
 
 
@@ -88,12 +94,12 @@ export class GridService implements OnInit {
     }
 
     addItem(id: number, height: number, width: number, hasMenu: boolean) {
-        this.dashboard.push({ id: id, cols: height, rows: width, menu: hasMenu, uid: Math.random().toString(32).substring(5) });
+        this.dashboard.push({ id: id, cols: height, rows: width, menu: hasMenu });
     };
 
     //Adds an item with a custom setting value
     addItemCustom(id: number, height: number, width: number, hasMenu: boolean, settingValue: any) {
-        this.dashboard.push({ id: id, cols: height, rows: width, menu: hasMenu, setting: settingValue, uid: Math.random().toString(32).substring(5) });
+        this.dashboard.push({ id: id, cols: height, rows: width, menu: hasMenu, setting: settingValue });
     };
 
     getOptions() {
@@ -102,10 +108,7 @@ export class GridService implements OnInit {
     }
 
     getGrid() {
-        
         var gridArr = this.authService.getCustom("grid");
-
-        console.log(gridArr);
 
         if (!this.gridLoaded && gridArr !== undefined) {
             for (var i = 0; i < gridArr.length; i++)
@@ -115,13 +118,13 @@ export class GridService implements OnInit {
     }
 
     resetGrid() {
-        this.dashboard = [{ cols: 2, rows: 2, y: 0, x: 0, id: 0 }];
+        this.dashboard = [{ id: 0, cols: 2, rows: 2, y: 0, x: 0 }];
         this.saveGrid();
     }
 
     resetOptions() {
         var defaultOptions = {
-            gridType: 'fixed',
+            gridType: 'fit',
             compactType: 'none',
             margin: 10,
             outerMargin: true,
@@ -139,12 +142,6 @@ export class GridService implements OnInit {
             fixedRowHeight: 250,
             keepFixedHeightInMobile: false,
             displayGrid: 'none',
-            draggable: {
-                enabled: true
-            },
-            resizable: {
-                enabled: true
-            },
             swap: true,
             pushItems: true
         };
@@ -161,14 +158,14 @@ export class GridService implements OnInit {
     }
 
     saveGrid() {
-        if (this.dashboard !== [] && this.authService.getCustom('grid') && JSON.stringify(this.authService.getCustom('grid')) !== JSON.stringify(this.dashboard) && this.router.url == '/customize/grid') {
-            console.log('autosave grid');
+        if (this.router.url == '/customize/grid') {
+            //  console.log('autosave grid');
             this.authService.saveCustom("grid", this.dashboard);
+            this.getGrid();
         }
-
     }
 
     getWidgets() {
-        return this.widgetService;
+        return this.widgetService.getWidgets();
     }
 }

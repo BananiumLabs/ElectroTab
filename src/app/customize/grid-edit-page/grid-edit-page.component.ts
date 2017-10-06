@@ -29,6 +29,7 @@ widgetSearch: any;
     return this.widgetService;
   }
 
+
  isLoggedIn(): Observable<boolean> {
    return this.authService.isLoggedIn();
  }
@@ -48,5 +49,4 @@ widgetSearch: any;
  refresh() {
    location.reload();
  }
-
 }
