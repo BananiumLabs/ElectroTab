@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 import { WidgetService } from 'app/grid/widget.service';
 
 /**Delay, in milliseconds, of database methods which need to wait for initialization. */
-const DELAY = 750;
+const DELAY = 500;
 
 @Injectable()
 /** Methods for managing the Grid using the Angular-Gridster2 API */
@@ -50,7 +50,7 @@ export class GridService  {
                 dragHandleClass: 'drag-handler' // drag event only from this class. If `ignoreContent` is true.
             },
             resizable: {
-                enabled: true
+                enabled: false
             },
             swap: true,
             pushItems: true
@@ -59,28 +59,34 @@ export class GridService  {
         this.dashboard = [
 
         ];
-
-        setTimeout(() => {
-            this.getOptions();
-
-            this.getGrid();
-            this.gridLoaded = true;
-
-            //  console.log(this.options);
-        }, DELAY);
-
+        
         //Autosave checking loop
         setTimeout(() => {
+
+            this.getOptions();
+            this.getGrid();
+
+            if (document.hasFocus())
+                this.gridLoaded = true;
+
             Observable.interval(2000).subscribe(x => {
+
+                if (document.hasFocus())
+                    this.gridLoaded = true;
+
+                //Switch between resizable and not resizable depending on if user is on edit page
+                this.options.resizable.enabled = this.router.url == '/customize/grid';
+                if(this.options.api)
+                    this.options.api.optionsChanged();
+                    
                 this.saveGrid();
             });
-        }, DELAY * 2);
+        }, DELAY);
 
     }
 
-
     changedOptions() {
-        this.options.api.optionsChanged();
+        
         setTimeout(() => {
             //  console.log("options changed");
             this.saveOptions();
@@ -158,7 +164,7 @@ export class GridService  {
     }
 
     saveGrid() {
-        if (this.router.url == '/customize/grid') {
+        if (this.router.url == '/customize/grid' && document.hasFocus()) {
             //  console.log('autosave grid');
             this.authService.saveCustom("grid", this.dashboard);
             this.getGrid();

@@ -88,8 +88,8 @@ export const WIDGETS : Widget[] =
         template:`
             <div (click)="navigate(item.setting)" class="fit">
                 <div class="card horizontal z-depth-3 fit" [ngClass]="(authService.getSetting('color') !== 'none' || authService.getSetting('color') === 'black') ? 'white' : authService.getSetting('color') + ' lighten-4'">
-                    <div class="card-content">
-                        <img id="p2i" class="responsive-img valign-wrapper center-align" [src]=getURL(item.setting) />
+                    <div class="card-content child">
+                        <img id="p2i" class="responsive-img valign-wrapper" [src]=getURL(item.setting) />
                         <span class="webName">{{item.setting}}</span>
                     </div>
                 </div>
