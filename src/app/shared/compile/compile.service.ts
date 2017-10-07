@@ -95,29 +95,15 @@ export class CompileService  {
                 class TemplateComponent {
                     context: any
                     item: any 
-                    random = Math.random().toString().substring(5);
+                    random = Math.random().toString().substring(5); //Unique identifier- use for form id's and other structures that need unique names for each widget instance
 
                     constructor(private authService: AuthService, public widget: WidgetService, public dialog: MdDialog, private grid: GridService ) {
-                        // console.log(opts);
-
-                        // console.log(grid.dashboard.findIndex(x => x.uid == opts.uid));
-                        // this.getItem();
                         
                         this.item = opts.item;
-                        console.log(this.item);
-                        console.log(opts.template);
-
-                        // Observable.interval(2000).subscribe(x => {
-                        //     console.log(this.item.uid + ',' + this.item.setting);
-                        // });
+                        // console.log(this.item);
+                        // console.log(opts.template);
                     }
-
-                    // getItem() {
-                    //     this.item = Object.assign({}, this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)]);
-                    // }
-
                     
-
                     //WIDGET FUNCTIONS: TEMPORARY//
 
                     engines = ["Google", "Bing", "DuckDuckGo"];
@@ -174,31 +160,9 @@ export class CompileService  {
 
                         dialogRef.afterClosed().subscribe(result => {
                             console.log('The dialog was closed');
-                            this.saveSetting(result);
+                            this.item.setting = result;
                         });
                     }
-
-                    /**Sets the item setting to the given value. */
-                    saveSetting(value: any) : void {
-                        // var gridArray = [];
-                        // gridArray = (this.authService.getCustom("grid"));
-                        
-                        // gridArray[gridArray.findIndex(x => x.uid == opts.item)].setting = value;
-
-                        // console.log(gridArray);
-                        // this.authService.saveCustom("grid", gridArray);
-
-                        // this.item.setting = value;
-                        // this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)].setting = value;
-                        // console.log(this.item);
-                        // console.log(this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)]);
-                        this.item.setting = value;
-
-                    }
-
-                    
-
-                    
 
                 }
 
@@ -243,7 +207,7 @@ export class CompileService  {
                 );
                 cache[cacheKey] = factory;
 
-                console.log(component);
+                // console.log(component);
                 
                 if (opts.onCompiled) {
                     opts.onCompiled(component);
