@@ -52,8 +52,8 @@ export const WIDGETS : Widget[] =
         menuTemplate: `
         <form>
             <p *ngFor="let engine of engines">
-                <input name="engineChoose" type="radio" id="{{engine}}" (click)="item.setting = engine" [checked]="engine === item.setting"/>
-                <label for="{{engine}}" class="black-text">{{engine}}</label>
+                <input name="engineChoose" type="radio" id="{{engine + random}}" (click)="item.setting = engine" [checked]="engine === item.setting"/>
+                <label for="{{engine + random}}" class="black-text">{{engine}}</label>
             </p>
         </form>`
     },

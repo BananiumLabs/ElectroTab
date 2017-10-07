@@ -35,7 +35,7 @@ export interface CompileOptions {
     onCompiled?: Function,
     onError?: Function;
     module?: NgModule;
-    uid: string;
+    item: any;
 }
 
 const cache : any = {};
@@ -76,7 +76,8 @@ export class CompileService  {
     }
 
     private async createFactory(opts: CompileOptions) {
-        const cacheKey = opts.template;
+        // const cacheKey = opts.template;
+        const cacheKey = (Math.random() * 100).toString().substring(0,5);
 
         if (Object.keys(cache).indexOf(cacheKey) > -1) {
             return cache[cacheKey];
@@ -94,24 +95,26 @@ export class CompileService  {
                 class TemplateComponent {
                     context: any
                     item: any 
+                    random = Math.random().toString().substring(5);
 
                     constructor(private authService: AuthService, public widget: WidgetService, public dialog: MdDialog, private grid: GridService ) {
                         // console.log(opts);
 
                         // console.log(grid.dashboard.findIndex(x => x.uid == opts.uid));
-                        this.getItem();
+                        // this.getItem();
                         
-                        // this.item = opts.item;
-                        // console.log(this.item);
+                        this.item = opts.item;
+                        console.log(this.item);
+                        console.log(opts.template);
 
                         // Observable.interval(2000).subscribe(x => {
                         //     console.log(this.item.uid + ',' + this.item.setting);
                         // });
                     }
 
-                    getItem() {
-                        this.item = this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)];
-                    }
+                    // getItem() {
+                    //     this.item = Object.assign({}, this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)]);
+                    // }
 
                     
 
@@ -185,11 +188,18 @@ export class CompileService  {
                         // console.log(gridArray);
                         // this.authService.saveCustom("grid", gridArray);
 
-                        this.getItem();
                         // this.item.setting = value;
-                        this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)].setting = value;
+                        // this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)].setting = value;
                         // console.log(this.item);
+                        // console.log(this.grid.dashboard[this.grid.dashboard.findIndex(x => x.uid == opts.uid)]);
+                        this.item.setting = value;
+
                     }
+
+                    
+
+                    
+
                 }
 
 
@@ -218,7 +228,7 @@ export class CompileService  {
                 }
                 if (module.declarations === undefined) {
                     module.declarations = [
-                        TemplateComponent
+                       TemplateComponent
                     ];
                 } else {
                     module.declarations.push(TemplateComponent);
@@ -232,6 +242,9 @@ export class CompileService  {
                     comp.componentType === TemplateComponent
                 );
                 cache[cacheKey] = factory;
+
+                console.log(component);
+                
                 if (opts.onCompiled) {
                     opts.onCompiled(component);
                 }

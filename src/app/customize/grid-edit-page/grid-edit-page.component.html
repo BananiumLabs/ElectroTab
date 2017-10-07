@@ -70,7 +70,7 @@
 						<tr *ngFor="let widget of getWidgets().getWidgets()">
 							<td *ngIf="widget.name.toLowerCase().includes(widgetSearch.value.toLowerCase())">
 
-								<div class="card responsive-30 waves-effect waves-block waves-light" (click)="(widget.defaultSetting) ? grid.addItemCustom(widget.id, widget.width, widget.height, widget.menuTemplate, widget.defaultSetting) : grid.addItem(widget.id, widget.width, widget.height, widget.menuTemplate)">
+								<div class="card responsive-30 waves-effect waves-block waves-light" (click)="(widget.defaultSetting) ? grid.addItemCustom(widget.id, widget.width, widget.height, widget.menuTemplate !== undefined, widget.defaultSetting) : grid.addItem(widget.id, widget.width, widget.height, widget.menuTemplate !== undefined)">
 
 									<div class="card-content {{getSetting('color')}}" id="add-component-label"><span class="flow-text white-text">{{widget.name}}</span></div>
 									<div class="card-image"><img class="responsive-img" src="../../../assets/images/{{widget.icon}}"/></div>
@@ -121,7 +121,7 @@
 					</div>
 					<!-- Grid Content -->
 						<div style="background: transparent; height: 100%; width: 100%;" class="child center-align">
-							<div [p3x-compile]="getWidgets().getWidget(item.id).template" [uid]="item.uid"></div>
+							<div [p3x-compile]="getWidgets().getWidget(item.id).template" [item]="item"></div>
 						</div>
 					</div>
 					<div class="card-reveal white z2">
@@ -129,7 +129,7 @@
 
 						<!-- Menu -->
 						<div style="background: transparent">
-							<div [p3x-compile]="getWidgets().getWidget(item.id).menuTemplate" [uid]="item.uid"></div>
+							<div [p3x-compile]="getWidgets().getWidget(item.id).menuTemplate" [item]="item"></div>
 						</div>
 
 					</div>
