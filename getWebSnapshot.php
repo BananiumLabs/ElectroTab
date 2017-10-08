@@ -1,7 +1,36 @@
 <?php
 
+/* getWebSnapshot: */
+
+/**
+ * API to retrieve website icon from multiple failsafe
+ *
+ *
+ * PHP version 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * If you did not receive a copy of the PHP License and are unable to
+ * obtain it through the web, please send a note to contact@enumc.com so
+ * we can mail you a copy immediately.
+ *
+ * @category   Utility
+ * @package    ElectroTabAPI
+ * @author     Eric Qian <eric@enumc.com>
+ * @copyright  2017 Eric Qian
+ * @license    https://raw.githubusercontent.com/dbqeo/ElectroTab/master/LICENSE  GPL License 3.0
+ * @version    SVN: $Id$
+ * @link       https://enumc.com
+ */
+require('/app/vendor/autoload.php');
+use GDText\Box;
+use GDText\Color;
+
 $origLink = 'undef';
 $finalLink = 'undef';
+
+// CONSTANTS - CHANGE THESE TO ALTER API
+$ENABLE_BESTICON = true;
+// END OF CONSTANTS
 
 if (isset($_GET['link'])) {
 
@@ -10,7 +39,8 @@ if (isset($_GET['link'])) {
 
     }else{
         // Fallback behaviour goes here
-        echo "\r\nERROR. No URL Defined";
+        echo "\r\nERROR: No URL Defined";
+        echo "<br><br><br>Made By: Eric Q. <br>Email contact@enumc.com to report any issues.";
         die;
     }
 
@@ -18,7 +48,9 @@ function get_http_response_code($link) {
   $headers = get_headers($link);
   return substr($headers[0], 9, 3);
 }
-
+function debug_to_console($data) {
+    file_put_contents("php://stderr", $data);
+}
 /**
  * get_redirect_url()
  * Gets the address that the provided URL redirects to,
@@ -124,13 +156,14 @@ function thumbnailws() {
 
   //echo "Current: ";
   //echo $_GET['link'];
-  $thumbnailws .= "&width=128";
+  $thumbnailws .= "&width=256";
   return $thumbnailws;
 }
 
 function clearbit() {
   $clearbit = "https://logo.clearbit.com/";
   $clearbit .= $_GET['link'];
+  $clearbit .= "?size=256";
   return get_final_url($clearbit);
 }
 
@@ -138,19 +171,48 @@ function pageToImages() {
   $p2i = "https://api.page2images.com/directlink?p2i_url=";
   $p2i .= "http://";
   $p2i .= preg_replace('#^https?://#', '', $_GET['link']);
-  $p2i .= "&p2i_key=e44ef28bd592f8a5&p2i_size=128x128";
+  $p2i .= "&p2i_key=e44ef28bd592f8a5&p2i_size=256x256";
   return $p2i;
 }
 
 function bestIcon() {
   $bestIco = "https://icons.better-idea.org/icon?url=";
   $bestIco .= preg_replace('#^https?://#', '', $_GET['link']);
-  $bestIco .= "&size=120..128..256";
-  return $bestIco;
+  $bestIco .= "&size=128..256..500";
+  return get_final_url($bestIco);
+}
+
+function getTextFactor($font, $text, $size, $angle, $width, $height)
+{
+    //if the size are zero don't execute any further, it's not necessary
+    if($width == 0 || $height == 0) throw new ArgumentException("$width or $height could not be zero!");
+
+    //get the text size
+    $box = imagettfbbox($size, $angle, $font, $text);
+
+    $minX = min(array($box[0],$box[2],$box[4],$box[6]));
+    $maxX = max(array($box[0],$box[2],$box[4],$box[6]));
+
+    $minY = min(array($box[1],$box[3],$box[5],$box[7]));
+    $maxY = max(array($box[1],$box[3],$box[5],$box[7]));
+
+    $factorX = 1;
+    if($tmpWdith = ($maxX - $minX) > $width)
+    {
+        $factorX = $tmpWidth / $width;
+    }
+
+    $factorY = 1;
+    if($tmpHeight = ($maxY - $minY) > $height)
+    {
+        $factorY = $tmpHeight / $height;
+    }
+
+    return min(array($factorX, $factorY));
 }
 
 function displayError($text) {
-
+/*
   $width = 256;
   $height = 20;
   $fontsize = 5;
@@ -167,8 +229,24 @@ function displayError($text) {
 
   header('Content-type: image/png');
   imagepng($img);
-  imagedestroy($img);
+  imagedestroy($img);*/
 
+  $im = imagecreatetruecolor(256, 256);
+  $backgroundColor = imagecolorallocate($im, 153, 0, 0);
+  imagefill($im, 0, 0, $backgroundColor);
+
+  $box = new Box($im);
+  $box->setFontFace('Franchise-Bold-hinted.ttf'); // http://www.dafont.com/franchise.font
+  $box->setFontSize(80);
+  $box->setFontColor(new Color(255, 255, 255));
+  $box->setTextShadow(new Color(0, 0, 0, 50), 0, -2);
+  $box->setBox(0, 0, 256, 256);
+  $box->setTextAlign('center', 'center');
+  $box->draw($text);
+
+  header("Content-type: image/png");
+  imagepng($im);
+  imagedestroy($im);
 }
 
 function tryDisplay($checkLink, $provider) {
@@ -180,8 +258,10 @@ function tryDisplay($checkLink, $provider) {
   if($provider == "page2img" && $width == 160 && $height == 160) {
     return false;
   }
-
-  if ( $get_http_response_code == 200 || $provider == "bestIcon") {
+  if ($provider == "bestIcon" && $get_http_response_code == 400) {
+    return false;
+  }
+  if ($get_http_response_code == 200) {
     //echo "WORKING";
     header('Content-Type: image/png');
     displayURL($checkLink);
@@ -211,9 +291,15 @@ function checkURLValid() {
     $curLink .= $_GET['link'];
   }
 
+  $curLink = get_final_url($curLink);
   $get_http_response_code = get_http_response_code($curLink);
-  if ( $get_http_response_code != 200 && $get_http_response_code != 301 && $get_http_response_code != 302) {
-    $errorMsg = " URL INVALID";
+  if ( $get_http_response_code != 200 && $get_http_response_code != 301 && $get_http_response_code != 302 && $get_http_response_code != 403) {
+    debug_to_console("\n");
+    debug_to_console($curLink);
+    debug_to_console("\nURL ERROR: ");
+    debug_to_console($get_http_response_code);
+    debug_to_console("\n\n");
+    $errorMsg = "URL INVALID";
     displayError($errorMsg);
     die;
    }
@@ -222,11 +308,16 @@ function checkURLValid() {
 //Start Of Algorithm
 checkURLValid();
 
+debug_to_console("\nrequesting clearbit\n\n");
 if(!tryDisplay(clearbit(), 'clearbit')) {
+  debug_to_console("\nrequesting bestIcon\n\n");
   if(!tryDisplay(bestIcon(), 'bestIcon')) {
+    debug_to_console("\nrequesting page2img\n\n");
     if(!tryDisplay(pageToImages(), 'page2img')) {
+      debug_to_console("\nrequesting thumbnailws\n\n");
       if(!tryDisplay(thumbnailws(), 'thumbnailws')) {
-        $errorMsg = " Please Refresh!";
+        debug_to_console("\nAll API exhausted. Fatal -> Display Error!\n\n");
+        $errorMsg = "UNKNOWN ERROR";
         displayError($errorMsg);
       }
     }
