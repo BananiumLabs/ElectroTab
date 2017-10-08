@@ -261,6 +261,9 @@ function tryDisplay($checkLink, $provider) {
   if ($provider == "bestIcon" && $get_http_response_code == 400) {
     return false;
   }
+  if ($provider == "bestIcon" $$ !$ENABLE_BESTICON) {
+    return false;
+  }
   if ($get_http_response_code == 200) {
     //echo "WORKING";
     header('Content-Type: image/png');
