@@ -21,8 +21,9 @@ export const WIDGETS : Widget[] =
         hidden: true,
         template:
         `<img src="../../../assets/images/favicon.png" alt="" class="responsive-img size" />
-            <h2 class="center-align"[ngClass] = "(authService.getSetting('modifier') === 'dark' || authService.getSetting('color') === 'black') ? 'white-text' : ''" > Welcome to ElectroTab! </h2>
-            <button class="btn-large waves-effect waves-light {{authService.getSetting('color')}}" type="submit" name="action" [routerLink]="['/customize/grid']"> Start Customizing</button>`
+            <h2 class="center-align" [ngClass] = "(authService.getSetting('modifier') === 'dark' || authService.getSetting('color') === 'black') ? 'white-text' : ''" > Welcome to ElectroTab! </h2>
+            <button class="btn-large waves-effect waves-light center-align {{authService.getSetting('color')}}" type="submit" name="action" [routerLink]="['/customize/grid']"> Start Customizing</button>
+        `
     },
 
     {
@@ -84,16 +85,22 @@ export const WIDGETS : Widget[] =
         id: 4,
         name: "Speed Dial",
         icon: 'shortcut.png',
-        defaultSetting: 'google.com',
         template:`
-            <div (click)="navigate(item.setting)" class="fit">
-                <div class="card horizontal z-depth-3 fit" [ngClass]="(authService.getSetting('color') !== 'none' || authService.getSetting('color') === 'black') ? 'white' : authService.getSetting('color') + ' lighten-4'">
-                    <div class="card-content child">
-                        <img id="p2i" class="responsive-img valign-wrapper" [src]=getURL(item.setting) />
-                        <span class="webName">{{item.setting}}</span>
-                    </div>
+        <div *ngIf="!item.setting" >
+            <img src="../../../assets/images/favicon.png" alt="" class="responsive-img size" />
+            <h2 class="center-align" [ngClass] = "(authService.getSetting('modifier') === 'dark' || authService.getSetting('color') === 'black') ? 'white-text' : ''" > ElectroTab SpeedDial </h2>
+            <button class="btn-large waves-effect waves-light center-align {{authService.getSetting('color')}}" type="submit" name="action" (click)="openDialog()"> Set URL</button>
+        </div>
+
+        <div *ngIf="item.setting" (click)="navigate(item.setting)" class="fit">
+            <div class="card horizontal fit" [ngClass]="(authService.getSetting('color') !== 'none' || authService.getSetting('color') === 'black') ? 'white' : authService.getSetting('color') + ' lighten-4'">
+                <div class="card-content child">
+                    <img id="p2i" class="responsive-img valign-wrapper" [src]=getURL(item.setting) />
+                    <span class="webName">{{item.setting}}</span>
                 </div>
             </div>
+            
+        </div>
         `,
         menuTemplate: `
         <div class="padded">

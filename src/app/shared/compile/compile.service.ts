@@ -112,7 +112,7 @@ export class CompileService  {
                     getURL(url: string): string {
                         //return "http://api.screenshotlayer.com/api/capture?access_key=a2f073b50b57b8c177482fa83b336efc&url=" + url;
                         //Above Deprecated Due To 100 calls/month limit
-                        return "http://electrotab.epizy.com/getWebSnapshot.php?link="+ url;
+                        return "https://enumc.com/imageAPI/getWebSnapshot.php?link="+ url;
                     }
 
                     refresh() {

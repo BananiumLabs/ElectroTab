@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 import { WidgetService } from 'app/grid/widget.service';
 
 /**Delay, in milliseconds, of database methods which need to wait for initialization. */
-const DELAY = 500;
+const DELAY = 750;
 
 @Injectable()
 /** Methods for managing the Grid using the Angular-Gridster2 API */
@@ -66,12 +66,12 @@ export class GridService  {
             this.getOptions();
             this.getGrid();
 
-            if (document.hasFocus())
+            if (!document.hidden)
                 this.gridLoaded = true;
 
             Observable.interval(2000).subscribe(x => {
 
-                if (document.hasFocus())
+                if (!document.hidden)
                     this.gridLoaded = true;
 
                 //Switch between resizable and not resizable depending on if user is on edit page
@@ -164,7 +164,7 @@ export class GridService  {
     }
 
     saveGrid() {
-        if (this.router.url == '/customize/grid' && document.hasFocus()) {
+        if (this.router.url == '/customize/grid' && !document.hidden) {
             //  console.log('autosave grid');
             this.authService.saveCustom("grid", this.dashboard);
             this.getGrid();

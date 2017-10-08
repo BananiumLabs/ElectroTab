@@ -12,9 +12,6 @@ import { GridsterConfig } from 'angular-gridster2/dist/gridsterConfig.interface'
 import {GridService} from 'app/grid/grid.service'
 import {WidgetService} from 'app/grid/widget.service'
 
-/**Delay, in milliseconds, of database methods which need to wait for initialization. */
-const DELAY = 500;
-
 @Component({
   selector: 'app-dashboard-page',
   templateUrl: './dashboard-page.component.html',
