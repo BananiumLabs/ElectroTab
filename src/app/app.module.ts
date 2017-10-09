@@ -28,7 +28,9 @@ const routes: Routes = [
     { path: '', loadChildren: 'app/home/home.module#HomeModule' },
     { path: 'info', loadChildren: 'app/info/info.module#InfoModule' },
     { path: 'account', loadChildren: 'app/account/account.module#AccountModule' }, 
-    { path: 'customize', loadChildren: 'app/customize/customize.module#CustomizeModule' }
+    { path: 'customize', loadChildren: 'app/customize/customize.module#CustomizeModule' },
+    { path: '404', loadChildren: 'app/404/page-not-found.module#PageNotFoundModule' },
+    { path: '**', redirectTo:'404' }
 ]
 
 @NgModule({

@@ -11,6 +11,8 @@ import {
     Inject
 } from '@angular/core';
 
+import { Observable } from 'rxjs';
+
 import { NgModel, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +21,7 @@ import { MdDialog, MdDialogRef, MD_DIALOG_DATA, MdFormFieldModule, MdDialogModul
 
 import { AuthService } from '../auth.service';
 import { WidgetService } from 'app/grid/widget.service';
+import { GridService } from 'app/grid/grid.service';
 import { ChangeURLDialog } from 'app/customize/grid-menu/changeURLDialog.component';
 import { ImporterModule } from './importer.module';
 
@@ -32,7 +35,7 @@ export interface CompileOptions {
     onCompiled?: Function,
     onError?: Function;
     module?: NgModule;
-    item?: any;
+    item: any;
 }
 
 const cache : any = {};
@@ -73,7 +76,8 @@ export class CompileService  {
     }
 
     private async createFactory(opts: CompileOptions) {
-        const cacheKey = opts.template;
+        // const cacheKey = opts.template;
+        const cacheKey = (Math.random() * 100).toString().substring(0,5);
 
         if (Object.keys(cache).indexOf(cacheKey) > -1) {
             return cache[cacheKey];
@@ -90,19 +94,25 @@ export class CompileService  {
                 })
                 class TemplateComponent {
                     context: any
-                    item = opts.item;
-                    constructor(private authService: AuthService, public widget: WidgetService, public dialog: MdDialog) {}
+                    item: any 
+                    random = Math.random().toString().substring(5); //Unique identifier- use for form id's and other structures that need unique names for each widget instance
 
+                    constructor(private authService: AuthService, public widget: WidgetService, public dialog: MdDialog, private grid: GridService ) {
+                        
+                        this.item = opts.item;
+                        // console.log(this.item);
+                        // console.log(opts.template);
+                    }
+                    
                     //WIDGET FUNCTIONS: TEMPORARY//
 
-                    url: string;
                     engines = ["Google", "Bing", "DuckDuckGo"];
                     clocks = ["AnalogWhite", "AnalogGreen", "DigitalBlue"];
 
                     getURL(url: string): string {
                         //return "http://api.screenshotlayer.com/api/capture?access_key=a2f073b50b57b8c177482fa83b336efc&url=" + url;
                         //Above Deprecated Due To 100 calls/month limit
-                        return "http://electrotab.epizy.com/getWebSnapshot.php?link="+ url;
+                        return "https://enumc.com/imageAPI/getWebSnapshot.php?link="+ url;
                     }
 
                     refresh() {
@@ -120,23 +130,23 @@ export class CompileService  {
 
                     }
 
-                    searchFor(value: string, item: any) {
+                    searchFor(value: string) {
                         if (value !== "" && value !== undefined && value !== null)
-                            if (item.setting !== "DuckDuckGo")
-                                window.location.href = 'https://' + item.setting + '.com/search?q=' + value;
-                        if (item.setting === "DuckDuckGo")
-                            window.location.href = 'https://' + item.setting + '.com/?q=' + value;
+                            if (this.item.setting !== "DuckDuckGo")
+                                window.location.href = 'https://' + this.item.setting + '.com/search?q=' + value;
+                        if (this.item.setting === "DuckDuckGo")
+                            window.location.href = 'https://' + this.item.setting + '.com/?q=' + value;
                     }
 
                     changeURL() {
                         this.openDialog();
                         alert("Your Current URL Setting: " + this.item.setting);
-                        this.url = prompt("Please enter the new website's url:");
-                        if (this.url == null || this.url == "") {
+                        var url = prompt("Please enter the new website's url:");
+                        if (url == null || url == "") {
                             alert("No changes has been made.");
                             return;
                         } else {
-                            this.item.setting = this.url;
+                            this.item.setting = url;
                         }
                     }
 
@@ -144,16 +154,16 @@ export class CompileService  {
                     openDialog(): void {
                         let dialogRef = this.dialog.open(ChangeURLDialog, {
                             width: '250px',
-                            data: { url: this.url }
+                            data: { url: this.item.setting }
                         });
                         dialogRef.componentInstance.dialogRef = dialogRef;
 
                         dialogRef.afterClosed().subscribe(result => {
                             console.log('The dialog was closed');
-                            this.url = result;
-                            this.item.setting = this.url;
+                            this.item.setting = result;
                         });
                     }
+
                 }
 
 
@@ -182,7 +192,7 @@ export class CompileService  {
                 }
                 if (module.declarations === undefined) {
                     module.declarations = [
-                        TemplateComponent
+                       TemplateComponent
                     ];
                 } else {
                     module.declarations.push(TemplateComponent);
@@ -196,6 +206,9 @@ export class CompileService  {
                     comp.componentType === TemplateComponent
                 );
                 cache[cacheKey] = factory;
+
+                // console.log(component);
+                
                 if (opts.onCompiled) {
                     opts.onCompiled(component);
                 }

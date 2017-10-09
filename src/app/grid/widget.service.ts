@@ -22,7 +22,7 @@ export class WidgetService {
             }
 
             if (result)
-                return result[0];
+                return Object.assign([], result[0]);
         }
 
         console.error("WidgetNotFoundError: Widget with id " + id + " does not exist or is improperly defined.");
@@ -36,6 +36,6 @@ export class WidgetService {
             if(!this.widgets[i].hidden)
                 result.push(this.widgets[i]);
 
-        return result;
+        return Object.assign([], result);
     }
 }

@@ -1,3 +1,4 @@
+dist: trusty
 language: node_js
 node_js:
   - "8"
@@ -8,8 +9,12 @@ branches:
     - develop
     - travis-fix
 
-before_script:
-  - npm install -g firebase-tools
+install:
+  - npm install
+
+cache:
+  directories:
+    - "node_modules"
 
 script:
-  - ng build --prod --output-hashing=bundles
+  - ng build --prod --output-hashing=bundles --no-aot
