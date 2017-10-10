@@ -1,7 +1,8 @@
 import {Component} from "@angular/core";
-import {AuthService} from "app/shared/auth.service";
 import { Observable, BehaviorSubject } from "rxjs";
 import {Router} from "@angular/router";
+
+import { AuthService } from "app/shared/auth.service";
 
 @Component({
     selector: 'app-login-page',

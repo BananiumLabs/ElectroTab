@@ -1,10 +1,12 @@
 import { Injectable, OnInit, Input } from '@angular/core';
-import { GridsterConfig } from 'angular-gridster2/dist/gridsterConfig.interface';
-import { Observable } from "rxjs";
-import { AuthService } from "app/shared/auth.service";
-import { UserInfo } from 'app/shared/user-info';
 import { NgClass, NgSwitch } from '@angular/common';
 import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+
+import { GridsterConfig } from 'angular-gridster2/dist/gridsterConfig.interface';
+
+import { AuthService } from "app/shared/auth.service";
+import { UserInfo } from 'app/shared/user-info';
 import { WidgetService } from 'app/grid/widget.service';
 
 /**Delay, in milliseconds, of database methods which need to wait for initialization. */

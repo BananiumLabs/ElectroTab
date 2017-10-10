@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { GridsterModule } from 'angular-gridster2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterializeModule } from "angular2-materialize";
-
-
-import 'hammerjs';
 import {
   MdIconModule,
   MdButtonModule,
@@ -20,12 +15,15 @@ import {
   MdFormFieldModule
 } from '@angular/material';
 
+import { GridsterModule } from 'angular-gridster2';
+import { MaterializeModule } from "angular2-materialize";
+import 'hammerjs';
+
 import { GridEditPageComponent } from 'app/customize/grid-edit-page/grid-edit-page.component';
 import { ThemePageComponent } from 'app/customize/theme-page/theme-page.component';
 import { SettingsPageComponent } from 'app/customize/settings-page/settings-page.component';
 import { CompileService } from 'app/shared/compile/compile.service';
 import { CompileModule } from 'app/shared/compile/compile.module';
-
 import { HomeModule } from 'app/home/home.module';
 
 @NgModule({
