@@ -24,7 +24,6 @@ export class dbconnect {
 
 	}
 
-
 	/**Initializes the database. Sets the UID and verifies that the user's data is valid. */
   initialize(uid: string) {
 
@@ -76,7 +75,6 @@ export class dbconnect {
           });
 
       });
-
 	}
 
   /**Sets a given data set to a certain value. */
@@ -92,31 +90,6 @@ export class dbconnect {
       [name]: data
     });
   }
-
-
-  template(uid: string) {
-
-    if(!uid)
-      return;
-
-    this.user = this.db.object('/users/' + uid, { preserveSnapshot: true });
-
-    this.uid = uid;
-
-    this.user.subscribe(snapshot => {
-      console.log(snapshot.val())
-      if (!snapshot.hasChild("settings"))
-        this.user.update({
-          "settings": {
-            theme: 'vanilla',
-            color: 'green',
-            modifier: 'none',
-            engine: 'Google',
-            clock: 0
-          }
-        });
-        });
-      }
 
   /**Reads a custom value from database. */
   getCustom(name: string, callback) {
