@@ -19,10 +19,14 @@ export class GridService  {
     dashboard: Array<any>;
     gridLoaded: boolean = false;
 
+    height: number;
+
     @Input()
     widgetSearch: any;
 
     constructor(private authService: AuthService, private router: Router, private widgetService: WidgetService) {
+        this.height = window.innerHeight - 64;
+        console.log(this.height);
         this.onInit();
     }
 
@@ -67,21 +71,22 @@ export class GridService  {
 
             this.getOptions();
             this.getGrid();
+            
+            // console.log(this.options.api);
+            
+            if(this.options.api)
+                this.options.api.optionsChanged();
 
             if (!document.hidden)
                 this.gridLoaded = true;
 
             Observable.interval(2000).subscribe(x => {
-
-                if (!document.hidden)
-                    this.gridLoaded = true;
-
                 //Switch between resizable and not resizable depending on if user is on edit page
                 this.options.resizable.enabled = this.router.url == '/customize/grid';
                 if(this.options.api)
                     this.options.api.optionsChanged();
                     
-                this.saveGrid();
+                this.getGrid();
             });
         }, DELAY);
 
@@ -90,7 +95,7 @@ export class GridService  {
     changedOptions() {
         
         setTimeout(() => {
-            //  console.log("options changed");
+             console.log("options changed");
             this.saveOptions();
         }, DELAY)
     }

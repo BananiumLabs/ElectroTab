@@ -1,5 +1,5 @@
  <!-- Grid -->
-  <gridster [options]="grid.options" style="height:1000px; background:transparent">
+  <gridster [options]="grid.options" style="background:transparent" [ngStyle]="{'height': grid.height + 'px'}">
 	<gridster-item [item]="item" *ngFor="let item of grid.dashboard">
 		<div class="button-holder center-align" [ngClass]="getSetting('modifier') === 'color' ? getSetting('color') + ' lighten-3' : (getSetting('modifier') === 'dark' ? 'grey darken-4' : '')" style="position: relative">
 			<div style="background: transparent; height: 100%; width: 100%;" class="child">

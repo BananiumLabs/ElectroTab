@@ -1,4 +1,5 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, HostListener} from '@angular/core';
+import { Component } from '@angular/core';
+import { NgStyle } from '@angular/common';
 import { Observable, BehaviorSubject } from "rxjs";
 
 import {AuthService} from "app/shared/auth.service";
@@ -14,7 +15,7 @@ import {WidgetService} from 'app/grid/widget.service'
 export class DashboardPageComponent {
 
   constructor(private authService: AuthService, private widgets: WidgetService, public grid: GridService) {
-   }
+  }
   
   getSetting(setting) {
     return this.authService.getSetting(setting);
