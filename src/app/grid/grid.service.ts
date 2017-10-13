@@ -19,15 +19,21 @@ export class GridService  {
     dashboard: Array<any>;
     gridLoaded: boolean = false;
 
-    height: number;
+    height: number; //Height of the browser window
 
     @Input()
     widgetSearch: any;
 
     constructor(private authService: AuthService, private router: Router, private widgetService: WidgetService) {
-        this.height = window.innerHeight - 64;
-        console.log(this.height);
+        this.refreshHeight();
         this.onInit();
+    }
+
+    refreshHeight() {
+        Observable.interval(2000).subscribe(x => {
+            this.height = window.innerHeight - 64;
+        });
+        // console.log(this.height);
     }
 
     onInit() {
@@ -73,7 +79,7 @@ export class GridService  {
             this.getGrid();
             
             // console.log(this.options.api);
-            
+
             if(this.options.api)
                 this.options.api.optionsChanged();
 

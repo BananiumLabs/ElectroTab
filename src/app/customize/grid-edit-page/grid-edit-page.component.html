@@ -65,19 +65,17 @@
 					</div>
 				</form>
 				<table class="responsive-table">
-					<tbody style="max-height: 400px; overflow-x: auto;">
-
+					<tbody [ngStyle]="{'max-height': grid.height/3 + 64 + 'px'}" class="overflow">
 						<tr *ngFor="let widget of getWidgets().getWidgets()">
 							<td *ngIf="widget.name.toLowerCase().includes(widgetSearch.value.toLowerCase())">
 
-								<div class="card responsive-30 waves-effect waves-block waves-light" (click)="(widget.defaultSetting) ? grid.addItemCustom(widget.id, widget.width, widget.height, widget.menuTemplate !== undefined, widget.defaultSetting) : grid.addItem(widget.id, widget.width, widget.height, widget.menuTemplate !== undefined)">
-
+								<div [ngStyle]="{'max-width': grid.height/4 + 'px', 'max-height': grid.height/40 + '%'}" class="card waves-effect waves-block waves-light" (click)="(widget.defaultSetting) ? grid.addItemCustom(widget.id, widget.width, widget.height, widget.menuTemplate !== undefined, widget.defaultSetting) : grid.addItem(widget.id, widget.width, widget.height, widget.menuTemplate !== undefined)">
 									<div class="card-content {{getSetting('color')}}" id="add-component-label"><span class="flow-text white-text">{{widget.name}}</span></div>
 									<div class="card-image"><img class="responsive-img" src="../../../assets/images/{{widget.icon}}"/></div>
 								</div>
 								<td>
 						</tr>
-					</tbody>
+					</tbody> 
 				</table>
 			</div>
 	  </li>

@@ -3,6 +3,12 @@ input {
   border-bottom-width: 0px !important;
 }
 
+/* Tbody formatting for 'add widgets' menu */
+.overflow {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 #widget-search {
   margin-left: 3rem;
   margin-bottom: 0.5rem;
@@ -84,23 +90,6 @@ gridster-item .gridster-item-content {
 
 .no-nav {
   height: 0%;
-}
-
-.responsive-80 {
-  max-width: 80%;
-  height: auto;
-}
-
-.responsive-40 {
-  max-width: 400px;
-  max-height: 40%;
-  height: auto;
-}
-
-.responsive-30 {
-  max-width: 300px;
-  max-height: 30%;
-  height: auto;
 }
 
 .z1 {
