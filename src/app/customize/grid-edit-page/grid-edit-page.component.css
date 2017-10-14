@@ -36,6 +36,15 @@ input {
   flex-direction: row;
 }
 
+/* Quick Action Buttons */
+.quick-action {
+  margin-right: 3%;
+}
+
+.nopad {
+  padding: 0;
+}
+
 .main-toolbar {
   display: flex;
   flex-direction: row;
@@ -88,15 +97,19 @@ gridster-item .gridster-item-content {
   flex-direction: column;
 }
 
+.transparent {
+  background-color: transparent;
+}
 .no-nav {
   height: 0%;
 }
 
+.relative {
+  position: relative;
+}
+
 .z1 {
   z-index: 88888;
-}
-.z2 {
-  z-index: 99999;
 }
 
 .fill {

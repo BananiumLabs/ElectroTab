@@ -10,6 +10,19 @@
     height: 15vh;
 }
 
+.transparent {
+  background-color: transparent;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
 input {
 	border-bottom-width: 0px !important;
 }
@@ -22,10 +35,6 @@ input[type=search] ~ .material-icons {
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
    padding-left: 3rem;
    padding-bottom: 0.3rem;
-}
-
-ng2-adsense {
-	padding: 2%;
 }
 
 .margin-slider {

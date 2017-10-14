@@ -1,8 +1,8 @@
  <!-- Grid -->
-  <gridster [options]="grid.options" style="background:transparent" [ngStyle]="{'height': grid.height + 'px'}">
+  <gridster [options]="grid.options" class="transparent" [ngStyle]="{'height': grid.height + 'px'}">
 	<gridster-item [item]="item" *ngFor="let item of grid.dashboard">
-		<div class="button-holder center-align" [ngClass]="getSetting('modifier') === 'color' ? getSetting('color') + ' lighten-3' : (getSetting('modifier') === 'dark' ? 'grey darken-4' : '')" style="position: relative">
-			<div style="background: transparent; height: 100%; width: 100%;" class="child">
+		<div class="relative button-holder center-align" [ngClass]="getSetting('modifier') === 'color' ? getSetting('color') + ' lighten-3' : (getSetting('modifier') === 'dark' ? 'grey darken-4' : '')" >
+			<div class="transparent fit child">
 				<div [p3x-compile]="getWidgets().getWidget(item.id).template" [item]="item"></div>
 			</div>
 		</div>

@@ -48,3 +48,7 @@ textarea {
     width: 256px !important;
     height: 256px !important;
 }
+
+.no-overflow {
+	overflow: hidden;
+}
