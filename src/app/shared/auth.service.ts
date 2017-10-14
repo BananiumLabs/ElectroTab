@@ -1,13 +1,14 @@
 import {Injectable, Inject} from "@angular/core";
-import { Http, Response, Headers, RequestOptions,  Jsonp} from '@angular/http';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
-import {UserInfo} from "./user-info";
+import { Http, Response, Headers, RequestOptions, Jsonp, URLSearchParams} from '@angular/http';
 import { Observable, Subject, BehaviorSubject } from "rxjs";
 import 'rxjs/add/operator/map';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
+import {UserInfo} from "./user-info";
 import {dbconnect} from "./dbconnect";
-import { URLSearchParams } from "@angular/http"
 
 
 @Injectable()
