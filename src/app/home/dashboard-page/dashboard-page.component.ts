@@ -1,14 +1,9 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, HostListener} from '@angular/core';
-import * as firebase from 'firebase';
-import 'firebase/auth';
-import 'firebase/database';
-import {AuthService} from "app/shared/auth.service";
+import { Component } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from "rxjs";
-import {Router, ActivatedRoute} from "@angular/router";
-import {UserInfo} from 'app/shared/user-info';
-import {MaterializeModule} from "angular2-materialize";
-import { GridsterConfig } from 'angular-gridster2/dist/gridsterConfig.interface';
 
+import {AuthService} from "app/shared/auth.service";
 import {GridService} from 'app/grid/grid.service'
 import {WidgetService} from 'app/grid/widget.service'
 
@@ -19,18 +14,14 @@ import {WidgetService} from 'app/grid/widget.service'
 
 })
 export class DashboardPageComponent {
-  options: GridsterConfig;
-  dashboard: Array<Object>;
-  gridLoaded: boolean;
 
-  userInfo: Observable<UserInfo>;
-  isLoggedIn = new BehaviorSubject(false);
+  constructor(private authService: AuthService, private widgets: WidgetService, private router: Router, public grid: GridService) {
 
-  private myUrl:any;
-
-  constructor(private authService: AuthService, private router: Router, private widgets: WidgetService, public grid: GridService) {
-   }
-
+    setTimeout(() => {
+    if(!authService.getUID())
+      router.navigate(['/info']);
+    }, 750);
+  }
   
   getSetting(setting) {
     return this.authService.getSetting(setting);

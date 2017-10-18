@@ -21,7 +21,7 @@
 				<label class="flow-text" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : 'black-text'">
 				Disabled
 				<input type="checkbox" (click)="setModifier('color')" (click)="reload()" [disabled]="getSetting('modifier') === 'dark'" [checked]="getSetting('modifier') === 'color'" #color>
-				<span class="lever"  style="height: 1.5rem; width: 6rem"></span>
+				<span class="lever"></span>
 				Enabled
 				</label>
 			</div>
@@ -33,7 +33,7 @@
 				<label class=" flow-text" [ngClass]="(getSetting('modifier') === 'dark' || getSetting('color') === 'black') ? 'white-text' : 'black-text'">
 				Disabled
 				<input type="checkbox" (click)="setModifier('dark')" (click)="reload()" [disabled]="getSetting('modifier') === 'color'" [checked]="getSetting('modifier') === 'dark'" #dark>
-				<span class="lever"  style="height: 1.5rem; width: 6rem"></span>
+				<span class="lever"></span>
 				Enabled
 				</label>
 			</div>

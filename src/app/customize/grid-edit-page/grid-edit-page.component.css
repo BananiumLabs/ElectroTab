@@ -3,6 +3,12 @@ input {
   border-bottom-width: 0px !important;
 }
 
+/* Tbody formatting for 'add widgets' menu */
+.overflow {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 #widget-search {
   margin-left: 3rem;
   margin-bottom: 0.5rem;
@@ -28,6 +34,15 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+}
+
+/* Quick Action Buttons */
+.quick-action {
+  margin-right: 3%;
+}
+
+.nopad {
+  padding: 0;
 }
 
 .main-toolbar {
@@ -82,32 +97,19 @@ gridster-item .gridster-item-content {
   flex-direction: column;
 }
 
+.transparent {
+  background-color: transparent;
+}
 .no-nav {
   height: 0%;
 }
 
-.responsive-80 {
-  max-width: 80%;
-  height: auto;
-}
-
-.responsive-40 {
-  max-width: 400px;
-  max-height: 40%;
-  height: auto;
-}
-
-.responsive-30 {
-  max-width: 300px;
-  max-height: 30%;
-  height: auto;
+.relative {
+  position: relative;
 }
 
 .z1 {
   z-index: 88888;
-}
-.z2 {
-  z-index: 99999;
 }
 
 .fill {

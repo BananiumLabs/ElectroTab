@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import { AuthService } from "app/shared/auth.service";
 import { FormBuilder, Validators, AbstractControl, FormGroup } from "@angular/forms";
+
+import { AuthService } from "app/shared/auth.service";
 
 @Component({
     selector: 'app-login-user',

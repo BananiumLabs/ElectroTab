@@ -1,7 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-import { AuthService } from "app/shared/auth.service";
 import { Observable, BehaviorSubject } from "rxjs";
 import { FormGroup, AbstractControl, FormBuilder, Validators } from "@angular/forms";
+
+import { AuthService } from "app/shared/auth.service";
 
 @Component({
   selector: 'app-register-user',

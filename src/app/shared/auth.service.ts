@@ -1,20 +1,22 @@
 import {Injectable, Inject} from "@angular/core";
-import { Http, Response, Headers, RequestOptions,  Jsonp} from '@angular/http';
-import * as firebase from 'firebase';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
-import {UserInfo} from "./user-info";
+import { Http, Response, Headers, RequestOptions, Jsonp, URLSearchParams} from '@angular/http';
 import { Observable, Subject, BehaviorSubject } from "rxjs";
 import 'rxjs/add/operator/map';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
+import {UserInfo} from "./user-info";
 import {dbconnect} from "./dbconnect";
-import { URLSearchParams } from "@angular/http"
 
 
 @Injectable()
 export class AuthService {
-    public database: dbconnect;
-    public authed: boolean;
+
+    private database: dbconnect;
+    private authed: boolean;
+
     static UNKNOWN_USER = {
         // Default Values
         isAnonymous: true,
@@ -31,12 +33,16 @@ export class AuthService {
     private user: firebase.User;
 
     constructor(private angularFireAuth: AngularFireAuth, private jsonp: Jsonp, private http: Http, private db: AngularFireDatabase) {
+        //Greetings, developer :D
         console.log("%cHi! :)", "color: green;font-size: x-large");
         console.log("%cIf there are any errors below, please file an issue at https://github.com/dbqeo/ElectroTab/issues. Thanks!", "color:red;font-size: medium");
-    this.database = new dbconnect(db);
+        
+        //Init dbconnect
+        this.database = new dbconnect(db);
 
         this.angularFireAuth.authState.subscribe(user => {
             //console.log("user: ", JSON.stringify(user));
+
             //Initialize User Info
             this.user = user;
             let userInfo = new UserInfo();
@@ -96,25 +102,6 @@ export class AuthService {
         }
         return val;
     }
-
-    getAsyncCustom(item: string, callback) {
-        var val;
-        if(this.currentUser() !== undefined && this.isLoggedInBool() !== undefined) {
-            this.getDB().getCustom(item, function(returnValue) {
-                val = returnValue;
-                callback(val);
-            });
-        }
-    }
-
-    getAsyncCustomUID(uid: string, item: string, callback) {
-        if(this.currentUser() !== undefined && this.isLoggedInBool() !== undefined) {
-            this.getDB().getCustomOnce(uid, item, function(returnValue) {
-                callback(returnValue);
-            });
-        }
-    }
-
 
 /////////////////////////////Setters/////////////////////////////////////
 

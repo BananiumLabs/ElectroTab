@@ -1,9 +1,8 @@
 import {Component, ViewChild, ElementRef} from "@angular/core";
-import {Observable} from "rxjs";
+import { NgClass } from '@angular/common';
+
 import {AuthService} from "app/shared/auth.service";
 import {UserInfo} from 'app/shared/user-info';
-import { NgClass } from '@angular/common';
-import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-theme-page',
@@ -18,7 +17,7 @@ export class ThemePageComponent {
     @ViewChild("dark")
     private _darkElement: ElementRef;
     
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private authService: AuthService) {
         
     }
 
@@ -28,17 +27,6 @@ export class ThemePageComponent {
             this._darkElement.nativeElement.checked = true;
         if(this.getSetting('modifier') === 'color') 
             this._colorElement.nativeElement.checked = true;
-
-        
-        
-    }
-
-    isLoggedIn(): Observable<boolean> {
-        return this.authService.isLoggedIn();
-    }
-
-    currentUser(): Observable<UserInfo> {
-        return this.authService.currentUser();
     }
 
     setModifier(mod : string) {

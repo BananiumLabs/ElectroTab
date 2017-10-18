@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA, MdFormFieldModule, MdInput, MdInputModule } from '@angular/material';
 import { NgModel, FormsModule } from '@angular/forms';
-import { AuthService } from '../../shared/auth.service';
+
+import { AuthService } from 'app/shared/auth.service';
 
 @Component({
     selector: 'changeURL-dialog',

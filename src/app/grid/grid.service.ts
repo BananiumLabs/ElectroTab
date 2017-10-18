@@ -1,10 +1,12 @@
 import { Injectable, OnInit, Input } from '@angular/core';
-import { GridsterConfig } from 'angular-gridster2/dist/gridsterConfig.interface';
-import { Observable } from "rxjs";
-import { AuthService } from "app/shared/auth.service";
-import { UserInfo } from 'app/shared/user-info';
 import { NgClass, NgSwitch } from '@angular/common';
 import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+
+import { GridsterConfig } from 'angular-gridster2/dist/gridsterConfig.interface';
+
+import { AuthService } from "app/shared/auth.service";
+import { UserInfo } from 'app/shared/user-info';
 import { WidgetService } from 'app/grid/widget.service';
 
 /**Delay, in milliseconds, of database methods which need to wait for initialization. */
@@ -17,11 +19,21 @@ export class GridService  {
     dashboard: Array<any>;
     gridLoaded: boolean = false;
 
+    height: number; //Height of the browser window
+
     @Input()
     widgetSearch: any;
 
     constructor(private authService: AuthService, private router: Router, private widgetService: WidgetService) {
+        this.refreshHeight();
         this.onInit();
+    }
+
+    refreshHeight() {
+        Observable.interval(2000).subscribe(x => {
+            this.height = window.innerHeight - 64;
+        });
+        // console.log(this.height);
     }
 
     onInit() {
@@ -65,21 +77,22 @@ export class GridService  {
 
             this.getOptions();
             this.getGrid();
+            
+            // console.log(this.options.api);
+
+            if(this.options.api)
+                this.options.api.optionsChanged();
 
             if (!document.hidden)
                 this.gridLoaded = true;
 
             Observable.interval(2000).subscribe(x => {
-
-                if (!document.hidden)
-                    this.gridLoaded = true;
-
                 //Switch between resizable and not resizable depending on if user is on edit page
                 this.options.resizable.enabled = this.router.url == '/customize/grid';
                 if(this.options.api)
                     this.options.api.optionsChanged();
                     
-                this.saveGrid();
+                this.getGrid();
             });
         }, DELAY);
 
@@ -88,7 +101,7 @@ export class GridService  {
     changedOptions() {
         
         setTimeout(() => {
-            //  console.log("options changed");
+             console.log("options changed");
             this.saveOptions();
         }, DELAY)
     }

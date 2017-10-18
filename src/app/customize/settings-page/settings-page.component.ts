@@ -1,9 +1,8 @@
 import {Component, ViewChild, ElementRef} from "@angular/core";
-import {Observable} from "rxjs";
+import { NgClass } from '@angular/common';
+
 import {AuthService} from "app/shared/auth.service";
 import {UserInfo} from 'app/shared/user-info';
-import { NgClass } from '@angular/common';
-import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-settings-page',
@@ -16,15 +15,7 @@ export class SettingsPageComponent {
     private _colorElement: ElementRef;
     engineChoice: string;
 
-    constructor(private authService: AuthService, private router: Router) {
-    }
-
-    isLoggedIn(): Observable<boolean> {
-        return this.authService.isLoggedIn();
-    }
-
-    currentUser(): Observable<UserInfo> {
-        return this.authService.currentUser();
+    constructor(private authService: AuthService) {
     }
 
     getSetting(setting: string) {
