@@ -42,6 +42,7 @@
     "nopt": "^4.0.1",
     "p3x-angular-compile": "^4.3.78-117",
     "portfinder": "^1.0.13",
+    "promise-polyfill": "6.0.2",
     "rsvp": "^4.0.1",
     "rxjs": "^5.4.2",
     "silent-error": "^1.1.0",
