@@ -3,9 +3,9 @@
 
 ## Built with [Angular](https://angular.io/) and [Firebase](https://firebase.google.com/) with styles and components from [MaterializeCSS](http://materializecss.com/). Current support for Chrome and Chromium.
 
-**Master Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=master)](https://travis-ci.org/dbqeo/ElectroTab)
+**Master Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=master)](https://travis-ci.org/BananiumLabs/ElectroTab)
 
-**Develop Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=develop)](https://travis-ci.org/dbqeo/ElectroTab)
+**Develop Status:** [![Build Status](https://travis-ci.org/dbqeo/ElectroTab.svg?branch=develop)](https://travis-ci.org/BananiumLabs/ElectroTab)
 
 ## Discord Server
 We use **Discord** for realtime collaboration (it's not just for gaming!) Our invite code is https://discord.gg/FnvQ6MG. **Everyone is welcome to join!**
